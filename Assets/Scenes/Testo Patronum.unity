@@ -1241,7 +1241,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 276061401}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1121466282}
+        m_TargetAssemblyTypeName: EmployeeMasterControl, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 276061400}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &276061401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3719,7 +3731,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 654463328}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1121466282}
+        m_TargetAssemblyTypeName: EmployeeMasterControl, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 654463327}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &654463328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3847,7 +3871,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 698213356}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1121466282}
+        m_TargetAssemblyTypeName: EmployeeMasterControl, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 698213355}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &698213356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4326,7 +4362,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 873494523}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1121466282}
+        m_TargetAssemblyTypeName: EmployeeMasterControl, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 873494522}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &873494523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5193,9 +5241,10 @@ GameObject:
   - component: {fileID: 1121466280}
   - component: {fileID: 1121466279}
   - component: {fileID: 1121466278}
+  - component: {fileID: 1121466282}
   m_Layer: 5
-  m_Name: Canvas
-  m_TagString: Canvas
+  m_Name: Employee Master Control Canvas
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5283,6 +5332,70 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1121466282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1121466277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef62e6ce4331e4a41a822aee69fcc7ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EmployeeTemplate: {fileID: 2743595402506076255, guid: faf627e6537e159478d979b15e4eb315, type: 3}
+  EmployeeSprites:
+  - {fileID: -2510476293373519475, guid: 792c5905cf7ead047be51ff417fdc94c, type: 3}
+  - {fileID: 627625725489826318, guid: 792c5905cf7ead047be51ff417fdc94c, type: 3}
+  - {fileID: 6338068570567419226, guid: 792c5905cf7ead047be51ff417fdc94c, type: 3}
+  - {fileID: -4309738878335270719, guid: 792c5905cf7ead047be51ff417fdc94c, type: 3}
+  - {fileID: 7920555144810264317, guid: 792c5905cf7ead047be51ff417fdc94c, type: 3}
+  - {fileID: 4847817712686481240, guid: 792c5905cf7ead047be51ff417fdc94c, type: 3}
+  - {fileID: 6995750527968357485, guid: 792c5905cf7ead047be51ff417fdc94c, type: 3}
+  - {fileID: -5451150391451894679, guid: 792c5905cf7ead047be51ff417fdc94c, type: 3}
+  - {fileID: -5930547643211109364, guid: 792c5905cf7ead047be51ff417fdc94c, type: 3}
+  - {fileID: 1521325034740627089, guid: 792c5905cf7ead047be51ff417fdc94c, type: 3}
+  EmployeeNames:
+  - John
+  - Mary
+  - Joe
+  - Lisa
+  - James
+  - Lesley
+  - Gary
+  - Donna
+  - Steve
+  - Linda
+  EmployeeAges: 190000002200000034000000430000005200000015000000690000002c0000002400000058000000
+  EmployeeReasonTermination:
+  - Fired for Misconduct (Unspecified)
+  - Quit due to employer malfeasance
+  - Quit because of employer negligence
+  - Fired for failure to meet employer standards
+  - Quit to change career path
+  - Fired for safety violations
+  - fired for peepee out
+  - quit due to sewage overflow
+  - fired for excessive flagulance
+  - quit for unspecified reason
+  EmployeeExperience:
+  - 3
+  - 4
+  - 8
+  - 5
+  - 2
+  - 9
+  - 1
+  - 5
+  - 7
+  - 3
+  EmployeeProductivity: 01000000090000000500000006000000040000000700000003000000080000000200000005000000
+  EmployeeLoyalty: 09000000010000000500000004000000060000000300000007000000020000000800000005000000
+  EmployeeHappiness: 06000000040000000700000003000000080000000200000009000000010000000500000005000000
+  EmployeeBurnout: 04000000060000000300000007000000020000000800000001000000090000000500000005000000
+  HiringPool: 10
+  CurrentEmployeePool: {fileID: 2099863108}
 --- !u!1 &1122815969
 GameObject:
   m_ObjectHideFlags: 0
@@ -6263,7 +6376,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1453605108}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1121466282}
+        m_TargetAssemblyTypeName: EmployeeMasterControl, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1453605107}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1453605108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6302,101 +6427,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1453605105}
   m_CullTransparentMesh: 1
---- !u!1 &1624823659
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1624823660}
-  - component: {fileID: 1624823661}
-  m_Layer: 0
-  m_Name: EmployeeMasterControl
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1624823660
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1624823659}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.31978083, y: -0.3444028, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1624823661
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1624823659}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef62e6ce4331e4a41a822aee69fcc7ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EmployeeTemplate: {fileID: 2743595402506076255, guid: faf627e6537e159478d979b15e4eb315, type: 3}
-  EmployeeSprites:
-  - {fileID: -2510476293373519475, guid: 792c5905cf7ead047be51ff417fdc94c, type: 3}
-  - {fileID: 627625725489826318, guid: 792c5905cf7ead047be51ff417fdc94c, type: 3}
-  - {fileID: 6338068570567419226, guid: 792c5905cf7ead047be51ff417fdc94c, type: 3}
-  - {fileID: -4309738878335270719, guid: 792c5905cf7ead047be51ff417fdc94c, type: 3}
-  - {fileID: 7920555144810264317, guid: 792c5905cf7ead047be51ff417fdc94c, type: 3}
-  - {fileID: 4847817712686481240, guid: 792c5905cf7ead047be51ff417fdc94c, type: 3}
-  - {fileID: 6995750527968357485, guid: 792c5905cf7ead047be51ff417fdc94c, type: 3}
-  - {fileID: -5451150391451894679, guid: 792c5905cf7ead047be51ff417fdc94c, type: 3}
-  - {fileID: -5930547643211109364, guid: 792c5905cf7ead047be51ff417fdc94c, type: 3}
-  - {fileID: 1521325034740627089, guid: 792c5905cf7ead047be51ff417fdc94c, type: 3}
-  EmployeeNames:
-  - John
-  - Mary
-  - Joe
-  - Lisa
-  - James
-  - Lesley
-  - Gary
-  - Donna
-  - Steve
-  - Linda
-  EmployeeAges: 190000002200000034000000430000005200000015000000690000002c0000002400000058000000
-  EmployeeReasonTermination:
-  - Fired for Misconduct (Unspecified)
-  - Quit due to employer malfeasance
-  - Quit because of employer negligence
-  - Fired for failure to meet employer standards
-  - Quit to change career path
-  - Fired for safety violations
-  - fired for peepee out
-  - quit due to sewage overflow
-  - fired for excessive flagulance
-  - quit for unspecified reason
-  EmployeeExperience:
-  - 3
-  - 4
-  - 8
-  - 5
-  - 2
-  - 9
-  - 1
-  - 5
-  - 7
-  - 3
-  EmployeeProductivity: 01000000090000000500000006000000040000000700000003000000080000000200000005000000
-  EmployeeLoyalty: 09000000010000000500000004000000060000000300000007000000020000000800000005000000
-  EmployeeHappiness: 06000000040000000700000003000000080000000200000009000000010000000500000005000000
-  EmployeeBurnout: 04000000060000000300000007000000020000000800000001000000090000000500000005000000
-  HiringPool: 10
 --- !u!1 &1657148013
 GameObject:
   m_ObjectHideFlags: 0
@@ -7316,7 +7346,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1968579767}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1121466282}
+        m_TargetAssemblyTypeName: EmployeeMasterControl, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1968579766}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1968579767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7491,6 +7533,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2087196467}
   m_CullTransparentMesh: 1
+--- !u!1 &2099863108
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2099863109}
+  m_Layer: 0
+  m_Name: Current Employee Pool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2099863109
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2099863108}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 985.29645, y: 534.6101, z: -5.9672914}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2119010376
 GameObject:
   m_ObjectHideFlags: 0
@@ -7633,6 +7706,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 519420032}
   - {fileID: 619394802}
-  - {fileID: 1624823660}
   - {fileID: 1121466281}
   - {fileID: 795954428}
+  - {fileID: 2099863109}

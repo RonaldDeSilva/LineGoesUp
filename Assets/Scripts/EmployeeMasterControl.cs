@@ -29,26 +29,62 @@ public class EmployeeMasterControl : MonoBehaviour
     public int[] EmployeeHappiness;
     public int[] EmployeeBurnout;
     public int HiringPool;
-    private GameObject Canvas;
+    private GameObject HireScreen;
+    private GameObject[] CurrentHires;
+    public GameObject CurrentEmployeePool;
 
     void Start()
     {
-        Canvas = GameObject.FindGameObjectWithTag("Canvas");
-        HiringScreenFillUp(HiringPhase());
+        HireScreen = transform.GetChild(0).gameObject;
+        HireScreen.SetActive(false);
+        
+    }
+
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.M) && !HireScreen.activeSelf)
+        {
+            HiringScreenFillUp(HiringPhase());
+            HireScreen.SetActive(true);
+        }
+        else if (Input.GetKey(KeyCode.Escape) && HireScreen.activeSelf)
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                try 
+                { 
+                    Destroy(HireScreen.transform.GetChild(i).GetChild(8).gameObject);
+                }
+                catch { continue; }
+            }
+            HireScreen.SetActive(false);
+        }
+    }
+
+    public void OnClick(Button button)
+    {
+        var emp = button.transform.GetChild(8).gameObject;
+        emp.transform.parent = CurrentEmployeePool.transform;
+        emp.transform.position = Vector3.zero;
+        button.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Sold American";
+        button.GetComponent<Button>().interactable = false;
     }
 
     public void HiringScreenFillUp(GameObject[] list)
     {
         for (int i = 0; i < list.Length; i++)
         {
-            Canvas.transform.GetChild(0).GetChild(i).GetChild(1).GetComponent<Image>().sprite = list[i].GetComponent<SpriteRenderer>().sprite;
-            Canvas.transform.GetChild(0).GetChild(i).GetChild(2).GetComponent<TextMeshProUGUI>().text = list[i].GetComponent<EmployeeScript>().name;
-            Canvas.transform.GetChild(0).GetChild(i).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + list[i].GetComponent<EmployeeScript>().age + " Years Old";
-            Canvas.transform.GetChild(0).GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Reason for terminating previous employment contract: " + list[i].GetComponent<EmployeeScript>().reasonTermination;
-            Canvas.transform.GetChild(0).GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Years of experience in position: " + list[i].GetComponent<EmployeeScript>().experience + " Years";
-            Canvas.transform.GetChild(0).GetChild(i).GetChild(6).GetComponent<TextMeshProUGUI>().text = "Productivity: " + list[i].GetComponent<EmployeeScript>().productivity;
-            Canvas.transform.GetChild(0).GetChild(i).GetChild(7).GetComponent<TextMeshProUGUI>().text = "Loyalty to employer(Subject to change): " + list[i].GetComponent<EmployeeScript>().loyalty;
+            HireScreen.transform.GetChild(i).GetChild(1).GetComponent<Image>().sprite = list[i].GetComponent<SpriteRenderer>().sprite;
+            HireScreen.transform.GetChild(i).GetChild(2).GetComponent<TextMeshProUGUI>().text = list[i].GetComponent<EmployeeScript>().name;
+            HireScreen.transform.GetChild(i).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + list[i].GetComponent<EmployeeScript>().age + " Years Old";
+            HireScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Reason for terminating previous employment contract: " + list[i].GetComponent<EmployeeScript>().reasonTermination;
+            HireScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Years of experience in position: " + list[i].GetComponent<EmployeeScript>().experience + " Years";
+            HireScreen.transform.GetChild(i).GetChild(6).GetComponent<TextMeshProUGUI>().text = "Productivity: " + list[i].GetComponent<EmployeeScript>().productivity;
+            HireScreen.transform.GetChild(i).GetChild(7).GetComponent<TextMeshProUGUI>().text = "Loyalty to employer(Subject to change): " + list[i].GetComponent<EmployeeScript>().loyalty;
+            HireScreen.transform.GetChild(i).GetComponent<Button>().interactable = true;
+            HireScreen.transform.GetChild(i).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Hire";
         }
+        CurrentHires = list;
     }
 
     public GameObject[] HiringPhase()
@@ -69,6 +105,7 @@ public class EmployeeMasterControl : MonoBehaviour
             }
             var emp = PotentialHires(list[i]);
             emp.transform.position = new Vector3(-500, -1000, emp.transform.position.z);
+            emp.transform.parent = HireScreen.transform.GetChild(i);
             empList[i] = emp;
             noRepeatsList[i] = list[i];
         }
