@@ -21,6 +21,9 @@ public class NewBehaviourScript : MonoBehaviour
         yesBtn = transform.Find("Yes Button").GetComponent<Button>();
         noBtn = transform.Find("No Button").GetComponent<Button>();
         maybeBtn = transform.Find("Maybe Button").GetComponent<Button>();
+
+        ShowQuestion("Do you like this question?", () => Debug.Log("Yes"), 
+            () => Debug.Log("No"), () => Debug.Log("Maybe"));
     }
 
     public void ShowQuestion(string QuestionText, Action yesAction, Action noAction, Action maybeAction) { 
