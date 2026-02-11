@@ -1,9 +1,10 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EmployeeScript : MonoBehaviour
 {
 
-    public string name;
+    public new string name;
     public int age;
     public string reasonTermination;
     public float experience;
