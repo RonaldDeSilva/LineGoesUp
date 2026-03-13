@@ -32,12 +32,14 @@ public class EmployeeMasterControl : MonoBehaviour
     private GameObject HireScreen;
     private GameObject[] CurrentHires;
     public GameObject CurrentEmployeePool;
+    public Transform[] nodes;
+    public int numEmployees = 0;
+    public int maxEmployees;
 
     void Start()
     {
         HireScreen = transform.GetChild(0).gameObject;
         HireScreen.SetActive(false);
-        
     }
 
     private void Update()
@@ -63,11 +65,17 @@ public class EmployeeMasterControl : MonoBehaviour
 
     public void OnClick(Button button)
     {
-        var emp = button.transform.GetChild(8).gameObject;
-        emp.transform.parent = CurrentEmployeePool.transform;
-        emp.transform.position = Vector3.zero;
-        button.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Sold American";
-        button.GetComponent<Button>().interactable = false;
+        if (numEmployees < maxEmployees)
+        {
+            var emp = button.transform.GetChild(8).gameObject;
+            emp.transform.parent = CurrentEmployeePool.transform;
+            emp.transform.position = Vector3.zero;
+            button.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Sold American";
+            button.GetComponent<Button>().interactable = false;
+            emp.GetComponent<EmployeeScript>().workStation = numEmployees;
+            emp.GetComponent<EmployeeScript>().Awaken();
+            numEmployees++;
+        }
     }
 
     public void HiringScreenFillUp(GameObject[] list)
@@ -125,6 +133,14 @@ public class EmployeeMasterControl : MonoBehaviour
         Emp.GetComponent<EmployeeScript>().loyalty = EmployeeLoyalty[EmpNum];
         Emp.GetComponent<EmployeeScript>().happiness = EmployeeHappiness[EmpNum];
         Emp.GetComponent<EmployeeScript>().burnout = EmployeeBurnout[EmpNum];
+        Emp.GetComponent<EmployeeScript>().nodes = nodes;
+        Emp.GetComponent<EmployeeScript>().conferenceRoom = 16;
+        Emp.GetComponent<EmployeeScript>().breakRoom = 17;
+        Emp.GetComponent<EmployeeScript>().waterCooler = 18;
+        Emp.GetComponent<EmployeeScript>().bossOffice = 19;
+        Emp.GetComponent<EmployeeScript>().restRoom = 20;
+        Emp.GetComponent<EmployeeScript>().stockRoom = 21;
+        Emp.GetComponent<EmployeeScript>().entranceNode = 22;
 
         return Emp;
     }

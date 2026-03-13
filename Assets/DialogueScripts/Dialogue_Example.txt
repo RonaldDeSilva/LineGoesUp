@@ -1,7 +1,24 @@
-Trevor Can you read me?
-A. Yes
-B. Also Yes
-C. I can't read
-Ok, Cool. It worked!
-Cool, it worked!
-Howe dyd yuu reed thee anser "I can't read" yf yuu kant reed, siwwy gooth!
+when displaying text this is how it works:
+
+
+Put question/prompt here: Should we fire Trevor, he hasn't shown up in a few days?
+Here is first response: Yes
+And the corresponding reply to the first response: Ok, Cool. Sending fire email now.
+Ignore this number just skip a line between responses: 0
+second response: No
+second response reply: ok if we don't fire him, then what should we do to get him to come to work?
+ignore: 0
+third response: I can't read
+third response reply: Howe dyd yuu reed thee anser "I can't read" yf yuu kant reed, siwwy gooth?
+ignore: 1
+
+Put second question/prompt here: Should we fire Trevor, he hasn't shown up in a few days?
+Here is first response: Yes
+And the corresponding reply to the first response: Ok, Cool. Sending fire email now.
+Ignore this number just skip a line between responses: 0
+second response: No
+second response reply: ok if we don't fire him, then what should we do to get him to come to work?
+ignore: 0
+third response: I can't read
+third response reply: Howe dyd yuu reed thee anser "I can't read" yf yuu kant reed, siwwy gooth?
+ignore: 1

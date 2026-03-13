@@ -1,5 +1,4 @@
 using System.IO;
-using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,22 +24,23 @@ public class DialogueScript : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.D))
         {
             DialogueBox.SetActive(true);
-            DisplayText("Assets\\DialogueScripts\\Dialogue_Example.txt", 0);
+            DisplayText("Assets\\DialogueScripts\\Dialogue_Example.txt", 3);
         }
-
-        
     }
 
+    #region Display Text Monster Code
     public void DisplayText(string fileName, int lineNum)
     {
         DialogueOptions = File.ReadAllLines(fileName);
         Dialogue.text = DialogueOptions[lineNum];
         yesBtn.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = DialogueOptions[lineNum + 1];
-        noBtn.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = DialogueOptions[lineNum + 2];
-        maybeBtn.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = DialogueOptions[lineNum + 3];
-        latestStringNum = lineNum + 3;
+        noBtn.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = DialogueOptions[lineNum + 4];
+        maybeBtn.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = DialogueOptions[lineNum + 7];
+
+        latestStringNum = lineNum + 1;
     }
 
+    #endregion
     public void YesButton()
     {
         Dialogue.text = DialogueOptions[latestStringNum + 1];
@@ -48,11 +48,11 @@ public class DialogueScript : MonoBehaviour
 
     public void NoButton()
     {
-        Dialogue.text = DialogueOptions[latestStringNum + 2];
+        Dialogue.text = DialogueOptions[latestStringNum + 4];
     }
 
     public void MaybeButton()
     {
-        Dialogue.text = DialogueOptions[latestStringNum + 3];
+        Dialogue.text = DialogueOptions[latestStringNum + 7];
     }
 }
