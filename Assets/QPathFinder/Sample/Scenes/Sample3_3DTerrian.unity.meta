@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: b0237163006944947a82addda22e395f
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 126951
+  packageName: 2D/3D PathFinder Full
+  packageVersion: 2.0
+  assetPath: Assets/QPathFinder/Sample/Scenes/Sample3_3DTerrian.unity
+  uploadId: 408090

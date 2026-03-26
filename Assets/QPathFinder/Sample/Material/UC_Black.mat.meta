@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 31ffbfb8028c34301bfff90dddd77de3
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 126951
+  packageName: 2D/3D PathFinder Full
+  packageVersion: 2.0
+  assetPath: Assets/QPathFinder/Sample/Material/UC_Black.mat
+  uploadId: 408090

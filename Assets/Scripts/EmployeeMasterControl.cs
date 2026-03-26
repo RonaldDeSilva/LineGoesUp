@@ -30,9 +30,7 @@ public class EmployeeMasterControl : MonoBehaviour
     public int[] EmployeeBurnout;
     public int HiringPool;
     private GameObject HireScreen;
-    private GameObject[] CurrentHires;
     public GameObject CurrentEmployeePool;
-    public Transform[] nodes;
     public int numEmployees = 0;
     public int maxEmployees;
 
@@ -92,7 +90,6 @@ public class EmployeeMasterControl : MonoBehaviour
             HireScreen.transform.GetChild(i).GetComponent<Button>().interactable = true;
             HireScreen.transform.GetChild(i).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Hire";
         }
-        CurrentHires = list;
     }
 
     public GameObject[] HiringPhase()
@@ -133,14 +130,13 @@ public class EmployeeMasterControl : MonoBehaviour
         Emp.GetComponent<EmployeeScript>().loyalty = EmployeeLoyalty[EmpNum];
         Emp.GetComponent<EmployeeScript>().happiness = EmployeeHappiness[EmpNum];
         Emp.GetComponent<EmployeeScript>().burnout = EmployeeBurnout[EmpNum];
-        Emp.GetComponent<EmployeeScript>().nodes = nodes;
-        Emp.GetComponent<EmployeeScript>().conferenceRoom = 16;
-        Emp.GetComponent<EmployeeScript>().breakRoom = 17;
-        Emp.GetComponent<EmployeeScript>().waterCooler = 18;
-        Emp.GetComponent<EmployeeScript>().bossOffice = 19;
-        Emp.GetComponent<EmployeeScript>().restRoom = 20;
+        Emp.GetComponent<EmployeeScript>().conferenceRoom = 26;
+        Emp.GetComponent<EmployeeScript>().breakRoom = 34;
+        Emp.GetComponent<EmployeeScript>().waterCooler = 13;
+        Emp.GetComponent<EmployeeScript>().bossOffice = 27;
+        Emp.GetComponent<EmployeeScript>().restRoom = 23;
         Emp.GetComponent<EmployeeScript>().stockRoom = 21;
-        Emp.GetComponent<EmployeeScript>().entranceNode = 22;
+        Emp.GetComponent<EmployeeScript>().entranceNode = 24;
 
         return Emp;
     }

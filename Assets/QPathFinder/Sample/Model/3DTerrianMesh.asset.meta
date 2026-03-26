@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 7864bce0734b54450b930614836efdeb
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 126951
+  packageName: 2D/3D PathFinder Full
+  packageVersion: 2.0
+  assetPath: Assets/QPathFinder/Sample/Model/3DTerrianMesh.asset
+  uploadId: 408090

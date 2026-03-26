@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
-public class EmployeeScript : MonoBehaviour
+public class NewEmployeeScript : MonoBehaviour
 {
     public float decisionTime = 0.001f;
     //
@@ -31,18 +31,11 @@ public class EmployeeScript : MonoBehaviour
     private int targetNode;
     private int targetPosition;
     public Transform[] Positions;
-    private float speed;
+    private float speed; 
 
-    public void Awaken()
-    {
+    public void Start()
+    { 
         transform.position = new Vector3(6.290487f, 2.859212f, transform.position.z);
-
-        
-        for (int i = 0; i < Positions.Length; i++)
-        {
-            Positions[i] = GameObject.Find("Nodes").transform.GetChild(i);
-        }
-
         if (age < 35)
         {
             speed = Random.Range(12.5f, 16f);
@@ -95,45 +88,45 @@ public class EmployeeScript : MonoBehaviour
 
         if (Rando == 0)
         {
-            targetNode = workStation + 1;
-            targetPosition = workStation;
-            decisionTime = Random.Range(5f, 20f);
+            targetNode = workStation;
+            targetPosition = workStation - 1;
+            decisionTime = Random.Range(1f, 3f);
         }
         else if (Rando == 1)
         {
             targetNode = breakRoom;
             targetPosition = 13;
-            decisionTime = Random.Range(3f, 10f);
+            decisionTime = Random.Range(1f, 3f);
         }
         else if (Rando == 2)
         {
             targetNode = waterCooler;
             targetPosition = 15;
-            decisionTime = Random.Range(3f, 10f);
+            decisionTime = Random.Range(1f, 3f);
         }
         else if (Rando == 3)
         {
             targetNode = bossOffice;
             targetPosition = 14;
-            decisionTime = Random.Range(4f, 5f);
+            decisionTime = Random.Range(1f, 3f);
         }
         else if (Rando == 4)
         {
             targetNode = conferenceRoom;
             targetPosition = 12;
-            decisionTime = Random.Range(10f, 15f);
+            decisionTime = Random.Range(1f, 3f);
         }
         else if (Rando == 5)
         {
             targetNode = stockRoom;
             targetPosition = 17;
-            decisionTime = Random.Range(5f, 10f);
+            decisionTime = Random.Range(1f, 3f);
         }
         else if (Rando == 6)
         {
             targetNode = restRoom;
             targetPosition = 16;
-            decisionTime = Random.Range(15f, 30f);
+            decisionTime = Random.Range(1f, 3f);
         }
 
         if (prevNode == targetNode)
@@ -151,11 +144,6 @@ public class EmployeeScript : MonoBehaviour
                     OnPathFound(thepoints);
                 }
             );
-        }
-
-        if (targetNode != workStation + 1)
-        {
-            firstRun = true;
         }
 
     }
