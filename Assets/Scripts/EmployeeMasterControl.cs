@@ -34,6 +34,14 @@ public class EmployeeMasterControl : MonoBehaviour
     public int numEmployees = 0;
     public int maxEmployees;
 
+    public int restRoomQueue;
+    public int waterCoolerQueue;
+    public int bossOfficeQueue;
+    public int breakRoomQueue;
+    public int stockRoomQueue;
+    public int conferenceRoomQueue;
+    private int moveTimer;
+
     void Start()
     {
         HireScreen = transform.GetChild(0).gameObject;
@@ -59,6 +67,28 @@ public class EmployeeMasterControl : MonoBehaviour
             }
             HireScreen.SetActive(false);
         }
+
+        if (moveTimer % 30 == 0 && CurrentEmployeePool.transform.childCount > 0)
+        {
+            var ran = Random.Range(0, CurrentEmployeePool.transform.childCount);
+            if (!CurrentEmployeePool.transform.GetChild(ran).gameObject.GetComponent<EmployeeScript>().isMoving)
+            {
+                CurrentEmployeePool.transform.GetChild(ran).gameObject.GetComponent<EmployeeScript>().chosen = true;
+            }
+            else
+            {
+                for (int i = 0; i < CurrentEmployeePool.transform.childCount; i++)
+                {
+                    if (!CurrentEmployeePool.transform.GetChild(i).gameObject.GetComponent<EmployeeScript>().isMoving)
+                    {
+                        CurrentEmployeePool.transform.GetChild(i).gameObject.GetComponent<EmployeeScript>().chosen = true;
+                        break;
+                    }
+                }
+            }
+            
+        }
+        moveTimer++;
     }
 
     public void OnClick(Button button)
@@ -71,7 +101,7 @@ public class EmployeeMasterControl : MonoBehaviour
             button.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Sold American";
             button.GetComponent<Button>().interactable = false;
             emp.GetComponent<EmployeeScript>().workStation = numEmployees;
-            emp.GetComponent<EmployeeScript>().Awaken();
+            emp.GetComponent<EmployeeScript>().Awaken(this.GetComponent<EmployeeMasterControl>());
             numEmployees++;
         }
     }
