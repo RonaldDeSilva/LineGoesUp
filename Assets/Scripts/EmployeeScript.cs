@@ -90,8 +90,6 @@ public class EmployeeScript : MonoBehaviour
             rb.linearVelocity = Vector2.zero;
             movingToQueuePosition = false;
         }
-
-
     }
 
 
@@ -251,6 +249,7 @@ public class EmployeeScript : MonoBehaviour
     {
         isMoving = true;
         chosen = false;
+        PathFollowerUtility.FollowPath(this.transform, points, speed, false);
         if (targetNode == breakRoom)
         {
             EMC.breakRoomQueue += 1;
@@ -287,8 +286,6 @@ public class EmployeeScript : MonoBehaviour
             currentQueuePosition = EMC.stockRoomQueue;
             Debug.Log("stock Room Queue: " + EMC.stockRoomQueue);
         }
-
-        PathFollowerUtility.FollowPath(this.transform, points, speed, false);
 
         if (prevNode == breakRoom)
         {

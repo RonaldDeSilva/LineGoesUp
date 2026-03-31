@@ -68,7 +68,7 @@ public class EmployeeMasterControl : MonoBehaviour
             HireScreen.SetActive(false);
         }
 
-        if (moveTimer % 30 == 0 && CurrentEmployeePool.transform.childCount > 0)
+        if (moveTimer % 60 == 0 && CurrentEmployeePool.transform.childCount > 0)
         {
             var ran = Random.Range(0, CurrentEmployeePool.transform.childCount);
             if (!CurrentEmployeePool.transform.GetChild(ran).gameObject.GetComponent<EmployeeScript>().isMoving)
@@ -89,6 +89,13 @@ public class EmployeeMasterControl : MonoBehaviour
             
         }
         moveTimer++;
+
+        restRoomQueue = Mathf.Clamp(restRoomQueue, 0, 2);
+        stockRoomQueue = Mathf.Clamp(stockRoomQueue, 0, 4);
+        conferenceRoomQueue = Mathf.Clamp(conferenceRoomQueue, 0, 12);
+        breakRoomQueue = Mathf.Clamp(breakRoomQueue, 0, 8);
+        bossOfficeQueue = Mathf.Clamp(bossOfficeQueue, 0, 1);
+        waterCoolerQueue = Mathf.Clamp(waterCoolerQueue, 0, 6);
     }
 
     public void OnClick(Button button)

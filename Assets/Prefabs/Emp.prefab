@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5243398535005112544}
   m_Layer: 0
   m_Name: Emp
-  m_TagString: Untagged
+  m_TagString: Employee
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -120,6 +120,9 @@ MonoBehaviour:
   workStation: 0
   bossOffice: 0
   entranceNode: 0
+  movingToQueuePosition: 0
+  chosen: 0
+  isMoving: 0
 --- !u!114 &4509482739307983919
 MonoBehaviour:
   m_ObjectHideFlags: 0
