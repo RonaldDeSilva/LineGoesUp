@@ -230,6 +230,36 @@ public class EmployeeScript : MonoBehaviour
         {
             chosen = false;
             movingToQueuePosition = false;
+            if (prevNode == breakRoom)
+            {
+                EMC.breakRoomQueue -= 1;
+                Debug.Log("Break Room Queue: " + EMC.breakRoomQueue);
+            }
+            else if (prevNode == restRoom)
+            {
+                EMC.restRoomQueue -= 1;
+                Debug.Log("rest room Queue: " + EMC.restRoomQueue);
+            }
+            else if (prevNode == conferenceRoom)
+            {
+                EMC.conferenceRoomQueue -= 1;
+                Debug.Log("conference Room Queue: " + EMC.conferenceRoomQueue);
+            }
+            else if (prevNode == waterCooler)
+            {
+                EMC.waterCoolerQueue -= 1;
+                Debug.Log("water cooler Queue: " + EMC.waterCoolerQueue);
+            }
+            else if (prevNode == bossOffice)
+            {
+                EMC.bossOfficeQueue -= 1;
+                Debug.Log("boss office Queue: " + EMC.bossOfficeQueue);
+            }
+            else if (prevNode == stockRoom)
+            {
+                EMC.stockRoomQueue -= 1;
+                Debug.Log("stock Room Queue: " + EMC.stockRoomQueue);
+            }
             PathFinder.instance.FindShortestPathOfPoints(transform.position, Positions[targetPosition].position, PathLineType.CatmullRomCurve, Execution.Synchronous,
                 SearchMode.Simple,
                 delegate (List<Vector3> thepoints)
@@ -237,6 +267,7 @@ public class EmployeeScript : MonoBehaviour
                     OnPathFound(thepoints);
                 }
             );
+
         }
 
         if (prevNode != workStation && targetNode != workStation)
@@ -287,36 +318,7 @@ public class EmployeeScript : MonoBehaviour
             Debug.Log("stock Room Queue: " + EMC.stockRoomQueue);
         }
 
-        if (prevNode == breakRoom)
-        {
-            EMC.breakRoomQueue -= 1;
-            Debug.Log("Break Room Queue: " + EMC.breakRoomQueue);
-        }
-        else if (prevNode == restRoom)
-        {
-            EMC.restRoomQueue -= 1;
-            Debug.Log("rest room Queue: " + EMC.restRoomQueue);
-        }
-        else if (prevNode == conferenceRoom)
-        {
-            EMC.conferenceRoomQueue -= 1;
-            Debug.Log("conference Room Queue: " + EMC.conferenceRoomQueue);
-        }
-        else if (prevNode == waterCooler)
-        {
-            EMC.waterCoolerQueue -= 1;
-            Debug.Log("water cooler Queue: " + EMC.waterCoolerQueue);
-        }
-        else if (prevNode == bossOffice)
-        {
-            EMC.bossOfficeQueue -= 1;
-            Debug.Log("boss office Queue: " + EMC.bossOfficeQueue);
-        }
-        else if (prevNode == stockRoom)
-        {
-            EMC.stockRoomQueue -= 1;
-            Debug.Log("stock Room Queue: " + EMC.stockRoomQueue);
-        }
+        
         
     }
 
