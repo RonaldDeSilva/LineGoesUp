@@ -68,7 +68,7 @@ public class EmployeeMasterControl : MonoBehaviour
             HireScreen.SetActive(false);
         }
 
-        if (moveTimer % 60 == 0 && CurrentEmployeePool.transform.childCount > 0)
+        if (moveTimer % 15 == 0 && CurrentEmployeePool.transform.childCount > 0)
         {
             var ran = Random.Range(0, CurrentEmployeePool.transform.childCount);
             if (!CurrentEmployeePool.transform.GetChild(ran).gameObject.GetComponent<EmployeeScript>().isMoving)
@@ -167,13 +167,12 @@ public class EmployeeMasterControl : MonoBehaviour
         Emp.GetComponent<EmployeeScript>().loyalty = EmployeeLoyalty[EmpNum];
         Emp.GetComponent<EmployeeScript>().happiness = EmployeeHappiness[EmpNum];
         Emp.GetComponent<EmployeeScript>().burnout = EmployeeBurnout[EmpNum];
-        Emp.GetComponent<EmployeeScript>().conferenceRoom = 26;
-        Emp.GetComponent<EmployeeScript>().breakRoom = 34;
-        Emp.GetComponent<EmployeeScript>().waterCooler = 13;
-        Emp.GetComponent<EmployeeScript>().bossOffice = 27;
-        Emp.GetComponent<EmployeeScript>().restRoom = 23;
+        Emp.GetComponent<EmployeeScript>().conferenceRoom = 16;
+        Emp.GetComponent<EmployeeScript>().breakRoom = 17;
+        Emp.GetComponent<EmployeeScript>().waterCooler = 19;
+        Emp.GetComponent<EmployeeScript>().bossOffice = 18;
+        Emp.GetComponent<EmployeeScript>().restRoom = 20;
         Emp.GetComponent<EmployeeScript>().stockRoom = 21;
-        Emp.GetComponent<EmployeeScript>().entranceNode = 24;
 
         return Emp;
     }

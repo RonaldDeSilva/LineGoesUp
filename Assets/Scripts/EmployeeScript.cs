@@ -18,18 +18,15 @@ public class EmployeeScript : MonoBehaviour
     public int happiness;
     public int burnout;
     //
-    public int waterCooler = 13;
-    public int breakRoom = 34;
-    public int restRoom = 23;
+    public int waterCooler = 19;
+    public int breakRoom = 17;
+    public int restRoom = 20;
     public int stockRoom = 21;
-    public int conferenceRoom = 26;
+    public int conferenceRoom = 16;
     public int workStation = 1;
-    public int bossOffice = 27;
-    public int entranceNode = 24;
+    public int bossOffice = 18;
     private bool firstRun = true;
     private int prevNode = 24;
-    private int prevPrevNode = 24;
-    private int targetNode;
     private int targetPosition;
     private Transform[] Positions = new Transform[22];
     private Transform[] QueuePositions = new Transform[33];
@@ -97,43 +94,49 @@ public class EmployeeScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Node"))
         {
-            if (collision.gameObject.GetComponent<Node>().nodeNum == targetNode)
+            if (collision.gameObject.GetComponent<Node>().nodeNum == targetPosition)
             {
-                prevNode = targetNode;
+                prevNode = targetPosition;
                 chosen = false;
                 isMoving = false;
                 StartCoroutine("Behaviors");
-                if (prevNode == breakRoom)
-                {
-                    targetPosition = currentQueuePosition - 1;
-                    movingToQueuePosition = true;
-                }
-                else if (prevNode == waterCooler)
-                {
-                    targetPosition = currentQueuePosition + 26;
-                    movingToQueuePosition = true;
-                }
-                else if (prevNode == bossOffice)
-                {
-                    targetPosition = 8;
-                    movingToQueuePosition = true;
-                }
-                else if (prevNode == conferenceRoom)
-                {
-                    targetPosition = currentQueuePosition + 8;
-                    movingToQueuePosition = true;
-                }
-                else if (prevNode == stockRoom)
-                {
-                    targetPosition = currentQueuePosition + 22;
-                    movingToQueuePosition = true;
-                }
-                else if (prevNode == restRoom)
-                {
-                    targetPosition = currentQueuePosition + 20;
-                    movingToQueuePosition = true;
-                }
+                StartCoroutine("WaitASec");
             }
+        }
+    }
+
+    IEnumerator WaitASec()
+    {
+        yield return new WaitForSeconds(0.5f);
+        if (prevNode == breakRoom)
+        {
+            targetPosition = currentQueuePosition - 1;
+            movingToQueuePosition = true;
+        }
+        else if (prevNode == waterCooler)
+        {
+            targetPosition = currentQueuePosition + 26;
+            movingToQueuePosition = true;
+        }
+        else if (prevNode == bossOffice)
+        {
+            targetPosition = 8;
+            movingToQueuePosition = true;
+        }
+        else if (prevNode == conferenceRoom)
+        {
+            targetPosition = currentQueuePosition + 8;
+            movingToQueuePosition = true;
+        }
+        else if (prevNode == stockRoom)
+        {
+            targetPosition = currentQueuePosition + 22;
+            movingToQueuePosition = true;
+        }
+        else if (prevNode == restRoom)
+        {
+            targetPosition = currentQueuePosition + 20;
+            movingToQueuePosition = true;
         }
     }
 
@@ -157,53 +160,40 @@ public class EmployeeScript : MonoBehaviour
 
         if (Rando == 0)
         {
-            if (workStation < 13)
-            {
-                targetNode = workStation + 1;
-            }
-            else
-            {
-                targetNode = workStation;
-            }
             targetPosition = workStation;
+            Debug.Log(workStation);
             decisionTime = Random.Range(10f, 30f);
         }
         else if (chosen == true)
             {
             if (Rando == 1 && EMC.breakRoomQueue < 8)
             {
-                targetNode = breakRoom;
-                targetPosition = 17;
+                targetPosition = breakRoom;
                 decisionTime = Random.Range(15f, 20f);
             }
-            else if (Rando == 2 && EMC.waterCoolerQueue < 6)
+            else if (Rando == 2 && EMC.waterCoolerQueue < 5)
             {
-                targetNode = waterCooler;
-                targetPosition = 19;
+                targetPosition = waterCooler;
                 decisionTime = Random.Range(15f, 20f);
             }
             else if (Rando == 3 && EMC.bossOfficeQueue < 1)
             {
-                targetNode = bossOffice;
-                targetPosition = 18;
+                targetPosition = bossOffice;
                 decisionTime = Random.Range(30f, 50f);
             }
             else if (Rando == 4 && EMC.conferenceRoomQueue < 12)
             {
-                targetNode = conferenceRoom;
-                targetPosition = 16;
+                targetPosition = conferenceRoom;
                 decisionTime = Random.Range(10f, 15f);
             }
             else if (Rando == 5 && EMC.stockRoomQueue < 4)
             {
-                targetNode = stockRoom;
-                targetPosition = 21;
+                targetPosition = stockRoom;
                 decisionTime = Random.Range(3f, 7f);
             }
             else if (Rando == 6 && EMC.restRoomQueue < 2)
             {
-                targetNode = restRoom;
-                targetPosition = 20;
+                targetPosition = restRoom;
                 decisionTime = Random.Range(10f, 30f);
             }
             else
@@ -220,7 +210,7 @@ public class EmployeeScript : MonoBehaviour
             yield break;
         }
 
-        if (prevNode == targetNode)
+        if (prevNode == targetPosition)
         {
             decisionTime = 0.001f;
             StartCoroutine("Behaviors");
@@ -233,32 +223,57 @@ public class EmployeeScript : MonoBehaviour
             if (prevNode == breakRoom)
             {
                 EMC.breakRoomQueue -= 1;
-                Debug.Log("Break Room Queue: " + EMC.breakRoomQueue);
             }
             else if (prevNode == restRoom)
             {
                 EMC.restRoomQueue -= 1;
-                Debug.Log("rest room Queue: " + EMC.restRoomQueue);
             }
             else if (prevNode == conferenceRoom)
             {
                 EMC.conferenceRoomQueue -= 1;
-                Debug.Log("conference Room Queue: " + EMC.conferenceRoomQueue);
             }
             else if (prevNode == waterCooler)
             {
                 EMC.waterCoolerQueue -= 1;
-                Debug.Log("water cooler Queue: " + EMC.waterCoolerQueue);
             }
             else if (prevNode == bossOffice)
             {
                 EMC.bossOfficeQueue -= 1;
-                Debug.Log("boss office Queue: " + EMC.bossOfficeQueue);
             }
             else if (prevNode == stockRoom)
             {
                 EMC.stockRoomQueue -= 1;
-                Debug.Log("stock Room Queue: " + EMC.stockRoomQueue);
+            }
+
+            if (targetPosition == breakRoom)
+            {
+                EMC.breakRoomQueue += 1;
+                currentQueuePosition = EMC.breakRoomQueue;
+            }
+            else if (targetPosition == restRoom)
+            {
+                EMC.restRoomQueue += 1;
+                currentQueuePosition = EMC.restRoomQueue;
+            }
+            else if (targetPosition == conferenceRoom)
+            {
+                EMC.conferenceRoomQueue += 1;
+                currentQueuePosition = EMC.conferenceRoomQueue;
+            }
+            else if (targetPosition == waterCooler)
+            {
+                EMC.waterCoolerQueue += 1;
+                currentQueuePosition = EMC.waterCoolerQueue;
+            }
+            else if (targetPosition == bossOffice)
+            {
+                EMC.bossOfficeQueue += 1;
+                currentQueuePosition = EMC.bossOfficeQueue;
+            }
+            else if (targetPosition == stockRoom)
+            {
+                EMC.stockRoomQueue += 1;
+                currentQueuePosition = EMC.stockRoomQueue;
             }
             PathFinder.instance.FindShortestPathOfPoints(transform.position, Positions[targetPosition].position, PathLineType.CatmullRomCurve, Execution.Synchronous,
                 SearchMode.Simple,
@@ -270,7 +285,7 @@ public class EmployeeScript : MonoBehaviour
 
         }
 
-        if (prevNode != workStation && targetNode != workStation)
+        if (prevNode != workStation && targetPosition != workStation)
         {
             firstRun = true;
         }
@@ -281,45 +296,6 @@ public class EmployeeScript : MonoBehaviour
         isMoving = true;
         chosen = false;
         PathFollowerUtility.FollowPath(this.transform, points, speed, false);
-        if (targetNode == breakRoom)
-        {
-            EMC.breakRoomQueue += 1;
-            currentQueuePosition = EMC.breakRoomQueue;
-            Debug.Log("Break Room Queue: " + EMC.breakRoomQueue);
-        }
-        else if (targetNode == restRoom)
-        {
-            EMC.restRoomQueue += 1;
-            currentQueuePosition = EMC.restRoomQueue;
-            Debug.Log("rest room Queue: " + EMC.restRoomQueue);
-        }
-        else if (targetNode == conferenceRoom)
-        {
-            EMC.conferenceRoomQueue += 1;
-            currentQueuePosition = EMC.conferenceRoomQueue;
-            Debug.Log("conference Room Queue: " + EMC.conferenceRoomQueue);
-        }
-        else if (targetNode == waterCooler)
-        {
-            EMC.waterCoolerQueue += 1;
-            currentQueuePosition = EMC.waterCoolerQueue;
-            Debug.Log("water cooler Queue: " + EMC.waterCoolerQueue);
-        }
-        else if (targetNode == bossOffice)
-        {
-            EMC.bossOfficeQueue += 1;
-            currentQueuePosition = EMC.bossOfficeQueue;
-            Debug.Log("boss office Queue: " + EMC.bossOfficeQueue);
-        }
-        else if (targetNode == stockRoom)
-        {
-            EMC.stockRoomQueue += 1;
-            currentQueuePosition = EMC.stockRoomQueue;
-            Debug.Log("stock Room Queue: " + EMC.stockRoomQueue);
-        }
-
-        
-        
     }
 
     #endregion
