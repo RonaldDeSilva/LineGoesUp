@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
 
 public class EmployeeMasterControl : MonoBehaviour
 {
@@ -20,7 +21,9 @@ public class EmployeeMasterControl : MonoBehaviour
 
     public GameObject EmployeeTemplate;
     public Sprite[] EmployeeSprites;
-    public string[] EmployeeNames;
+    private string[] EmployeeFirstNames;
+    private string[] EmployeeNickNames;
+    private string[] EmployeeLastNames;
     public int[] EmployeeAges;
     public string[] EmployeeReasonTermination;
     public float[] EmployeeExperience;
@@ -51,6 +54,9 @@ public class EmployeeMasterControl : MonoBehaviour
     {
         HireScreen = transform.GetChild(0).gameObject;
         HireScreen.SetActive(false);
+        EmployeeFirstNames = File.ReadAllLines("Assets\\EmployeeInfoDocs\\First Names.txt");
+        EmployeeNickNames = File.ReadAllLines("Assets\\EmployeeInfoDocs\\Nick Names.txt");
+        EmployeeLastNames = File.ReadAllLines("Assets\\EmployeeInfoDocs\\Last Names.txt");
     }
 
     private void Update()
@@ -137,42 +143,33 @@ public class EmployeeMasterControl : MonoBehaviour
 
     public GameObject[] HiringPhase()
     {
-        int[] list = new int[] {Random.Range(0, HiringPool - 1), Random.Range(0, HiringPool - 1), Random.Range(0, HiringPool - 1),
-            Random.Range(0, HiringPool - 1), Random.Range(0, HiringPool - 1), Random.Range(0, HiringPool - 1)};
-
         var empList = new GameObject[6];
-        var noRepeatsList = new int[6] {-1, -1, -1, -1, -1, -1};
-        for (int i = 0; i < list.Length; i++)
+        for (int i = 0; i < 6; i++)
         {
-            for (int g = 0; g < 6; g++)
-            {
-                while (list[i] == noRepeatsList[g])
-                {
-                    list[i] = Random.Range(0, HiringPool - 1);
-                }
-            }
-            var emp = PotentialHires(list[i]);
+            var emp = PotentialHires(Random.Range(0, EmployeeSprites.Length), Random.Range(0, EmployeeFirstNames.Length),
+                Random.Range(0, EmployeeNickNames.Length), Random.Range(0, EmployeeLastNames.Length), Random.Range(20, 121),
+                Random.Range(0, EmployeeReasonTermination.Length), Random.Range(0, EmployeeExperience.Length), Random.Range(0, EmployeeProductivity.Length),
+                Random.Range(0, EmployeeLoyalty.Length), Random.Range(0, EmployeeHappiness.Length), Random.Range(0, EmployeeBurnout.Length));
             emp.transform.position = new Vector3(-500, -1000, emp.transform.position.z);
             emp.transform.parent = HireScreen.transform.GetChild(i);
             empList[i] = emp;
-            noRepeatsList[i] = list[i];
         }
 
         return empList;
     }
 
-    public GameObject PotentialHires(int EmpNum)
+    public GameObject PotentialHires(int spriteNum, int firstNameNum, int nickNameNum, int lastNameNum, int ageNum, int reasTermNum, int expNum, int prodNum, int loyalNum, int happNum, int burnNum)
     {
         var Emp = Instantiate(EmployeeTemplate);
-        Emp.GetComponent<SpriteRenderer>().sprite = EmployeeSprites[EmpNum];
-        Emp.GetComponent<EmployeeScript>().name = EmployeeNames[EmpNum];
-        Emp.GetComponent<EmployeeScript>().age = EmployeeAges[EmpNum];
-        Emp.GetComponent<EmployeeScript>().reasonTermination = EmployeeReasonTermination[EmpNum];
-        Emp.GetComponent<EmployeeScript>().experience = EmployeeExperience[EmpNum];
-        Emp.GetComponent<EmployeeScript>().productivity = EmployeeProductivity[EmpNum];
-        Emp.GetComponent<EmployeeScript>().loyalty = EmployeeLoyalty[EmpNum];
-        Emp.GetComponent<EmployeeScript>().happiness = EmployeeHappiness[EmpNum];
-        Emp.GetComponent<EmployeeScript>().burnout = EmployeeBurnout[EmpNum];
+        Emp.GetComponent<SpriteRenderer>().sprite = EmployeeSprites[spriteNum];
+        Emp.GetComponent<EmployeeScript>().name = EmployeeFirstNames[firstNameNum] + " \"" + EmployeeNickNames[nickNameNum] + "\" " + EmployeeLastNames[lastNameNum];
+        Emp.GetComponent<EmployeeScript>().age = ageNum;
+        Emp.GetComponent<EmployeeScript>().reasonTermination = EmployeeReasonTermination[reasTermNum];
+        Emp.GetComponent<EmployeeScript>().experience = EmployeeExperience[expNum];
+        Emp.GetComponent<EmployeeScript>().productivity = EmployeeProductivity[prodNum];
+        Emp.GetComponent<EmployeeScript>().loyalty = EmployeeLoyalty[loyalNum];
+        Emp.GetComponent<EmployeeScript>().happiness = EmployeeHappiness[happNum];
+        Emp.GetComponent<EmployeeScript>().burnout = EmployeeBurnout[burnNum];
         Emp.GetComponent<EmployeeScript>().conferenceRoom = 16;
         Emp.GetComponent<EmployeeScript>().breakRoom = 17;
         Emp.GetComponent<EmployeeScript>().waterCooler = 19;
