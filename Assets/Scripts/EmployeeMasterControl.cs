@@ -32,7 +32,7 @@ public class EmployeeMasterControl : MonoBehaviour
     public int[] EmployeeHappiness;
     public int[] EmployeeBurnout;
     public int HiringPool;
-    private GameObject HireScreen;
+    public GameObject HireScreen;
     public GameObject CurrentEmployeePool;
     public int numEmployees = 0;
     public int maxEmployees;
