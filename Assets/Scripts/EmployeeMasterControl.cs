@@ -41,6 +41,11 @@ public class EmployeeMasterControl : MonoBehaviour
     public int stockRoomQueue;
     public int conferenceRoomQueue;
     private int moveTimer;
+    public EmployeeScript[] waterCoolerEmployeeSpots = new EmployeeScript[5];
+    public EmployeeScript[] breakRoomEmployeeSpots = new EmployeeScript[8];
+    public EmployeeScript[] stockRoomEmployeeSpots = new EmployeeScript[4];
+    public EmployeeScript[] conferenceRoomEmployeeSpots = new EmployeeScript[12];
+    public EmployeeScript[] restRoomEmployeeSpots = new EmployeeScript[2];
 
     void Start()
     {
@@ -89,6 +94,7 @@ public class EmployeeMasterControl : MonoBehaviour
             
         }
         moveTimer++;
+        
 
         restRoomQueue = Mathf.Clamp(restRoomQueue, 0, 2);
         stockRoomQueue = Mathf.Clamp(stockRoomQueue, 0, 4);
