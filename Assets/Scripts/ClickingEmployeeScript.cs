@@ -24,8 +24,23 @@ public class ClickingEmployeeScript : MonoBehaviour
         EmployeeInfo.SetActive(false);
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
+        if (CurrentEmps.transform.childCount != 0)
+        {
+            for (int f = 0; f < CurrentEmps.transform.childCount; f++)
+            {
+                if (Approx.FastApp(CurrentEmps.transform.GetChild(f).position.x, Cam.ScreenToWorldPoint(Input.mousePosition).x, 0.25f) && Approx.FastApp(CurrentEmps.transform.GetChild(f).position.y, Cam.ScreenToWorldPoint(Input.mousePosition).y, 0.25f))
+                {
+                    CurrentEmps.transform.GetChild(f).GetChild(0).gameObject.GetComponent<Flashing>().flashing = true;
+                }
+                else
+                {
+                    CurrentEmps.transform.GetChild(f).GetChild(0).gameObject.GetComponent<Flashing>().flashing = false;
+                }
+            }
+        }
+        
         if (Input.GetMouseButtonDown(0) && !EMC.HireScreen.activeSelf && selectedEmployee == null)
         {
             if (!coolDown)
@@ -34,7 +49,7 @@ public class ClickingEmployeeScript : MonoBehaviour
                 {
                     for (int i = 0; i < CurrentEmps.transform.childCount; i++)
                     {
-                        if (Approx.FastApp(CurrentEmps.transform.GetChild(i).position.x, Cam.ScreenToWorldPoint(Input.mousePosition).x, 0.3f) && Approx.FastApp(CurrentEmps.transform.GetChild(i).position.y, Cam.ScreenToWorldPoint(Input.mousePosition).y, 0.3f))
+                        if (Approx.FastApp(CurrentEmps.transform.GetChild(i).position.x, Cam.ScreenToWorldPoint(Input.mousePosition).x, 0.25f) && Approx.FastApp(CurrentEmps.transform.GetChild(i).position.y, Cam.ScreenToWorldPoint(Input.mousePosition).y, 0.25f))
                         {
                             selectedEmployee = CurrentEmps.transform.GetChild(i).gameObject;
                             EmployeeInfo.SetActive(true);
@@ -42,7 +57,7 @@ public class ClickingEmployeeScript : MonoBehaviour
                             //EmployeeInfo.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = selectedEmployee.GetComponent<EmployeeScript>().title; // skipping this one since its the title not implemented yet
                             EmployeeInfo.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = selectedEmployee.GetComponent<EmployeeScript>().name;
                             EmployeeInfo.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + selectedEmployee.GetComponent<EmployeeScript>().age;
-                            EmployeeInfo.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = "Reason For Termination: " + selectedEmployee.GetComponent<EmployeeScript>().reasonTermination;
+                            EmployeeInfo.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = "Reason For Leaving Previous Job: " + selectedEmployee.GetComponent<EmployeeScript>().reasonTermination;
                             EmployeeInfo.transform.GetChild(5).GetComponent<TextMeshProUGUI>().text = "Happiness: " + selectedEmployee.GetComponent<EmployeeScript>().happiness;
                             EmployeeInfo.transform.GetChild(6).GetComponent<TextMeshProUGUI>().text = "Experience: " + selectedEmployee.GetComponent<EmployeeScript>().experience;
                             EmployeeInfo.transform.GetChild(7).GetComponent<TextMeshProUGUI>().text = "Productivity: " + selectedEmployee.GetComponent<EmployeeScript>().productivity;
@@ -68,6 +83,7 @@ public class ClickingEmployeeScript : MonoBehaviour
         }
         else
         {
+            rb.linearVelocity = Vector2.zero;
             transform.position = new Vector3(0, 0, -10);
             Cam.orthographicSize = 5;
         }

@@ -3774,7 +3774,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b34a634b5b2831468d7afd05f9fc2b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 3
+  outlineWhite: {fileID: 138446961, guid: 58639993bd5381048b85baa1e55073dc, type: 3}
+  outlineBlack: {fileID: 954201540912243018, guid: 58639993bd5381048b85baa1e55073dc, type: 3}
 --- !u!50 &519420035
 Rigidbody2D:
   serializedVersion: 5
