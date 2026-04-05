@@ -1,0 +1,55 @@
+﻿
+Hey Boss, Im not feeling well. Can I head home early?
+of course! Get well soon
+Ok, Thank you (-prod)
+0
+Youre not really being a team player right now
+Ok, I will try to power through. (Maybe out all day next day or dice roll to make someone else sick too, no prod lost)
+0
+Take all the time you need
+Really you mean it? (-2 Prod, +Happy)
+1
+
+Hey Boss, its my daughters Bday tomorrow, can i take the day off? 
+Yes, tell her i said “happy Birthday”!
+Thank you so much! (-PROD, +HAPPY)
+0
+No, we have a MANDATORY meeting
+I can’t believe you are doing this! ( No PROD, -HAPPY)
+0
+Do what you think is right
+uh… um…. Ok (50/50 if they come in or stay home, if they come in, no -HAPPY as it was their decision)
+1
+
+Hey Boss, my wife is pregnant! 
+Congrats! Lets Celebrate!
+Wow! Thank you so much! (+++ HAPPY, -PROD whole office)
+0
+Thats cool!
+Right? Thats what i was thinking (Net neutral) 
+0
+With a kid on the way i better not see you turn down any overtime.
+Heh, I guess your right (+Prod)
+1
+
+Boss, my wife kicked me out 
+Sorry to hear that! 
+:( (-HAPPY - PROD) 
+0
+You can stay in one of my rental properties
+Thats kind of you boss (+HAPPY - MONEY)
+0
+You can always stay at the office!
+Thanks… I Guess (+PROD - HAPPY)
+1
+
+Boss, there is a reporter here who wants to interview you
+Give honest interview 
+The reporter told everyone what a monster you are, at least you were honest(+BAD REP, +KARMA)
+0
+Lie through teeth 
+You lied like a dog, at least the article will be good (+GOOD REP, -KARMA)
+0
+Bribe them 
+The article was good, just like we drew it up(+GOOD REP, -MONEY)
+1

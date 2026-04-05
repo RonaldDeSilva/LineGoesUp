@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 734423a9373c18148a435a7c56aed630
+guid: 0e47ed594f5db564493e79a646908824
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1208040086343421634
-    second: image_0
+      213: 7632871559383179039
+    second: Text_Bubble_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -52,11 +52,11 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 60
-  spriteBorder: {x: 25, y: 26, z: 40, w: 21}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
-  spriteTessellationDetail: 0
+  spriteTessellationDetail: -1
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
@@ -113,37 +113,33 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: image_0
+      name: Text_Bubble_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1040
-        height: 646
+        x: 11
+        y: 91
+        width: 765
+        height: 152
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2ce8eecde02d3c010800000000000000
-      internalID: 1208040086343421634
+      spriteID: f1f57391e386de960800000000000000
+      internalID: 7632871559383179039
       vertices: []
       indices: 
       edges: []
       weights: []
-    outline:
-    - - {x: 465, y: 303}
-      - {x: -483, y: 302}
-      - {x: -496, y: -295}
-      - {x: 480, y: -295}
+    outline: []
     customData: 
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []
@@ -152,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      image_0: 1208040086343421634
+      Text_Bubble_0: 7632871559383179039
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

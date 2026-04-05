@@ -12,7 +12,8 @@ public class ClickingEmployeeScript : MonoBehaviour
     private EmployeeMasterControl EMC;
     private Rigidbody2D rb;
     public float speed;
-    private GameObject EmployeeInfo;
+    public GameObject EmployeeInfo;
+    private DialogueScript Dialogue;
 
     private void Start()
     {
@@ -20,13 +21,12 @@ public class ClickingEmployeeScript : MonoBehaviour
         Cam = GetComponent<Camera>();
         EMC = GameObject.Find("Employee Master Control Canvas").GetComponent<EmployeeMasterControl>();
         rb = GetComponent<Rigidbody2D>();
-        EmployeeInfo = GameObject.Find("Employee Master Control Canvas").transform.GetChild(1).gameObject;
-        EmployeeInfo.SetActive(false);
+        Dialogue = EMC.gameObject.transform.GetChild(2).gameObject.GetComponent<DialogueScript>();
     }
 
     private void Update()
     {
-        if (CurrentEmps.transform.childCount != 0)
+        if (CurrentEmps.transform.childCount != 0 && selectedEmployee == null)
         {
             for (int f = 0; f < CurrentEmps.transform.childCount; f++)
             {
@@ -51,35 +51,58 @@ public class ClickingEmployeeScript : MonoBehaviour
                     {
                         if (Approx.FastApp(CurrentEmps.transform.GetChild(i).position.x, Cam.ScreenToWorldPoint(Input.mousePosition).x, 0.25f) && Approx.FastApp(CurrentEmps.transform.GetChild(i).position.y, Cam.ScreenToWorldPoint(Input.mousePosition).y, 0.25f))
                         {
-                            selectedEmployee = CurrentEmps.transform.GetChild(i).gameObject;
-                            EmployeeInfo.SetActive(true);
-                            EmployeeInfo.transform.GetChild(0).GetComponent<Image>().sprite = selectedEmployee.GetComponent<SpriteRenderer>().sprite;
-                            //EmployeeInfo.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = selectedEmployee.GetComponent<EmployeeScript>().title; // skipping this one since its the title not implemented yet
-                            EmployeeInfo.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = selectedEmployee.GetComponent<EmployeeScript>().name;
-                            EmployeeInfo.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + selectedEmployee.GetComponent<EmployeeScript>().age;
-                            EmployeeInfo.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = "Reason For Leaving Previous Job: " + selectedEmployee.GetComponent<EmployeeScript>().reasonTermination;
-                            EmployeeInfo.transform.GetChild(5).GetComponent<TextMeshProUGUI>().text = "Happiness: " + selectedEmployee.GetComponent<EmployeeScript>().happiness;
-                            EmployeeInfo.transform.GetChild(6).GetComponent<TextMeshProUGUI>().text = "Experience: " + selectedEmployee.GetComponent<EmployeeScript>().experience;
-                            EmployeeInfo.transform.GetChild(7).GetComponent<TextMeshProUGUI>().text = "Productivity: " + selectedEmployee.GetComponent<EmployeeScript>().productivity;
-                            Cam.orthographicSize = 2;
-                            EmployeeInfo.SetActive(true);
-                            coolDown = true;
-                            timer = 60;
+                            if (!CurrentEmps.transform.GetChild(i).gameObject.GetComponent<EmployeeScript>().hasQuery)
+                            {
+                                selectedEmployee = CurrentEmps.transform.GetChild(i).gameObject;
+                                EmployeeInfo.SetActive(true);
+                                EmployeeInfo.transform.GetChild(0).GetComponent<Image>().sprite = selectedEmployee.GetComponent<SpriteRenderer>().sprite;
+                                //EmployeeInfo.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = selectedEmployee.GetComponent<EmployeeScript>().title; // skipping this one since its the title not implemented yet
+                                EmployeeInfo.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = selectedEmployee.GetComponent<EmployeeScript>().name;
+                                EmployeeInfo.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + selectedEmployee.GetComponent<EmployeeScript>().age;
+                                EmployeeInfo.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = "Reason For Leaving Previous Job: " + selectedEmployee.GetComponent<EmployeeScript>().reasonTermination;
+                                EmployeeInfo.transform.GetChild(5).GetComponent<TextMeshProUGUI>().text = "Happiness: " + selectedEmployee.GetComponent<EmployeeScript>().happiness;
+                                EmployeeInfo.transform.GetChild(6).GetComponent<TextMeshProUGUI>().text = "Experience: " + selectedEmployee.GetComponent<EmployeeScript>().experience;
+                                EmployeeInfo.transform.GetChild(7).GetComponent<TextMeshProUGUI>().text = "Productivity: " + selectedEmployee.GetComponent<EmployeeScript>().productivity;
+                                Cam.orthographicSize = 2;
+                                EmployeeInfo.SetActive(true);
+                                coolDown = true;
+                                timer = 60;
+                            }
+                            else
+                            {
+                                Dialogue.DisplayText();
+                                selectedEmployee = CurrentEmps.transform.GetChild(i).gameObject;
+                                EmployeeInfo.SetActive(true);
+                                EmployeeInfo.transform.GetChild(0).GetComponent<Image>().sprite = selectedEmployee.GetComponent<SpriteRenderer>().sprite;
+                                //EmployeeInfo.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = selectedEmployee.GetComponent<EmployeeScript>().title; // skipping this one since its the title not implemented yet
+                                EmployeeInfo.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = selectedEmployee.GetComponent<EmployeeScript>().name;
+                                EmployeeInfo.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + selectedEmployee.GetComponent<EmployeeScript>().age;
+                                EmployeeInfo.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = "Reason For Leaving Previous Job: " + selectedEmployee.GetComponent<EmployeeScript>().reasonTermination;
+                                EmployeeInfo.transform.GetChild(5).GetComponent<TextMeshProUGUI>().text = "Happiness: " + selectedEmployee.GetComponent<EmployeeScript>().happiness;
+                                EmployeeInfo.transform.GetChild(6).GetComponent<TextMeshProUGUI>().text = "Experience: " + selectedEmployee.GetComponent<EmployeeScript>().experience;
+                                EmployeeInfo.transform.GetChild(7).GetComponent<TextMeshProUGUI>().text = "Productivity: " + selectedEmployee.GetComponent<EmployeeScript>().productivity;
+                                Cam.orthographicSize = 2;
+                                EmployeeInfo.SetActive(true);
+                                coolDown = true;
+                                timer = 60;
+                            }
                         }
                     }
                 }
             }
         }
 
-        if (selectedEmployee != null && Input.GetKey(KeyCode.Escape))
-        {
-            EmployeeInfo.SetActive(false);
-            selectedEmployee = null;
-        }
+        
 
         if (selectedEmployee != null)
         {
             rb.linearVelocity = new Vector2((selectedEmployee.transform.position.x - transform.position.x) * speed, (selectedEmployee.transform.position.y - transform.position.y) * speed);
+
+            if (Input.GetKey(KeyCode.Escape))
+            {
+                EmployeeInfo.SetActive(false);
+                selectedEmployee = null;
+            }
         }
         else
         {

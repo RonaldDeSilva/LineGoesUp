@@ -1,8 +1,6 @@
-using NUnit.Framework;
 using QPathFinder;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 public class EmployeeScript : MonoBehaviour
@@ -32,16 +30,17 @@ public class EmployeeScript : MonoBehaviour
     private Transform[] QueuePositions = new Transform[33];
     private float speed;
     private EmployeeMasterControl EMC;
-    private int currentQueuePosition;
     public bool movingToQueuePosition = false;
     private Rigidbody2D rb;
     public bool chosen = false; 
     public bool isMoving = false;
-    private int badPos = -1;
-    private int prevRando = -1;
+    public bool hasQuery = false;
+    public GameObject QueryIcon;
 
     public void Awaken(EmployeeMasterControl EmpMasCon)
     {
+        QueryIcon = transform.GetChild(1).gameObject;
+        QueryIcon.SetActive(false);
         EMC = EmpMasCon;
         transform.position = new Vector3(6.290487f, 2.859212f, transform.position.z);
         rb = GetComponent<Rigidbody2D>();
@@ -77,6 +76,8 @@ public class EmployeeScript : MonoBehaviour
         StartCoroutine("Behaviors");
     }
 
+    #region Navigation
+
     private void Update()
     {
         if (movingToQueuePosition && !Approx.FastApp(transform.position.x, QueuePositions[targetPosition].position.x, 0.1f) && !Approx.FastApp(transform.position.y, QueuePositions[targetPosition].position.y, 0.1f))
@@ -98,11 +99,24 @@ public class EmployeeScript : MonoBehaviour
         {
             if (collision.gameObject.GetComponent<Node>().nodeNum == targetPosition)
             {
-                prevNode = targetPosition;
-                chosen = false;
-                isMoving = false;
-                StartCoroutine("Behaviors");
-                StartCoroutine("WaitASec");
+                if (targetPosition == bossOffice)
+                {
+                    prevNode = targetPosition;
+                    chosen = false;
+                    isMoving = false;
+                    hasQuery = true;
+                    QueryIcon.SetActive(true);
+                    StartCoroutine("Behaviors");
+                    StartCoroutine("WaitASec");
+                }
+                else
+                {
+                    prevNode = targetPosition;
+                    chosen = false;
+                    isMoving = false;
+                    StartCoroutine("Behaviors");
+                    StartCoroutine("WaitASec");
+                }
             }
         }
     }
@@ -182,6 +196,7 @@ public class EmployeeScript : MonoBehaviour
         }
     }
 
+    #endregion
 
     #region Behaviors
 
@@ -189,53 +204,62 @@ public class EmployeeScript : MonoBehaviour
     {
         //potential behaviors: Working, Hungry, Thirsty, Talk with Boss, Conference, Printing, Gotta pee 
         yield return new WaitForSeconds(decisionTime);
-        int Rando = 0;
-        if (firstRun)
+        if (!hasQuery)
         {
-            Rando = 0;
-            firstRun = false;
-        }
-        else
-        {
-            Rando = Random.Range(0, 7);
-        }
+            int Rando = 0;
+            if (firstRun)
+            {
+                Rando = 0;
+                firstRun = false;
+            }
+            else
+            {
+                Rando = Random.Range(0, 7);
+            }
 
-        if (Rando == 0)
-        {
-            targetPosition = workStation;
-            decisionTime = Random.Range(10f, 30f);
-        }
-        else if (chosen == true)
+            if (Rando == 0)
             {
-            if (Rando == 1 && EMC.breakRoomQueue < 8)
-            {
-                targetPosition = breakRoom;
-                decisionTime = Random.Range(15f, 20f);
-            }
-            else if (Rando == 2 && EMC.waterCoolerQueue < 5)
-            {
-                targetPosition = waterCooler;
-                decisionTime = Random.Range(15f, 20f);
-            }
-            else if (Rando == 3 && EMC.bossOfficeQueue < 1)
-            {
-                targetPosition = bossOffice;
-                decisionTime = Random.Range(30f, 50f);
-            }
-            else if (Rando == 4 && EMC.conferenceRoomQueue < 12)
-            {
-                targetPosition = conferenceRoom;
-                decisionTime = Random.Range(10f, 15f);
-            }
-            else if (Rando == 5 && EMC.stockRoomQueue < 4)
-            {
-                targetPosition = stockRoom;
-                decisionTime = Random.Range(3f, 7f);
-            }
-            else if (Rando == 6 && EMC.restRoomQueue < 2)
-            {
-                targetPosition = restRoom;
+                targetPosition = workStation;
                 decisionTime = Random.Range(10f, 30f);
+            }
+            else if (chosen == true)
+            {
+                if (Rando == 1 && EMC.breakRoomQueue < 8)
+                {
+                    targetPosition = breakRoom;
+                    decisionTime = Random.Range(15f, 20f);
+                }
+                else if (Rando == 2 && EMC.waterCoolerQueue < 5)
+                {
+                    targetPosition = waterCooler;
+                    decisionTime = Random.Range(15f, 20f);
+                }
+                else if (Rando == 3 && EMC.bossOfficeQueue < 1)
+                {
+                    targetPosition = bossOffice;
+                    decisionTime = Random.Range(0.1f, 1f);
+                }
+                else if (Rando == 4 && EMC.conferenceRoomQueue < 12)
+                {
+                    targetPosition = conferenceRoom;
+                    decisionTime = Random.Range(10f, 15f);
+                }
+                else if (Rando == 5 && EMC.stockRoomQueue < 4)
+                {
+                    targetPosition = stockRoom;
+                    decisionTime = Random.Range(3f, 7f);
+                }
+                else if (Rando == 6 && EMC.restRoomQueue < 2)
+                {
+                    targetPosition = restRoom;
+                    decisionTime = Random.Range(10f, 30f);
+                }
+                else
+                {
+                    decisionTime = 0.001f;
+                    StartCoroutine("Behaviors");
+                    yield break;
+                }
             }
             else
             {
@@ -243,127 +267,125 @@ public class EmployeeScript : MonoBehaviour
                 StartCoroutine("Behaviors");
                 yield break;
             }
+
+            if (prevNode == targetPosition)
+            {
+                decisionTime = 0.001f;
+                StartCoroutine("Behaviors");
+                yield break;
+            }
+            else
+            {
+                chosen = false;
+                movingToQueuePosition = false;
+
+                if (targetPosition == breakRoom)
+                {
+                    EMC.breakRoomQueue += 1;
+                }
+                else if (targetPosition == restRoom)
+                {
+                    EMC.restRoomQueue += 1;
+                }
+                else if (targetPosition == conferenceRoom)
+                {
+                    EMC.conferenceRoomQueue += 1;
+                }
+                else if (targetPosition == waterCooler)
+                {
+                    EMC.waterCoolerQueue += 1;
+                }
+                else if (targetPosition == bossOffice)
+                {
+                    EMC.bossOfficeQueue += 1;
+                }
+                else if (targetPosition == stockRoom)
+                {
+                    EMC.stockRoomQueue += 1;
+                }
+
+                PathFinder.instance.FindShortestPathOfPoints(transform.position, Positions[targetPosition].position, PathLineType.CatmullRomCurve, Execution.Synchronous,
+                    SearchMode.Simple,
+                    delegate (List<Vector3> thepoints)
+                    {
+                        OnPathFound(thepoints);
+                    }
+                );
+
+                if (prevNode == breakRoom)
+                {
+                    EMC.breakRoomQueue -= 1;
+                    for (int i = 0; i < EMC.breakRoomEmployeeSpots.Length; i++)
+                    {
+                        if (EMC.breakRoomEmployeeSpots[i] == GetComponent<EmployeeScript>())
+                        {
+                            EMC.breakRoomEmployeeSpots[i] = null;
+                            break;
+                        }
+                    }
+                }
+                else if (prevNode == restRoom)
+                {
+                    EMC.restRoomQueue -= 1;
+                    for (int i = 0; i < EMC.restRoomEmployeeSpots.Length; i++)
+                    {
+                        if (EMC.restRoomEmployeeSpots[i] == GetComponent<EmployeeScript>())
+                        {
+                            EMC.restRoomEmployeeSpots[i] = null;
+                            break;
+                        }
+                    }
+                }
+                else if (prevNode == conferenceRoom)
+                {
+                    EMC.conferenceRoomQueue -= 1;
+                    for (int i = 0; i < EMC.conferenceRoomEmployeeSpots.Length; i++)
+                    {
+                        if (EMC.conferenceRoomEmployeeSpots[i] == GetComponent<EmployeeScript>())
+                        {
+                            EMC.conferenceRoomEmployeeSpots[i] = null;
+                            break;
+                        }
+                    }
+                }
+                else if (prevNode == waterCooler)
+                {
+                    EMC.waterCoolerQueue -= 1;
+                    for (int i = 0; i < EMC.waterCoolerEmployeeSpots.Length; i++)
+                    {
+                        if (EMC.waterCoolerEmployeeSpots[i] == GetComponent<EmployeeScript>())
+                        {
+                            EMC.waterCoolerEmployeeSpots[i] = null;
+                            break;
+                        }
+                    }
+                }
+                else if (prevNode == bossOffice)
+                {
+                    EMC.bossOfficeQueue -= 1;
+                }
+                else if (prevNode == stockRoom)
+                {
+                    EMC.stockRoomQueue -= 1;
+                    for (int i = 0; i < EMC.stockRoomEmployeeSpots.Length; i++)
+                    {
+                        if (EMC.stockRoomEmployeeSpots[i] == GetComponent<EmployeeScript>())
+                        {
+                            EMC.stockRoomEmployeeSpots[i] = null;
+                        }
+                    }
+                }
+            }
+
+            if (prevNode != workStation && targetPosition != workStation)
+            {
+                firstRun = true;
+            }
         }
         else
         {
-            decisionTime = 0.001f;
+            yield return new WaitForSeconds(1f);
             StartCoroutine("Behaviors");
-            yield break;
-        }
-
-        if (prevNode == targetPosition)
-        {
-            decisionTime = 0.001f;
-            StartCoroutine("Behaviors");
-            yield break;
-        }
-        else
-        {
-            prevRando = Rando;
-            chosen = false;
-            movingToQueuePosition = false;
-
-            if (targetPosition == breakRoom)
-            {
-                EMC.breakRoomQueue += 1;
-            }
-            else if (targetPosition == restRoom)
-            {
-                EMC.restRoomQueue += 1;
-            }
-            else if (targetPosition == conferenceRoom)
-            {
-                EMC.conferenceRoomQueue += 1;
-            }
-            else if (targetPosition == waterCooler)
-            {
-                EMC.waterCoolerQueue += 1;
-            }
-            else if (targetPosition == bossOffice)
-            {
-                EMC.bossOfficeQueue += 1;
-            }
-            else if (targetPosition == stockRoom)
-            {
-                EMC.stockRoomQueue += 1;
-            }
-
-            PathFinder.instance.FindShortestPathOfPoints(transform.position, Positions[targetPosition].position, PathLineType.CatmullRomCurve, Execution.Synchronous,
-                SearchMode.Simple,
-                delegate (List<Vector3> thepoints)
-                {
-                    OnPathFound(thepoints);
-                }
-            );
-
-            if (prevNode == breakRoom)
-            {
-                EMC.breakRoomQueue -= 1;
-                for (int i = 0; i < EMC.breakRoomEmployeeSpots.Length; i++)
-                {
-                    if (EMC.breakRoomEmployeeSpots[i] == GetComponent<EmployeeScript>())
-                    {
-                        EMC.breakRoomEmployeeSpots[i] = null;
-                        break;
-                    }
-                }
-            }
-            else if (prevNode == restRoom)
-            {
-                EMC.restRoomQueue -= 1;
-                for (int i = 0; i < EMC.restRoomEmployeeSpots.Length; i++)
-                {
-                    if (EMC.restRoomEmployeeSpots[i] == GetComponent<EmployeeScript>())
-                    {
-                        EMC.restRoomEmployeeSpots[i] = null;
-                        break;
-                    }
-                }
-            }
-            else if (prevNode == conferenceRoom)
-            {
-                EMC.conferenceRoomQueue -= 1;
-                for (int i = 0; i < EMC.conferenceRoomEmployeeSpots.Length; i++)
-                {
-                    if (EMC.conferenceRoomEmployeeSpots[i] == GetComponent<EmployeeScript>())
-                    {
-                        EMC.conferenceRoomEmployeeSpots[i] = null;
-                        break;
-                    }
-                }
-            }
-            else if (prevNode == waterCooler)
-            {
-                EMC.waterCoolerQueue -= 1;
-                for (int i = 0; i < EMC.waterCoolerEmployeeSpots.Length; i++)
-                {
-                    if (EMC.waterCoolerEmployeeSpots[i] == GetComponent<EmployeeScript>())
-                    {
-                        EMC.waterCoolerEmployeeSpots[i] = null;
-                        break;
-                    }
-                }
-            }
-            else if (prevNode == bossOffice)
-            {
-                EMC.bossOfficeQueue -= 1;
-            }
-            else if (prevNode == stockRoom)
-            {
-                EMC.stockRoomQueue -= 1;
-                for (int i = 0; i < EMC.stockRoomEmployeeSpots.Length; i++)
-                {
-                    if (EMC.stockRoomEmployeeSpots[i] == GetComponent<EmployeeScript>())
-                    {
-                        EMC.stockRoomEmployeeSpots[i] = null;
-                    }
-                }
-            }
-        }
-
-        if (prevNode != workStation && targetPosition != workStation)
-        {
-            firstRun = true;
         }
     }
 

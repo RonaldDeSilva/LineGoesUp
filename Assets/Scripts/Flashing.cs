@@ -5,31 +5,31 @@ public class Flashing : MonoBehaviour
     public Sprite whiteOutline;
     public Sprite blackOutline;
     public bool flashing = false;
-    private int flashTimer;
+    private float flashTimer;
 
     // Update is called once per frame
     void Update()
     {
         if (flashing)
         {
-            Debug.Log("Flashing");
-            if (flashTimer % 20 == 0)
+            
+            if (flashTimer % 24 == 0)
             {
                 GetComponent<SpriteRenderer>().sprite = whiteOutline;
             }
             
-            if(flashTimer % 65 == 0)
+            if(flashTimer % 50 == 0)
             {
                 GetComponent<SpriteRenderer>().sprite = blackOutline;
             }
 
-            if (flashTimer >= 121)
+            if (flashTimer >= 101)
             {
                 flashTimer = 0;
             }
             else
             {
-                flashTimer++;
+                flashTimer += 0.5f;
             }
 
         }
