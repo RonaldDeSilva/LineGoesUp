@@ -6,14 +6,18 @@ TagManager:
   tags:
   - Node
   - Employee
+  - Nodes
+  - ResultsScreen
+  - Computer
+  - MasterCanvas
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - up
   - Water
   - UI
-  - 
+  - down
   - 
   - 
   - 
@@ -40,8 +44,16 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: up
+    uniqueID: 888750229
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: down
+    uniqueID: 4036811137
+    locked: 0
   m_RenderingLayers:
   - Default
+  - up
+  - down

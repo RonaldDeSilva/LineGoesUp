@@ -101,13 +101,15 @@ public class ClickingEmployeeScript : MonoBehaviour
             if (Input.GetKey(KeyCode.Escape))
             {
                 EmployeeInfo.SetActive(false);
+                selectedEmployee.GetComponent<EmployeeScript>().controlled = false;
+                EmployeeInfo.transform.GetChild(8).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Control";
                 selectedEmployee = null;
             }
         }
         else
         {
             rb.linearVelocity = Vector2.zero;
-            transform.position = new Vector3(0, 0, -10);
+            transform.position = new Vector3(0.62f, 0, -10);
             Cam.orthographicSize = 5;
         }
 
@@ -118,6 +120,20 @@ public class ClickingEmployeeScript : MonoBehaviour
         else
         {
             coolDown = false;
+        }
+    }
+
+    public void OnButtonClick()
+    {
+        if (selectedEmployee != null && !selectedEmployee.GetComponent<EmployeeScript>().controlled)
+        {
+            selectedEmployee.GetComponent<EmployeeScript>().controlled = true;
+            EmployeeInfo.transform.GetChild(8).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Stop Controlling";
+        }
+        else if (selectedEmployee != null && selectedEmployee.GetComponent<EmployeeScript>().controlled)
+        {
+            selectedEmployee.GetComponent<EmployeeScript>().controlled = false;
+            EmployeeInfo.transform.GetChild(8).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Control";
         }
     }
 }

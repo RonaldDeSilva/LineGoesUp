@@ -36,15 +36,27 @@ public class EmployeeScript : MonoBehaviour
     public bool isMoving = false;
     public bool hasQuery = false;
     public GameObject QueryIcon;
+    private GameObject redEyes;
+    public bool controlled;
+    private bool controlBootUpBool;
+    private bool workingControlled;
+    private GameObject computerScreen;
+    private GameObject EmployeeInfo;
+
+    #region Awaken
 
     public void Awaken(EmployeeMasterControl EmpMasCon)
     {
         QueryIcon = transform.GetChild(1).gameObject;
         QueryIcon.SetActive(false);
+        EmployeeInfo = GameObject.FindGameObjectWithTag("MasterCanvas");
         EMC = EmpMasCon;
         transform.position = new Vector3(6.290487f, 2.859212f, transform.position.z);
         rb = GetComponent<Rigidbody2D>();
-        var nodesPos = GameObject.Find("Nodes");
+        var nodesPos = GameObject.FindGameObjectWithTag("Nodes");
+        redEyes = transform.GetChild(2).gameObject;
+        redEyes.SetActive(false);
+        computerScreen = GameObject.FindGameObjectWithTag("Computer");
         for (int i = 0; i < nodesPos.transform.childCount; i++)
         {
             Positions[i] = nodesPos.transform.GetChild(i);
@@ -76,10 +88,17 @@ public class EmployeeScript : MonoBehaviour
         StartCoroutine("Behaviors");
     }
 
+    #endregion
+
     #region Navigation
 
     private void Update()
     {
+        if (workingControlled && !controlled)
+        {
+            workingControlled = false;
+        }
+
         if (movingToQueuePosition && !Approx.FastApp(transform.position.x, QueuePositions[targetPosition].position.x, 0.1f) && !Approx.FastApp(transform.position.y, QueuePositions[targetPosition].position.y, 0.1f))
         {
             rb.linearVelocityX = (QueuePositions[targetPosition].position.x - transform.position.x) * speed * Time.deltaTime * 100;
@@ -90,6 +109,58 @@ public class EmployeeScript : MonoBehaviour
             rb.linearVelocity = Vector2.zero;
             movingToQueuePosition = false;
         }
+
+        if (controlled && !controlBootUpBool)
+        {
+            PathFollowerUtility.StopFollowing(transform);
+            PathFollowerUtility.StopFollowing(transform);
+            rb.bodyType = RigidbodyType2D.Dynamic;
+            movingToQueuePosition = false;
+            redEyes.gameObject.SetActive(true);
+            controlBootUpBool = true;
+        }
+
+        if (controlled && !workingControlled)
+        {
+            if (Input.GetKey(KeyCode.W))
+            {
+                rb.linearVelocityY += speed / 500;
+            }
+
+            if (Input.GetKey(KeyCode.A))
+            {
+                rb.linearVelocityX -= speed / 500;
+            }
+
+            if (Input.GetKey(KeyCode.S))
+            {
+                rb.linearVelocityY -= speed / 500;
+            }
+
+            if (Input.GetKey(KeyCode.D))
+            {
+                rb.linearVelocityX += speed / 500;
+            }
+
+            Mathf.Clamp(rb.linearVelocityX, -speed / 50, speed / 50);
+            Mathf.Clamp(rb.linearVelocityY, -speed / 50, speed / 50);
+
+            if (!Input.anyKey)
+            {
+                rb.linearVelocityX -= rb.linearVelocityX / speed;
+                rb.linearVelocityY -= rb.linearVelocityY / speed;
+            }
+        }
+
+        if (!controlled && controlBootUpBool)
+        {
+            decisionTime = 0.001f;
+            redEyes.SetActive(false);
+            rb.bodyType = RigidbodyType2D.Kinematic;
+            computerScreen.transform.GetChild(0).gameObject.SetActive(false);
+            StartCoroutine("Behaviors");
+            controlBootUpBool = false;
+        }
     }
 
 
@@ -97,7 +168,7 @@ public class EmployeeScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Node"))
         {
-            if (collision.gameObject.GetComponent<Node>().nodeNum == targetPosition)
+            if (collision.gameObject.GetComponent<Node>().nodeNum == targetPosition && !controlled)
             {
                 if (targetPosition == bossOffice)
                 {
@@ -118,6 +189,22 @@ public class EmployeeScript : MonoBehaviour
                     StartCoroutine("WaitASec");
                 }
             }
+
+            if (controlled)
+            {
+                prevNode = collision.gameObject.GetComponent<Node>().nodeNum;
+                chosen = false;
+                isMoving = false;
+
+                if (collision.gameObject.GetComponent<Node>().nodeNum == workStation)
+                {
+                    workingControlled = true;
+                    computerScreen.transform.GetChild(0).gameObject.SetActive(true);
+                    EmployeeInfo.SetActive(false);
+
+                }
+            }
+
         }
     }
 
@@ -393,7 +480,7 @@ public class EmployeeScript : MonoBehaviour
     {
         isMoving = true;
         chosen = false;
-        PathFollowerUtility.FollowPath(this.transform, points, speed, false);
+        PathFollowerUtility.FollowPath(transform, points, speed, false);
     }
 
     #endregion

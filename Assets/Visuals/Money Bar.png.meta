@@ -1,0 +1,1444 @@
+fileFormatVersion: 2
+guid: 8a725517f25198247a390bc3c3429270
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5542602751069551582
+    second: Money Bar_0
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 10
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Money Bar_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 240
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: edb7a9c06d74bec40800000000000000
+      internalID: 5542602751069551582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_1
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 240
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 930700614f12cc945b9dff348eacc6f9
+      internalID: 1843435424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_2
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 240
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e0dd74de09bcba489b042bbcc24fa33
+      internalID: 1774758495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_3
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 240
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 233e59567229f0746a677384bdf8c9ff
+      internalID: 695034232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_4
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 240
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40d42e6d8d0b84e4db79497e1de7dd81
+      internalID: 1808576796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_5
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 240
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71851d4c2708903428be0608cbc6a689
+      internalID: -1612672409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_6
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 240
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f326b221e2d69f942840298c3d8a8ede
+      internalID: 25861868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_7
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 240
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31121f520abc9fd40842a567923ede14
+      internalID: 11874630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_8
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 240
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e833807a7f0a3344789f9a19c83f9a02
+      internalID: 1941892046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_9
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 240
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17b278e4f37491e41ad159231fd13d7d
+      internalID: -744722674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_10
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 240
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b69b18b5b0a2d9419a7e42057287848
+      internalID: -1560483696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_11
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 240
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0eb3bbd14c8bb2a48997ad12ad7ab001
+      internalID: 1429794438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_12
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 240
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d07d3a7efa50431469dbefa6b37fa27b
+      internalID: 779019075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_13
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 180
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7f47714b37e3cd4eaf270b7ab9b2759
+      internalID: 1729785233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_14
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 180
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38edeeb921cad4e4cb16592b80daa293
+      internalID: -1644629599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_15
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 180
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2cd74e7fec002234ba8310e05a62ad30
+      internalID: 2117018054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_16
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 180
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 428bb58933ca9964982830538f7bf40c
+      internalID: -1687731982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_17
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 180
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73adb9c8ad979a240a76c75628021a7b
+      internalID: -1522504101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_18
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 180
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8053d7e3a6fbf1d488fdf9b96a2777bd
+      internalID: 1472614092
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_19
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 180
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54c13188fa52400478a56f2ce76ecd5b
+      internalID: -801619741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_20
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 180
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8a7d9f597593fe47accf94184c33ded
+      internalID: 1637783555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_21
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 180
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5bf5224227f575249a1355dbd5859b87
+      internalID: 1089543723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_22
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 180
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1a4958fa67934b41bc28c6240636b41
+      internalID: -837182099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_23
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 180
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96f0597bc34924244a99e13ecabd93fd
+      internalID: 264696593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_24
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 180
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06b140173c681f54b8dd16edb58b0f18
+      internalID: 702174727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_25
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 180
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc231031dbc861941928b92b71d72e33
+      internalID: -1696411301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_26
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 120
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72756f614c4174e4894da685966ba06a
+      internalID: 1965542982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_27
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 120
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d5220be8de652834ca84d32d330c3d22
+      internalID: 1745530235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_28
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 120
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43cf664b69135a844858fb4d46609a9b
+      internalID: -347075886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_29
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 120
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24677bdd74d23364c9bfe2947e3773c8
+      internalID: -426238650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_30
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 120
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd50b58542b48cb4d97bb873d67af129
+      internalID: 2083021468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_31
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 120
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b6223619bf678c4ca7c0c6418d026c4
+      internalID: -948310530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_32
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 120
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69d9f2d4820922c45881e3bb7acbfc89
+      internalID: 461936728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_33
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 120
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 026a7119b4c2aeb45956b7bdd305f483
+      internalID: -2069175921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_34
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 120
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62f15ecb5e03898479ffb5fb3693f28f
+      internalID: -1715124773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_35
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 120
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 109cd06894482524a84e93c866df8448
+      internalID: -550174464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_36
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 120
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e10c35c0ca0ec8418461a4a8c204b9f
+      internalID: 687830368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_37
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 120
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f977ae3848b19c4087b45c0e76a3cae
+      internalID: 840156427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_38
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 120
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5de0151b1d58fb742bcaf7d156056ce1
+      internalID: 1534078191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_39
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 60
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b393f291ed4e681418ff41e56edffb28
+      internalID: 1810969562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_40
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 60
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84678c1f44b68f54d89c70733f8a2fc0
+      internalID: 1069142478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_41
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 60
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9e2be9baa48b9d48a362fc08e893183
+      internalID: -706398853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_42
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 60
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4934fdc05187034ebed45ce45b0edcb
+      internalID: 337351364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_43
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 60
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0abea22036bbdf744824b408608b925a
+      internalID: 1168182913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_44
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 60
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f5f65cf9b4d5cf44b25ed6962accf10
+      internalID: 1510620577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_45
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 60
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ec17889b36fb1d2418923c3e9bfc281f
+      internalID: 1705976169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_46
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 60
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08be8af1ff519af439bd5167e4a08c0d
+      internalID: -1371550290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_47
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 60
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92fc57b825ad3504082ae962fe3536e2
+      internalID: 1761037360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_48
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 60
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9fd9c0ee517bd4b4b9012d898c98d9bd
+      internalID: -432823385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_49
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 60
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6348ce9f1edb8c6409d70a0f35882871
+      internalID: -889991628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_50
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 60
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 465ec1e0d59abd343bc2f4bf52af812f
+      internalID: 498261995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_51
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 60
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d6c48c1a0c763a4c990810e3f91653d
+      internalID: -1125731957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_52
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f29873d64ab8c94193513b7c310a038
+      internalID: -1355297449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_53
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 0
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d7117a9576253d42a88d5a1ea2feadb
+      internalID: 136856140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_54
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 0
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8248d047ec46c2458f2b2ff2159cbb1
+      internalID: -984584123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_55
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 0
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd1d0cdb3dd80a240b4cd8861c01265d
+      internalID: 894053227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Money Bar_56
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 20
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6251bc66fc6f4ef46a03c9b32799ebd1
+      internalID: 1610234621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 8acfe4f75c87a054e87598fb551a9bf8
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Money Bar_0: 5542602751069551582
+      Money Bar_1: 1843435424
+      Money Bar_10: -1560483696
+      Money Bar_11: 1429794438
+      Money Bar_12: 779019075
+      Money Bar_13: 1729785233
+      Money Bar_14: -1644629599
+      Money Bar_15: 2117018054
+      Money Bar_16: -1687731982
+      Money Bar_17: -1522504101
+      Money Bar_18: 1472614092
+      Money Bar_19: -801619741
+      Money Bar_2: 1774758495
+      Money Bar_20: 1637783555
+      Money Bar_21: 1089543723
+      Money Bar_22: -837182099
+      Money Bar_23: 264696593
+      Money Bar_24: 702174727
+      Money Bar_25: -1696411301
+      Money Bar_26: 1965542982
+      Money Bar_27: 1745530235
+      Money Bar_28: -347075886
+      Money Bar_29: -426238650
+      Money Bar_3: 695034232
+      Money Bar_30: 2083021468
+      Money Bar_31: -948310530
+      Money Bar_32: 461936728
+      Money Bar_33: -2069175921
+      Money Bar_34: -1715124773
+      Money Bar_35: -550174464
+      Money Bar_36: 687830368
+      Money Bar_37: 840156427
+      Money Bar_38: 1534078191
+      Money Bar_39: 1810969562
+      Money Bar_4: 1808576796
+      Money Bar_40: 1069142478
+      Money Bar_41: -706398853
+      Money Bar_42: 337351364
+      Money Bar_43: 1168182913
+      Money Bar_44: 1510620577
+      Money Bar_45: 1705976169
+      Money Bar_46: -1371550290
+      Money Bar_47: 1761037360
+      Money Bar_48: -432823385
+      Money Bar_49: -889991628
+      Money Bar_5: -1612672409
+      Money Bar_50: 498261995
+      Money Bar_51: -1125731957
+      Money Bar_52: -1355297449
+      Money Bar_53: 136856140
+      Money Bar_54: -984584123
+      Money Bar_55: 894053227
+      Money Bar_56: 1610234621
+      Money Bar_6: 25861868
+      Money Bar_7: 11874630
+      Money Bar_8: 1941892046
+      Money Bar_9: -744722674
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
