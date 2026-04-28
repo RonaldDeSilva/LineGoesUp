@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class ClickingEmployeeScript : MonoBehaviour
 {
-    private GameObject selectedEmployee;
+    public GameObject selectedEmployee;
     private bool coolDown;
     private int timer;
     private GameObject CurrentEmps;
@@ -127,13 +127,23 @@ public class ClickingEmployeeScript : MonoBehaviour
     {
         if (selectedEmployee != null && !selectedEmployee.GetComponent<EmployeeScript>().controlled)
         {
-            selectedEmployee.GetComponent<EmployeeScript>().controlled = true;
+            selectedEmployee.GetComponent<EmployeeScript>().StartControl();
             EmployeeInfo.transform.GetChild(8).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Stop Controlling";
+
         }
         else if (selectedEmployee != null && selectedEmployee.GetComponent<EmployeeScript>().controlled)
         {
-            selectedEmployee.GetComponent<EmployeeScript>().controlled = false;
+            selectedEmployee.GetComponent<EmployeeScript>().EndControl();
             EmployeeInfo.transform.GetChild(8).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Control";
+        }
+    }
+
+    public void ComputerPowerButton()
+    {
+        if (selectedEmployee!= null)
+        {
+            selectedEmployee.GetComponent<EmployeeScript>().computerScreen.transform.GetChild(0).gameObject.SetActive(false);
+            selectedEmployee.GetComponent<EmployeeScript>().workingControlled = false;
         }
     }
 }

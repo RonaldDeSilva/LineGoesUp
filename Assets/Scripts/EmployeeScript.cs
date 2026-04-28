@@ -38,9 +38,8 @@ public class EmployeeScript : MonoBehaviour
     public GameObject QueryIcon;
     private GameObject redEyes;
     public bool controlled;
-    private bool controlBootUpBool;
-    private bool workingControlled;
-    private GameObject computerScreen;
+    public bool workingControlled;
+    public GameObject computerScreen;
     private GameObject EmployeeInfo;
 
     #region Awaken
@@ -110,16 +109,6 @@ public class EmployeeScript : MonoBehaviour
             movingToQueuePosition = false;
         }
 
-        if (controlled && !controlBootUpBool)
-        {
-            PathFollowerUtility.StopFollowing(transform);
-            PathFollowerUtility.StopFollowing(transform);
-            rb.bodyType = RigidbodyType2D.Dynamic;
-            movingToQueuePosition = false;
-            redEyes.gameObject.SetActive(true);
-            controlBootUpBool = true;
-        }
-
         if (controlled && !workingControlled)
         {
             if (Input.GetKey(KeyCode.W))
@@ -150,16 +139,6 @@ public class EmployeeScript : MonoBehaviour
                 rb.linearVelocityX -= rb.linearVelocityX / speed;
                 rb.linearVelocityY -= rb.linearVelocityY / speed;
             }
-        }
-
-        if (!controlled && controlBootUpBool)
-        {
-            decisionTime = 0.001f;
-            redEyes.SetActive(false);
-            rb.bodyType = RigidbodyType2D.Kinematic;
-            computerScreen.transform.GetChild(0).gameObject.SetActive(false);
-            StartCoroutine("Behaviors");
-            controlBootUpBool = false;
         }
     }
 
@@ -481,6 +460,29 @@ public class EmployeeScript : MonoBehaviour
         isMoving = true;
         chosen = false;
         PathFollowerUtility.FollowPath(transform, points, speed, false);
+    }
+
+    public void StartControl()
+    {
+        PathFollowerUtility.StopFollowing(transform);
+        PathFollowerUtility.StopFollowing(transform);
+        rb.bodyType = RigidbodyType2D.Dynamic;
+        movingToQueuePosition = false;
+        redEyes.gameObject.SetActive(true);
+        controlled = true;
+    }
+
+    public void EndControl()
+    {
+        rb.bodyType = RigidbodyType2D.Kinematic;
+        controlled = false;
+        decisionTime = 0.001f;
+        redEyes.SetActive(false);
+        rb.bodyType = RigidbodyType2D.Kinematic;
+        computerScreen.transform.GetChild(0).gameObject.SetActive(false);
+        chosen = false;
+        isMoving = false;
+        StartCoroutine("Behaviors");
     }
 
     #endregion

@@ -16,21 +16,24 @@ public class MiniGameController : MonoBehaviour
     public GameObject TimerGameObject;
     public bool activated;
     public Camera Cam;
-    private bool timerStartUp;
+    public int maxWins;
+    private int wins;
+    public TextMeshProUGUI winCounter;
 
     //MiniGame #1
     public GameObject MessageTextBox;
     public GameObject ResponseTextBox;
+    public float typingDelayMaxTime;
     public string[] Messages;
     public string[] Responses;
     private char[] responseCharacters;
+    public GameObject[] positionsForDocs;
     private int currentLetter = -5;
     private int sentEmails;
     private bool bootUp;
     private int random;
     private int prevMessage;
     private float typingDelay;
-    public float typingDelayMaxTime;
 
     //MiniGame #2
     public GameObject DocumentTemplate;
@@ -44,20 +47,9 @@ public class MiniGameController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.P) && !activated)
-        {
-            BootUp();
-        }
-        
         if (activated)
         {
-            if (!timerStartUp)
-            {
-                TimerGameObject.SetActive(true);
-                timer = timerMaxTime;
-                timerStartUp = true;
-            }
-            if (timer >= 0)
+            if (timer > 0)
             {
                 timer -= Time.deltaTime * timerSpeed;
                 TimerGameObject.GetComponent<TextMeshProUGUI>().text = "Time Left: " + timer;
@@ -67,7 +59,7 @@ public class MiniGameController : MonoBehaviour
                     {
                         for (int i = 0; i < 5; i++)
                         {
-                            Documents[i] = Instantiate(DocumentTemplate, new Vector3(-5 + (2 * i), 2, transform.position.z), new Quaternion(0, 0, 0, 0), MiniGames[currentMiniGame].transform);
+                            Documents[i] = Instantiate(DocumentTemplate, new Vector3(positionsForDocs[i].transform.position.x, positionsForDocs[i].transform.position.y, transform.position.z), new Quaternion(0, 0, 0, 0), MiniGames[currentMiniGame].transform);
                             Documents[i].GetComponent<Image>().sprite = documentSprites[Random.Range(0, documentSprites.Length)];
                         }
                         startUp = true;
@@ -112,6 +104,9 @@ public class MiniGameController : MonoBehaviour
                         startUp = false;
                         timer += timerMaxTime / 5;
                         TimerGameObject.GetComponent<TextMeshProUGUI>().text = "Time Left: " + timer;
+                        wins++;
+                        winCounter.text = wins + "/" + maxWins + " Wins";
+                        destroyedDocs = 0;
                     }
                 }
                 else if (currentMiniGame == 0)
@@ -171,17 +166,34 @@ public class MiniGameController : MonoBehaviour
                         bootUp = false;
                         timer += timerMaxTime / 5;
                         TimerGameObject.GetComponent<TextMeshProUGUI>().text = "Time Left: " + timer;
+                        wins++;
+                        winCounter.text = wins + "/" + maxWins + " Wins";
+                        sentEmails = 0;
                     }
                 }
             }
-        }
+            else
+            {
+                MiniGames[currentMiniGame].SetActive(false);
+                TimerGameObject.SetActive(false);
+                activated = false;
+                winCounter.gameObject.SetActive(false);
+            }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            MiniGames[currentMiniGame].SetActive(false);
-            TimerGameObject.SetActive(false);
-            activated = false;
-        } 
+            if (wins == maxWins)
+            {
+                MiniGames[currentMiniGame].SetActive(false);
+                TimerGameObject.SetActive(false);
+                activated = false;
+                winCounter.gameObject.SetActive(false);
+                //Put in specialization upgrade code here
+            }
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                BootDown();
+            }
+        }
     }
 
     public void BootUp()
@@ -189,5 +201,20 @@ public class MiniGameController : MonoBehaviour
         currentMiniGame = Random.Range(0, MiniGames.Length);
         MiniGames[currentMiniGame].SetActive(true);
         activated = true;
+        TimerGameObject.SetActive(true);
+        winCounter.gameObject.SetActive(true);
+        timer = timerMaxTime;
+        winCounter.text = 0 + "/" + maxWins;
+    }
+
+    public void BootDown()
+    {
+        MiniGames[currentMiniGame].SetActive(false);
+        TimerGameObject.SetActive(false);
+        activated = false;
+        if (Cam.gameObject.GetComponent<ClickingEmployeeScript>().selectedEmployee != null)
+        {
+            Cam.gameObject.GetComponent<ClickingEmployeeScript>().selectedEmployee.GetComponent<EmployeeScript>().EndControl();
+        }
     }
 }
