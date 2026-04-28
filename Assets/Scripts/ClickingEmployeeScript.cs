@@ -144,6 +144,7 @@ public class ClickingEmployeeScript : MonoBehaviour
         {
             selectedEmployee.GetComponent<EmployeeScript>().computerScreen.transform.GetChild(0).gameObject.SetActive(false);
             selectedEmployee.GetComponent<EmployeeScript>().workingControlled = false;
+            EmployeeInfo.SetActive(true);
         }
     }
 }
