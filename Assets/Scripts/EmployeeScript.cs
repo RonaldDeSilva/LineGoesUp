@@ -9,13 +9,12 @@ public class EmployeeScript : MonoBehaviour
     //
     public new string name;
     public int age = 20;
-    public string reasonTermination;
-    public float experience;
-    public int productivity;
-    public int loyalty;
+    //public string reasonTermination;
+    //public float experience;
+    //public int productivity;
+    //public int loyalty;
     public int happiness;
-    public int burnout;
-    //
+    //public int burnout;
     public int waterCooler = 19;
     public int breakRoom = 17;
     public int restRoom = 20;
@@ -41,6 +40,11 @@ public class EmployeeScript : MonoBehaviour
     public bool workingControlled;
     public GameObject computerScreen;
     private GameObject EmployeeInfo;
+
+    //Specialization stuff
+
+    public List<string> SpecialtyNames = new List<string>();
+    public List<float> SpecialtyLevels = new List<float>();
 
     #region Awaken
 

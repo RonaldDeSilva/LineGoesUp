@@ -72,7 +72,7 @@ public class WorkBar : MonoBehaviour
                 else if (timer <= 10)
                 {
                     workBarSprite.sprite = workBar9;
-                    MBS.money += employee.GetComponent<EmployeeScript>().productivity * employee.GetComponent<EmployeeScript>().experience / (employee.GetComponent<EmployeeScript>().burnout);
+                    //MBS.money += employee.GetComponent<EmployeeScript>().productivity * employee.GetComponent<EmployeeScript>().experience / (employee.GetComponent<EmployeeScript>().burnout);
                     timer = 0;
                 }
                 else
@@ -80,7 +80,7 @@ public class WorkBar : MonoBehaviour
                     timer = 0;
                 }
 
-                timer += 0.01f * (employee.GetComponent<EmployeeScript>().productivity * employee.GetComponent<EmployeeScript>().experience) / employee.GetComponent<EmployeeScript>().burnout;
+                //timer += 0.01f * (employee.GetComponent<EmployeeScript>().productivity * employee.GetComponent<EmployeeScript>().experience) / employee.GetComponent<EmployeeScript>().burnout;
             }
         }
         else

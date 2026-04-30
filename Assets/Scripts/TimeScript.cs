@@ -116,7 +116,7 @@ public class TimeScript : MonoBehaviour
     {
         dayBanner.SetActive(true);
         dayBanner.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = day.ToString();
-        dayBanner.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = MBS.money / SHMS.monthlyGoal * 100 + "%";
+        dayBanner.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = (MBS.money / SHMS.monthlyGoal * 100).ToString("F2") + "%";
         yield return new WaitForSeconds(5f);
         dayBanner.SetActive(false);
     }
