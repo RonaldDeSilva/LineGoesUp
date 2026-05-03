@@ -29,24 +29,22 @@ public class EmployeeMasterControl : MonoBehaviour
     public GameObject CurrentEmployeePool;
     public int numEmployees = 0;
     public int maxEmployees;
+    private GameObject FiringScreen;
 
-    public int restRoomQueue;
-    public int waterCoolerQueue;
-    public int bossOfficeQueue;
-    public int breakRoomQueue;
-    public int stockRoomQueue;
-    public int conferenceRoomQueue;
     private int moveTimer;
-    public EmployeeScript[] waterCoolerEmployeeSpots = new EmployeeScript[5];
-    public EmployeeScript[] breakRoomEmployeeSpots = new EmployeeScript[8];
-    public EmployeeScript[] stockRoomEmployeeSpots = new EmployeeScript[4];
-    public EmployeeScript[] conferenceRoomEmployeeSpots = new EmployeeScript[12];
-    public EmployeeScript[] restRoomEmployeeSpots = new EmployeeScript[2];
+    public GameObject[] waterCoolerEmployeeSpots = new GameObject[5];
+    public GameObject[] breakRoomEmployeeSpots = new GameObject[8];
+    public GameObject[] stockRoomEmployeeSpots = new GameObject[4];
+    public GameObject[] conferenceRoomEmployeeSpots = new GameObject[12];
+    public GameObject[] restRoomEmployeeSpots = new GameObject[2];
+    public bool bossOfficOccupied = false;
+    public bool QueueQueryRunning = false;
+    public bool QueueLeaveRunning = false;
 
     void Start()
     {
         HireScreen = transform.GetChild(0).gameObject;
-        HireScreen.SetActive(false);
+        FiringScreen = HireScreen.transform.GetChild(5).gameObject;
         EmployeeFirstNames = File.ReadAllLines("Assets\\EmployeeInfoDocs\\First Names.txt");
         EmployeeNickNames = File.ReadAllLines("Assets\\EmployeeInfoDocs\\Nick Names.txt");
         EmployeeLastNames = File.ReadAllLines("Assets\\EmployeeInfoDocs\\Last Names.txt");
@@ -54,23 +52,6 @@ public class EmployeeMasterControl : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.M) && !HireScreen.activeSelf)
-        {
-            HiringScreenFillUp(HiringPhase());
-            HireScreen.SetActive(true);
-        }
-        else if (Input.GetKey(KeyCode.Escape) && HireScreen.activeSelf)
-        {
-            for (int i = 0; i < 6; i++)
-            {
-                try 
-                { 
-                    Destroy(HireScreen.transform.GetChild(i).GetChild(8).gameObject);
-                }
-                catch { continue; }
-            }
-            HireScreen.SetActive(false);
-        }
 
         if (moveTimer % 15 == 0 && CurrentEmployeePool.transform.childCount > 0)
         {
@@ -93,14 +74,6 @@ public class EmployeeMasterControl : MonoBehaviour
             
         }
         moveTimer++;
-        
-
-        restRoomQueue = Mathf.Clamp(restRoomQueue, 0, 2);
-        stockRoomQueue = Mathf.Clamp(stockRoomQueue, 0, 4);
-        conferenceRoomQueue = Mathf.Clamp(conferenceRoomQueue, 0, 12);
-        breakRoomQueue = Mathf.Clamp(breakRoomQueue, 0, 8);
-        bossOfficeQueue = Mathf.Clamp(bossOfficeQueue, 0, 1);
-        waterCoolerQueue = Mathf.Clamp(waterCoolerQueue, 0, 6);
     }
 
     public void OnClick(Button button)
@@ -115,6 +88,89 @@ public class EmployeeMasterControl : MonoBehaviour
             emp.GetComponent<EmployeeScript>().workStation = numEmployees;
             emp.GetComponent<EmployeeScript>().Awaken(this.GetComponent<EmployeeMasterControl>());
             numEmployees++;
+        }
+    }
+
+    public void HireFireScreenButton()
+    {
+        if (!HireScreen.activeSelf)
+        {
+            HiringScreenFillUp(HiringPhase());
+            HireScreen.SetActive(true);
+            if (numEmployees == 0)
+            {
+                HireScreen.transform.GetChild(4).gameObject.GetComponent<Button>().interactable = false;
+            }
+            else
+            {
+                HireScreen.transform.GetChild(4).gameObject.GetComponent<Button>().interactable = true;
+            }
+        }
+        else
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                try
+                {
+                    Destroy(HireScreen.transform.GetChild(i).GetChild(6).gameObject);
+                }
+                catch { continue; }
+            }
+            HireScreen.SetActive(false);
+        }
+    }
+
+    public void FireScreenButton()
+    {
+        if (!FiringScreen.activeSelf)
+        {
+            FiringScreen.SetActive(true);
+            if (numEmployees == 1)
+            {
+                FiringScreen.transform.GetChild(1).gameObject.SetActive(false);
+                FiringScreen.transform.GetChild(2).gameObject.SetActive(false); 
+                FiringScreen.transform.GetChild(0).GetChild(1).GetComponent<Image>().sprite = CurrentEmployeePool.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite;
+                FiringScreen.transform.GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>().text = CurrentEmployeePool.transform.GetChild(0).GetComponent<EmployeeScript>().name;
+                FiringScreen.transform.GetChild(0).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + CurrentEmployeePool.transform.GetChild(0).GetComponent<EmployeeScript>().age + " Years Old";
+                FiringScreen.transform.GetChild(0).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + CurrentEmployeePool.transform.GetChild(0).GetComponent<EmployeeScript>().SpecialtyNames[0];
+                FiringScreen.transform.GetChild(0).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + CurrentEmployeePool.transform.GetChild(0).GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
+                FiringScreen.transform.GetChild(0).GetComponent<Button>().interactable = true;
+                FiringScreen.transform.GetChild(0).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Fire";
+            }
+            else if (numEmployees == 2)
+            {
+                FiringScreen.transform.GetChild(1).gameObject.SetActive(true);
+                FiringScreen.transform.GetChild(2).gameObject.SetActive(false);
+                for (int i = 0; i < 2; i++)
+                {                    
+                    FiringScreen.transform.GetChild(i).GetChild(1).GetComponent<Image>().sprite = CurrentEmployeePool.transform.GetChild(i).GetComponent<SpriteRenderer>().sprite;
+                    FiringScreen.transform.GetChild(i).GetChild(2).GetComponent<TextMeshProUGUI>().text = CurrentEmployeePool.transform.GetChild(i).GetComponent<EmployeeScript>().name;
+                    FiringScreen.transform.GetChild(i).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + CurrentEmployeePool.transform.GetChild(i).GetComponent<EmployeeScript>().age + " Years Old";
+                    FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + CurrentEmployeePool.transform.GetChild(i).GetComponent<EmployeeScript>().SpecialtyNames[0];
+                    FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + CurrentEmployeePool.transform.GetChild(i).GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
+                    FiringScreen.transform.GetChild(i).GetComponent<Button>().interactable = true;
+                    FiringScreen.transform.GetChild(i).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Fire";
+                }
+            }
+            else if (numEmployees >= 3)
+            {
+                FiringScreen.transform.GetChild(1).gameObject.SetActive(true);
+                FiringScreen.transform.GetChild(2).gameObject.SetActive(true);
+                for (int i = 0; i < 3; i++)
+                {
+                    FiringScreen.transform.GetChild(i).GetChild(1).GetComponent<Image>().sprite = CurrentEmployeePool.transform.GetChild(i).GetComponent<SpriteRenderer>().sprite;
+                    FiringScreen.transform.GetChild(i).GetChild(2).GetComponent<TextMeshProUGUI>().text = CurrentEmployeePool.transform.GetChild(i).GetComponent<EmployeeScript>().name;
+                    FiringScreen.transform.GetChild(i).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + CurrentEmployeePool.transform.GetChild(i).GetComponent<EmployeeScript>().age + " Years Old";
+                    FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + CurrentEmployeePool.transform.GetChild(i).GetComponent<EmployeeScript>().SpecialtyNames[0];
+                    FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + CurrentEmployeePool.transform.GetChild(i).GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
+                    FiringScreen.transform.GetChild(i).GetComponent<Button>().interactable = true;
+                    FiringScreen.transform.GetChild(i).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Fire";
+                }
+            }
+        }
+        else
+        {
+            FiringScreen.SetActive(false);
         }
     }
 
@@ -165,5 +221,154 @@ public class EmployeeMasterControl : MonoBehaviour
         Emp.GetComponent<EmployeeScript>().stockRoom = 21;
 
         return Emp;
+    }
+
+    public bool QueueQuery(string queue, GameObject emp)
+    {
+        QueueQueryRunning = true;
+        bool val = false;
+
+        if (queue == "RestRoom")
+        {
+            for (int i = 0; i < restRoomEmployeeSpots.Length; i++)
+            {
+                if (restRoomEmployeeSpots[i] == null) 
+                {
+                    restRoomEmployeeSpots[i] = emp;
+                    QueueQueryRunning = false;
+                    return true;
+                }
+            }
+        }
+        else if (queue == "StockRoom")
+        {
+            for (int i = 0; i < stockRoomEmployeeSpots.Length; i++)
+            {
+                if (stockRoomEmployeeSpots[i] == null)
+                {
+                    stockRoomEmployeeSpots[i] = emp;
+                    QueueQueryRunning = false;
+                    return true;
+                }
+            }
+        }
+        else if (queue == "ConferenceRoom")
+        {
+            for (int i = 0; i < conferenceRoomEmployeeSpots.Length; i++)
+            {
+                if (conferenceRoomEmployeeSpots[i] == null)
+                {
+                    conferenceRoomEmployeeSpots[i] = emp;
+                    QueueQueryRunning = false;
+                    return true;
+                }
+            }
+        }
+        else if (queue == "BreakRoom")
+        {
+            for (int i = 0; i < breakRoomEmployeeSpots.Length; i++)
+            {
+                if (breakRoomEmployeeSpots[i] == null)
+                {
+                    breakRoomEmployeeSpots[i] = emp;
+                    QueueQueryRunning = false;
+                    return true;
+                }
+            }
+        }
+        else if (queue == "BossOffice")
+        {
+            if (bossOfficOccupied)
+            {
+                QueueQueryRunning = false;
+                return false;
+            }
+            else
+            {
+                bossOfficOccupied = true;
+                QueueQueryRunning = false;
+                return true;
+            }
+        }
+        else if (queue == "WaterCooler")
+        {
+            for (int i = 0; i < waterCoolerEmployeeSpots.Length; i++)
+            {
+                if (waterCoolerEmployeeSpots[i] == null)
+                {
+                    waterCoolerEmployeeSpots[i] = emp;
+                    QueueQueryRunning = false;
+                    return true;
+                }
+            }
+        }
+
+        QueueQueryRunning = false;
+        return val;
+    }
+
+    public void QueueLeave(string queue, GameObject emp)
+    {
+        QueueLeaveRunning = true;
+        if (queue == "RestRoom")
+        {
+            for (int i = 0; i < restRoomEmployeeSpots.Length; i++)
+            {
+                if (restRoomEmployeeSpots[i] == emp)
+                {
+                    restRoomEmployeeSpots[i] = null;
+                    break;
+                }
+            }
+        }
+        else if (queue == "StockRoom")
+        {
+            for (int i = 0; i < stockRoomEmployeeSpots.Length; i++)
+            {
+                if (stockRoomEmployeeSpots[i] == emp)
+                {
+                    stockRoomEmployeeSpots[i] = null;
+                    break;
+                }
+            }
+        }
+        else if (queue == "ConferenceRoom")
+        {
+            for (int i = 0; i < conferenceRoomEmployeeSpots.Length; i++)
+            {
+                if (conferenceRoomEmployeeSpots[i] == emp)
+                {
+                    conferenceRoomEmployeeSpots[i] = null;
+                    break;
+                }
+            }
+        }
+        else if (queue == "BreakRoom")
+        {
+            for (int i = 0; i < breakRoomEmployeeSpots.Length; i++)
+            {
+                if (breakRoomEmployeeSpots[i] == emp)
+                {
+                    breakRoomEmployeeSpots[i] = null;
+                    break;
+                }
+            }
+        }
+        else if (queue == "BossOffice")
+        {
+            bossOfficOccupied = false;
+        }
+        else if (queue == "WaterCooler")
+        {
+            for (int i = 0; i < waterCoolerEmployeeSpots.Length; i++)
+            {
+                if (waterCoolerEmployeeSpots[i] == emp)
+                {
+                    waterCoolerEmployeeSpots[i] = null;
+                    break;
+                }
+            }
+        }
+        QueueLeaveRunning = false;
     }
 }

@@ -10,6 +10,7 @@ TagManager:
   - ResultsScreen
   - Computer
   - MasterCanvas
+  - Queue
   layers:
   - Default
   - TransparentFX
