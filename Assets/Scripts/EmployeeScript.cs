@@ -92,6 +92,8 @@ public class EmployeeScript : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log("Prev: " + prevNode);
+        Debug.Log("Curr: " + targetPosition);
         if (workingControlled && !controlled)
         {
             workingControlled = false;
@@ -158,21 +160,22 @@ public class EmployeeScript : MonoBehaviour
                     QueryIcon.SetActive(true);
                     StartCoroutine("Behaviors");
                     StartCoroutine("WaitASec");
+                    return;
                 }
-                else if (targetPosition == workStation)
+
+                if (targetPosition == workStation)
                 {
                     prevNode = targetPosition;
                     chosen = false;
                     isMoving = false;
                     StartCoroutine("Behaviors");
+                    return;
                 }
-                else
-                {
-                    prevNode = targetPosition;
-                    chosen = false;
-                    isMoving = false;
-                    StartCoroutine("WaitASec");
-                }
+
+                prevNode = targetPosition;
+                chosen = false;
+                isMoving = false;
+                StartCoroutine("WaitASec");
             }
 
             if (controlled)
@@ -195,7 +198,8 @@ public class EmployeeScript : MonoBehaviour
 
     IEnumerator WaitASec()
     {
-        yield return new WaitForSeconds(0.4f);
+        
+        yield return new WaitForSeconds(0.5f);
         if (prevNode == breakRoom)
         {
             for (int i = 0; i < EMC.breakRoomEmployeeSpots.Length; i++)
@@ -249,20 +253,22 @@ public class EmployeeScript : MonoBehaviour
             }
             movingToQueuePosition = true;
         }
-
-        for (int i = 0; i < EMC.conferenceRoomEmployeeSpots.Length; i++)
+        
+        if (prevNode == 16)
         {
-            if (EMC.conferenceRoomEmployeeSpots[i] == this.gameObject)
+            for (int i = 0; i < EMC.conferenceRoomEmployeeSpots.Length; i++)
             {
-                targetPosition = i + 9;
+                if (EMC.conferenceRoomEmployeeSpots[i] == this.gameObject)
+                {
+                    targetPosition = i + 9;
+                    movingToQueuePosition = true;
+                    break;
+                }
                 movingToQueuePosition = true;
-                break;
             }
             movingToQueuePosition = true;
+            Debug.Log("2");
         }
-        movingToQueuePosition = true;
-        yield return new WaitForSeconds(0.2f);
-        movingToQueuePosition = true;
     }
 
     #endregion
