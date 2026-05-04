@@ -92,8 +92,6 @@ public class EmployeeScript : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("Prev: " + prevNode);
-        Debug.Log("Curr: " + targetPosition);
         if (workingControlled && !controlled)
         {
             workingControlled = false;
@@ -267,7 +265,6 @@ public class EmployeeScript : MonoBehaviour
                 movingToQueuePosition = true;
             }
             movingToQueuePosition = true;
-            Debug.Log("2");
         }
     }
 

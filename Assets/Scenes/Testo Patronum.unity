@@ -2099,7 +2099,7 @@ GameObject:
   - component: {fileID: 162213407}
   m_Layer: 5
   m_Name: Fire Employee 3
-  m_TagString: Untagged
+  m_TagString: Button3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2172,7 +2172,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 162213408}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1121466282}
+        m_TargetAssemblyTypeName: EmployeeMasterControl, Assembly-CSharp
+        m_MethodName: FireEmployeeButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 162213407}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &162213408
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8526,7 +8538,7 @@ GameObject:
   - component: {fileID: 660596514}
   m_Layer: 5
   m_Name: Fire Employee 1
-  m_TagString: Untagged
+  m_TagString: Button1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8599,7 +8611,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 660596515}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1121466282}
+        m_TargetAssemblyTypeName: EmployeeMasterControl, Assembly-CSharp
+        m_MethodName: FireEmployeeButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 660596514}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &660596515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14972,6 +14996,7 @@ MonoBehaviour:
   HiringPool: 10
   HireScreen: {fileID: 188289920}
   CurrentEmployeePool: {fileID: 2099863108}
+  Employees: []
   numEmployees: 0
   maxEmployees: 16
   waterCoolerEmployeeSpots:
@@ -15013,6 +15038,7 @@ MonoBehaviour:
   bossOfficOccupied: 0
   QueueQueryRunning: 0
   QueueLeaveRunning: 0
+  buttonNum: 
 --- !u!1 &1130612616
 GameObject:
   m_ObjectHideFlags: 0
@@ -20740,7 +20766,7 @@ GameObject:
   - component: {fileID: 1590078956}
   m_Layer: 5
   m_Name: Fire Employee 2
-  m_TagString: Untagged
+  m_TagString: Button2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20813,7 +20839,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1590078957}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1121466282}
+        m_TargetAssemblyTypeName: EmployeeMasterControl, Assembly-CSharp
+        m_MethodName: FireEmployeeButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1590078956}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1590078957
 MonoBehaviour:
   m_ObjectHideFlags: 0

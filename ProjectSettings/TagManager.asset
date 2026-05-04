@@ -11,6 +11,9 @@ TagManager:
   - Computer
   - MasterCanvas
   - Queue
+  - Button1
+  - Button2
+  - Button3
   layers:
   - Default
   - TransparentFX

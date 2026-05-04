@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
+using System.Collections.Generic;
 
 public class EmployeeMasterControl : MonoBehaviour
 {
@@ -27,6 +28,7 @@ public class EmployeeMasterControl : MonoBehaviour
     public int HiringPool;
     public GameObject HireScreen;
     public GameObject CurrentEmployeePool;
+    public List<GameObject> Employees = new List<GameObject>();
     public int numEmployees = 0;
     public int maxEmployees;
     private GameObject FiringScreen;
@@ -40,6 +42,12 @@ public class EmployeeMasterControl : MonoBehaviour
     public bool bossOfficOccupied = false;
     public bool QueueQueryRunning = false;
     public bool QueueLeaveRunning = false;
+
+    private int fireableEmployee1;
+    private int fireableEmployee2;
+    private int fireableEmployee3;
+    private int CurrentPage;
+    public string buttonNum;
 
     void Start()
     {
@@ -85,9 +93,24 @@ public class EmployeeMasterControl : MonoBehaviour
             emp.transform.position = Vector3.zero;
             button.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Sold American";
             button.GetComponent<Button>().interactable = false;
+            numEmployees++;
+            if (Employees.Count > 0)
+            {
+                for (int i = 0; i < Employees.Count; i++)
+                {
+                    if (Employees[i] == null)
+                    {
+                        Employees[i] = emp;
+                        emp.GetComponent<EmployeeScript>().workStation = i + 1;
+                        emp.GetComponent<EmployeeScript>().Awaken(this.GetComponent<EmployeeMasterControl>());
+                        return;
+                    }
+                }
+            }
+
+            Employees.Add(emp);
             emp.GetComponent<EmployeeScript>().workStation = numEmployees;
             emp.GetComponent<EmployeeScript>().Awaken(this.GetComponent<EmployeeMasterControl>());
-            numEmployees++;
         }
     }
 
@@ -120,11 +143,14 @@ public class EmployeeMasterControl : MonoBehaviour
         }
     }
 
+    #region Firing Functions
+
     public void FireScreenButton()
     {
         if (!FiringScreen.activeSelf)
         {
             FiringScreen.SetActive(true);
+            CurrentPage = 0;
             if (numEmployees == 1)
             {
                 FiringScreen.transform.GetChild(1).gameObject.SetActive(false);
@@ -136,6 +162,7 @@ public class EmployeeMasterControl : MonoBehaviour
                 FiringScreen.transform.GetChild(0).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + CurrentEmployeePool.transform.GetChild(0).GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
                 FiringScreen.transform.GetChild(0).GetComponent<Button>().interactable = true;
                 FiringScreen.transform.GetChild(0).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Fire";
+                fireableEmployee1 = 0;
             }
             else if (numEmployees == 2)
             {
@@ -150,6 +177,7 @@ public class EmployeeMasterControl : MonoBehaviour
                     FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + CurrentEmployeePool.transform.GetChild(i).GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
                     FiringScreen.transform.GetChild(i).GetComponent<Button>().interactable = true;
                     FiringScreen.transform.GetChild(i).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Fire";
+                    fireableEmployee2 = 1;
                 }
             }
             else if (numEmployees >= 3)
@@ -165,6 +193,7 @@ public class EmployeeMasterControl : MonoBehaviour
                     FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + CurrentEmployeePool.transform.GetChild(i).GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
                     FiringScreen.transform.GetChild(i).GetComponent<Button>().interactable = true;
                     FiringScreen.transform.GetChild(i).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Fire";
+                    fireableEmployee3 = 2;
                 }
             }
         }
@@ -173,6 +202,28 @@ public class EmployeeMasterControl : MonoBehaviour
             FiringScreen.SetActive(false);
         }
     }
+
+    public void FireEmployeeButton(Button butt)
+    {
+        if (butt.CompareTag("Button1"))
+        {
+            Destroy(CurrentEmployeePool.transform.GetChild(0 + (CurrentPage * 3)).gameObject);
+
+        }
+        if (butt.CompareTag("Button2"))
+        {
+            Destroy(CurrentEmployeePool.transform.GetChild(1 + (CurrentPage * 3)).gameObject);
+        }
+        if (butt.CompareTag("Button3"))
+        {
+            Destroy(CurrentEmployeePool.transform.GetChild(2 + (CurrentPage * 3)).gameObject);
+        }
+    }
+
+
+    #endregion
+
+    #region Hiring Functions
 
     public void HiringScreenFillUp(GameObject[] list)
     {
@@ -371,4 +422,6 @@ public class EmployeeMasterControl : MonoBehaviour
         }
         QueueLeaveRunning = false;
     }
+
+    #endregion
 }
