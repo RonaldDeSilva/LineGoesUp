@@ -2153,7 +2153,7 @@ MonoBehaviour:
     m_NormalColor: {r: 0.8584906, g: 0.125534, b: 0.125534, a: 1}
     m_HighlightedColor: {r: 0.6509434, g: 0.04605731, b: 0.04605731, a: 1}
     m_PressedColor: {r: 0.509434, g: 0.026432898, b: 0.026432898, a: 1}
-    m_SelectedColor: {r: 0.4056604, g: 0.02104842, b: 0.02104842, a: 1}
+    m_SelectedColor: {r: 0.8588236, g: 0.1254902, b: 0.1254902, a: 1}
     m_DisabledColor: {r: 0, g: 0, b: 0, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -8592,7 +8592,7 @@ MonoBehaviour:
     m_NormalColor: {r: 0.8584906, g: 0.125534, b: 0.125534, a: 1}
     m_HighlightedColor: {r: 0.6509434, g: 0.04605731, b: 0.04605731, a: 1}
     m_PressedColor: {r: 0.509434, g: 0.026432898, b: 0.026432898, a: 1}
-    m_SelectedColor: {r: 0.4056604, g: 0.02104842, b: 0.02104842, a: 1}
+    m_SelectedColor: {r: 0.8588236, g: 0.1254902, b: 0.1254902, a: 1}
     m_DisabledColor: {r: 0, g: 0, b: 0, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -14147,7 +14147,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1045003806}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1121466282}
+        m_TargetAssemblyTypeName: EmployeeMasterControl, Assembly-CSharp
+        m_MethodName: ScrollFireScreen
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1045003806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15039,6 +15051,23 @@ MonoBehaviour:
   QueueQueryRunning: 0
   QueueLeaveRunning: 0
   buttonNum: 
+  SeatingChart:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &1130612616
 GameObject:
   m_ObjectHideFlags: 0
@@ -20820,7 +20849,7 @@ MonoBehaviour:
     m_NormalColor: {r: 0.8584906, g: 0.125534, b: 0.125534, a: 1}
     m_HighlightedColor: {r: 0.6509434, g: 0.04605731, b: 0.04605731, a: 1}
     m_PressedColor: {r: 0.509434, g: 0.026432898, b: 0.026432898, a: 1}
-    m_SelectedColor: {r: 0.4056604, g: 0.02104842, b: 0.02104842, a: 1}
+    m_SelectedColor: {r: 0.8588236, g: 0.1254902, b: 0.1254902, a: 1}
     m_DisabledColor: {r: 0, g: 0, b: 0, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -26168,7 +26197,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2061031301}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1121466282}
+        m_TargetAssemblyTypeName: EmployeeMasterControl, Assembly-CSharp
+        m_MethodName: ScrollFireScreen
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2061031301
 MonoBehaviour:
   m_ObjectHideFlags: 0

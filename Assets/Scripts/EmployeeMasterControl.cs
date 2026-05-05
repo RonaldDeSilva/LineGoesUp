@@ -48,6 +48,8 @@ public class EmployeeMasterControl : MonoBehaviour
     private int fireableEmployee3;
     private int CurrentPage;
     public string buttonNum;
+    public GameObject[] SeatingChart = new GameObject[16];
+    private int MaxPages;
 
     void Start()
     {
@@ -61,20 +63,20 @@ public class EmployeeMasterControl : MonoBehaviour
     private void Update()
     {
 
-        if (moveTimer % 15 == 0 && CurrentEmployeePool.transform.childCount > 0)
+        if (moveTimer % 15 == 0 && Employees.Count > 0)
         {
-            var ran = Random.Range(0, CurrentEmployeePool.transform.childCount);
-            if (!CurrentEmployeePool.transform.GetChild(ran).gameObject.GetComponent<EmployeeScript>().isMoving)
+            var ran = Random.Range(0, Employees.Count);
+            if (!Employees[ran].GetComponent<EmployeeScript>().isMoving)
             {
-                CurrentEmployeePool.transform.GetChild(ran).gameObject.GetComponent<EmployeeScript>().chosen = true;
+                Employees[ran].GetComponent<EmployeeScript>().chosen = true;
             }
             else
             {
-                for (int i = 0; i < CurrentEmployeePool.transform.childCount; i++)
+                for (int i = 0; i < Employees.Count; i++)
                 {
-                    if (!CurrentEmployeePool.transform.GetChild(i).gameObject.GetComponent<EmployeeScript>().isMoving)
+                    if (!Employees[i].gameObject.GetComponent<EmployeeScript>().isMoving)
                     {
-                        CurrentEmployeePool.transform.GetChild(i).gameObject.GetComponent<EmployeeScript>().chosen = true;
+                        Employees[i].gameObject.GetComponent<EmployeeScript>().chosen = true;
                         break;
                     }
                 }
@@ -94,23 +96,17 @@ public class EmployeeMasterControl : MonoBehaviour
             button.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Sold American";
             button.GetComponent<Button>().interactable = false;
             numEmployees++;
-            if (Employees.Count > 0)
+            for (int i = 0; i < SeatingChart.Length; i++)
             {
-                for (int i = 0; i < Employees.Count; i++)
+                if (SeatingChart[i] == null)
                 {
-                    if (Employees[i] == null)
-                    {
-                        Employees[i] = emp;
-                        emp.GetComponent<EmployeeScript>().workStation = i + 1;
-                        emp.GetComponent<EmployeeScript>().Awaken(this.GetComponent<EmployeeMasterControl>());
-                        return;
-                    }
+                    SeatingChart[i] = emp;
+                    emp.GetComponent<EmployeeScript>().workStation = i;
+                    emp.GetComponent<EmployeeScript>().Awaken(this.GetComponent<EmployeeMasterControl>());
+                    break;
                 }
             }
-
             Employees.Add(emp);
-            emp.GetComponent<EmployeeScript>().workStation = numEmployees;
-            emp.GetComponent<EmployeeScript>().Awaken(this.GetComponent<EmployeeMasterControl>());
         }
     }
 
@@ -150,19 +146,21 @@ public class EmployeeMasterControl : MonoBehaviour
         if (!FiringScreen.activeSelf)
         {
             FiringScreen.SetActive(true);
+            FiringScreen.transform.GetChild(0).gameObject.SetActive(true);
             CurrentPage = 0;
+            MaxPages = numEmployees / 3;
+            FiringScreen.transform.GetChild(6).GetComponent<Button>().interactable = false;
             if (numEmployees == 1)
             {
                 FiringScreen.transform.GetChild(1).gameObject.SetActive(false);
                 FiringScreen.transform.GetChild(2).gameObject.SetActive(false); 
-                FiringScreen.transform.GetChild(0).GetChild(1).GetComponent<Image>().sprite = CurrentEmployeePool.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite;
-                FiringScreen.transform.GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>().text = CurrentEmployeePool.transform.GetChild(0).GetComponent<EmployeeScript>().name;
-                FiringScreen.transform.GetChild(0).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + CurrentEmployeePool.transform.GetChild(0).GetComponent<EmployeeScript>().age + " Years Old";
-                FiringScreen.transform.GetChild(0).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + CurrentEmployeePool.transform.GetChild(0).GetComponent<EmployeeScript>().SpecialtyNames[0];
-                FiringScreen.transform.GetChild(0).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + CurrentEmployeePool.transform.GetChild(0).GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
+                FiringScreen.transform.GetChild(0).GetChild(1).GetComponent<Image>().sprite = Employees[0].GetComponent<SpriteRenderer>().sprite;
+                FiringScreen.transform.GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>().text = Employees[0].GetComponent<EmployeeScript>().name;
+                FiringScreen.transform.GetChild(0).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + Employees[0].GetComponent<EmployeeScript>().age + " Years Old";
+                FiringScreen.transform.GetChild(0).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[0].GetComponent<EmployeeScript>().SpecialtyNames[0];
+                FiringScreen.transform.GetChild(0).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[0].GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
                 FiringScreen.transform.GetChild(0).GetComponent<Button>().interactable = true;
                 FiringScreen.transform.GetChild(0).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Fire";
-                fireableEmployee1 = 0;
             }
             else if (numEmployees == 2)
             {
@@ -170,30 +168,34 @@ public class EmployeeMasterControl : MonoBehaviour
                 FiringScreen.transform.GetChild(2).gameObject.SetActive(false);
                 for (int i = 0; i < 2; i++)
                 {                    
-                    FiringScreen.transform.GetChild(i).GetChild(1).GetComponent<Image>().sprite = CurrentEmployeePool.transform.GetChild(i).GetComponent<SpriteRenderer>().sprite;
-                    FiringScreen.transform.GetChild(i).GetChild(2).GetComponent<TextMeshProUGUI>().text = CurrentEmployeePool.transform.GetChild(i).GetComponent<EmployeeScript>().name;
-                    FiringScreen.transform.GetChild(i).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + CurrentEmployeePool.transform.GetChild(i).GetComponent<EmployeeScript>().age + " Years Old";
-                    FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + CurrentEmployeePool.transform.GetChild(i).GetComponent<EmployeeScript>().SpecialtyNames[0];
-                    FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + CurrentEmployeePool.transform.GetChild(i).GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
+                    FiringScreen.transform.GetChild(i).GetChild(1).GetComponent<Image>().sprite = Employees[i].GetComponent<SpriteRenderer>().sprite;
+                    FiringScreen.transform.GetChild(i).GetChild(2).GetComponent<TextMeshProUGUI>().text = Employees[i].GetComponent<EmployeeScript>().name;
+                    FiringScreen.transform.GetChild(i).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + Employees[i].GetComponent<EmployeeScript>().age + " Years Old";
+                    FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[i].GetComponent<EmployeeScript>().SpecialtyNames[0];
+                    FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[i].GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
                     FiringScreen.transform.GetChild(i).GetComponent<Button>().interactable = true;
                     FiringScreen.transform.GetChild(i).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Fire";
-                    fireableEmployee2 = 1;
                 }
             }
             else if (numEmployees >= 3)
             {
                 FiringScreen.transform.GetChild(1).gameObject.SetActive(true);
                 FiringScreen.transform.GetChild(2).gameObject.SetActive(true);
+
+                if (numEmployees >= 4)
+                {
+                    FiringScreen.transform.GetChild(5).GetComponent<Button>().interactable = true;
+                }
+
                 for (int i = 0; i < 3; i++)
                 {
-                    FiringScreen.transform.GetChild(i).GetChild(1).GetComponent<Image>().sprite = CurrentEmployeePool.transform.GetChild(i).GetComponent<SpriteRenderer>().sprite;
-                    FiringScreen.transform.GetChild(i).GetChild(2).GetComponent<TextMeshProUGUI>().text = CurrentEmployeePool.transform.GetChild(i).GetComponent<EmployeeScript>().name;
-                    FiringScreen.transform.GetChild(i).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + CurrentEmployeePool.transform.GetChild(i).GetComponent<EmployeeScript>().age + " Years Old";
-                    FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + CurrentEmployeePool.transform.GetChild(i).GetComponent<EmployeeScript>().SpecialtyNames[0];
-                    FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + CurrentEmployeePool.transform.GetChild(i).GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
+                    FiringScreen.transform.GetChild(i).GetChild(1).GetComponent<Image>().sprite = Employees[i].GetComponent<SpriteRenderer>().sprite;
+                    FiringScreen.transform.GetChild(i).GetChild(2).GetComponent<TextMeshProUGUI>().text = Employees[i].GetComponent<EmployeeScript>().name;
+                    FiringScreen.transform.GetChild(i).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + Employees[i].GetComponent<EmployeeScript>().age + " Years Old";
+                    FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[i].GetComponent<EmployeeScript>().SpecialtyNames[0];
+                    FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[i].GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
                     FiringScreen.transform.GetChild(i).GetComponent<Button>().interactable = true;
                     FiringScreen.transform.GetChild(i).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Fire";
-                    fireableEmployee3 = 2;
                 }
             }
         }
@@ -207,16 +209,371 @@ public class EmployeeMasterControl : MonoBehaviour
     {
         if (butt.CompareTag("Button1"))
         {
+            if (CurrentPage == 1 && numEmployees % 3 == 1)
+            {
+                CurrentPage--;
+                FiringScreen.transform.GetChild(6).GetComponent<Button>().interactable = false;
+            }
+            else if (CurrentPage > 1 && numEmployees % 3 == 1)
+            {
+                CurrentPage--;
+            }
+            Employees.Remove(Employees[0 + (CurrentPage * 3)]);
             Destroy(CurrentEmployeePool.transform.GetChild(0 + (CurrentPage * 3)).gameObject);
+            numEmployees--;
 
+            if (numEmployees == 0)
+            {
+                FiringScreen.transform.GetChild(0).gameObject.SetActive(false);
+                FiringScreen.transform.GetChild(1).gameObject.SetActive(false);
+                FiringScreen.transform.GetChild(2).gameObject.SetActive(false);
+            }
+            else if (numEmployees == 1)
+            {
+                FiringScreen.transform.GetChild(1).gameObject.SetActive(false);
+                FiringScreen.transform.GetChild(2).gameObject.SetActive(false);
+                FiringScreen.transform.GetChild(0).GetChild(1).GetComponent<Image>().sprite = Employees[0].GetComponent<SpriteRenderer>().sprite;
+                FiringScreen.transform.GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>().text = Employees[0].GetComponent<EmployeeScript>().name;
+                FiringScreen.transform.GetChild(0).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + Employees[0].GetComponent<EmployeeScript>().age + " Years Old";
+                FiringScreen.transform.GetChild(0).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[0].GetComponent<EmployeeScript>().SpecialtyNames[0];
+                FiringScreen.transform.GetChild(0).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[0].GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
+                FiringScreen.transform.GetChild(0).GetComponent<Button>().interactable = true;
+                FiringScreen.transform.GetChild(0).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Fire";
+            }
+            else if (numEmployees == 2)
+            {
+                FiringScreen.transform.GetChild(1).gameObject.SetActive(true);
+                FiringScreen.transform.GetChild(2).gameObject.SetActive(false);
+                for (int i = 0; i < 2; i++)
+                {
+                    FiringScreen.transform.GetChild(i).GetChild(1).GetComponent<Image>().sprite = Employees[i].GetComponent<SpriteRenderer>().sprite;
+                    FiringScreen.transform.GetChild(i).GetChild(2).GetComponent<TextMeshProUGUI>().text = Employees[i].GetComponent<EmployeeScript>().name;
+                    FiringScreen.transform.GetChild(i).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + Employees[i].GetComponent<EmployeeScript>().age + " Years Old";
+                    FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[i].GetComponent<EmployeeScript>().SpecialtyNames[0];
+                    FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[i].GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
+                    FiringScreen.transform.GetChild(i).GetComponent<Button>().interactable = true;
+                    FiringScreen.transform.GetChild(i).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Fire";
+                }
+            }
+            else if (numEmployees >= 3)
+            {
+                if (numEmployees == 3)
+                {
+                    FiringScreen.transform.GetChild(5).GetComponent<Button>().interactable = false;
+                }
+                
+                if (numEmployees % 3 == 0)
+                {
+                    FiringScreen.transform.GetChild(1).gameObject.SetActive(true);
+                    FiringScreen.transform.GetChild(2).gameObject.SetActive(true);
+                    for (int i = 0; i < 3; i++)
+                    {
+                        FiringScreen.transform.GetChild(i).GetChild(1).GetComponent<Image>().sprite = Employees[i + (CurrentPage * 3)].GetComponent<SpriteRenderer>().sprite;
+                        FiringScreen.transform.GetChild(i).GetChild(2).GetComponent<TextMeshProUGUI>().text = Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().name;
+                        FiringScreen.transform.GetChild(i).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().age + " Years Old";
+                        FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyNames[0];
+                        FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
+                        FiringScreen.transform.GetChild(i).GetComponent<Button>().interactable = true;
+                        FiringScreen.transform.GetChild(i).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Fire";
+                    }
+                }
+                else if (numEmployees % 3 == 1 && CurrentPage == (int)(numEmployees / 3))
+                {
+                    FiringScreen.transform.GetChild(1).gameObject.SetActive(false);
+                    FiringScreen.transform.GetChild(2).gameObject.SetActive(false);
+                    FiringScreen.transform.GetChild(0).GetChild(1).GetComponent<Image>().sprite = Employees[0 + (CurrentPage * 3)].GetComponent<SpriteRenderer>().sprite;
+                    FiringScreen.transform.GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>().text = Employees[0 + (CurrentPage * 3)].GetComponent<EmployeeScript>().name;
+                    FiringScreen.transform.GetChild(0).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + Employees[0 + (CurrentPage * 3)].GetComponent<EmployeeScript>().age + " Years Old";
+                    FiringScreen.transform.GetChild(0).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[0 + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyNames[0];
+                    FiringScreen.transform.GetChild(0).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[0 + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
+                    FiringScreen.transform.GetChild(0).GetComponent<Button>().interactable = true;
+                    FiringScreen.transform.GetChild(0).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Fire";
+                }
+                else if (numEmployees % 3 == 2 && CurrentPage == (int)(numEmployees / 3))
+                {
+                    FiringScreen.transform.GetChild(1).gameObject.SetActive(true);
+                    FiringScreen.transform.GetChild(2).gameObject.SetActive(false);
+                    for (int i = 0; i < 2; i++)
+                    {
+                        FiringScreen.transform.GetChild(i).GetChild(1).GetComponent<Image>().sprite = Employees[i + (CurrentPage * 3)].GetComponent<SpriteRenderer>().sprite;
+                        FiringScreen.transform.GetChild(i).GetChild(2).GetComponent<TextMeshProUGUI>().text = Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().name;
+                        FiringScreen.transform.GetChild(i).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().age + " Years Old";
+                        FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyNames[0];
+                        FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
+                        FiringScreen.transform.GetChild(i).GetComponent<Button>().interactable = true;
+                        FiringScreen.transform.GetChild(i).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Fire";
+                    }
+                }
+                else
+                {
+                    FiringScreen.transform.GetChild(1).gameObject.SetActive(true);
+                    FiringScreen.transform.GetChild(2).gameObject.SetActive(true);
+                    for (int i = 0; i < 3; i++)
+                    {
+                        FiringScreen.transform.GetChild(i).GetChild(1).GetComponent<Image>().sprite = Employees[i + (CurrentPage * 3)].GetComponent<SpriteRenderer>().sprite;
+                        FiringScreen.transform.GetChild(i).GetChild(2).GetComponent<TextMeshProUGUI>().text = Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().name;
+                        FiringScreen.transform.GetChild(i).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().age + " Years Old";
+                        FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyNames[0];
+                        FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
+                        FiringScreen.transform.GetChild(i).GetComponent<Button>().interactable = true;
+                        FiringScreen.transform.GetChild(i).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Fire";
+                    }
+                }
+            }
         }
         if (butt.CompareTag("Button2"))
         {
+            Employees.Remove(Employees[1 + (CurrentPage * 3)]);
             Destroy(CurrentEmployeePool.transform.GetChild(1 + (CurrentPage * 3)).gameObject);
+            numEmployees--;
+
+            if (numEmployees == 1)
+            {
+                FiringScreen.transform.GetChild(1).gameObject.SetActive(false);
+                FiringScreen.transform.GetChild(2).gameObject.SetActive(false);
+                FiringScreen.transform.GetChild(0).GetChild(1).GetComponent<Image>().sprite = Employees[0].GetComponent<SpriteRenderer>().sprite;
+                FiringScreen.transform.GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>().text = Employees[0].GetComponent<EmployeeScript>().name;
+                FiringScreen.transform.GetChild(0).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + Employees[0].GetComponent<EmployeeScript>().age + " Years Old";
+                FiringScreen.transform.GetChild(0).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[0].GetComponent<EmployeeScript>().SpecialtyNames[0];
+                FiringScreen.transform.GetChild(0).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[0].GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
+                FiringScreen.transform.GetChild(0).GetComponent<Button>().interactable = true;
+                FiringScreen.transform.GetChild(0).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Fire";
+            }
+            else if (numEmployees == 2)
+            {
+                FiringScreen.transform.GetChild(1).gameObject.SetActive(true);
+                FiringScreen.transform.GetChild(2).gameObject.SetActive(false);
+                for (int i = 0; i < 2; i++)
+                {
+                    FiringScreen.transform.GetChild(i).GetChild(1).GetComponent<Image>().sprite = Employees[i].GetComponent<SpriteRenderer>().sprite;
+                    FiringScreen.transform.GetChild(i).GetChild(2).GetComponent<TextMeshProUGUI>().text = Employees[i].GetComponent<EmployeeScript>().name;
+                    FiringScreen.transform.GetChild(i).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + Employees[i].GetComponent<EmployeeScript>().age + " Years Old";
+                    FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[i].GetComponent<EmployeeScript>().SpecialtyNames[0];
+                    FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[i].GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
+                    FiringScreen.transform.GetChild(i).GetComponent<Button>().interactable = true;
+                    FiringScreen.transform.GetChild(i).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Fire";
+                }
+            }
+            else if (numEmployees >= 3)
+            {
+                if (numEmployees % 3 == 0)
+                {
+                    FiringScreen.transform.GetChild(1).gameObject.SetActive(true);
+                    FiringScreen.transform.GetChild(2).gameObject.SetActive(true);
+                    for (int i = 0; i < 3; i++)
+                    {
+                        FiringScreen.transform.GetChild(i).GetChild(1).GetComponent<Image>().sprite = Employees[i + (CurrentPage * 3)].GetComponent<SpriteRenderer>().sprite;
+                        FiringScreen.transform.GetChild(i).GetChild(2).GetComponent<TextMeshProUGUI>().text = Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().name;
+                        FiringScreen.transform.GetChild(i).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().age + " Years Old";
+                        FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyNames[0];
+                        FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
+                        FiringScreen.transform.GetChild(i).GetComponent<Button>().interactable = true;
+                        FiringScreen.transform.GetChild(i).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Fire";
+                    }
+                }
+                else if (numEmployees % 3 == 1 && CurrentPage == (int)(numEmployees / 3))
+                {
+                    FiringScreen.transform.GetChild(1).gameObject.SetActive(false);
+                    FiringScreen.transform.GetChild(2).gameObject.SetActive(false);
+                    FiringScreen.transform.GetChild(0).GetChild(1).GetComponent<Image>().sprite = Employees[0 + (CurrentPage * 3)].GetComponent<SpriteRenderer>().sprite;
+                    FiringScreen.transform.GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>().text = Employees[0 + (CurrentPage * 3)].GetComponent<EmployeeScript>().name;
+                    FiringScreen.transform.GetChild(0).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + Employees[0 + (CurrentPage * 3)].GetComponent<EmployeeScript>().age + " Years Old";
+                    FiringScreen.transform.GetChild(0).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[0 + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyNames[0];
+                    FiringScreen.transform.GetChild(0).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[0 + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
+                    FiringScreen.transform.GetChild(0).GetComponent<Button>().interactable = true;
+                    FiringScreen.transform.GetChild(0).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Fire";
+                }
+                else if (numEmployees % 3 == 2 && CurrentPage == (int)(numEmployees / 3))
+                {
+                    FiringScreen.transform.GetChild(1).gameObject.SetActive(true);
+                    FiringScreen.transform.GetChild(2).gameObject.SetActive(false);
+                    for (int i = 0; i < 2; i++)
+                    {
+                        FiringScreen.transform.GetChild(i).GetChild(1).GetComponent<Image>().sprite = Employees[i + (CurrentPage * 3)].GetComponent<SpriteRenderer>().sprite;
+                        FiringScreen.transform.GetChild(i).GetChild(2).GetComponent<TextMeshProUGUI>().text = Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().name;
+                        FiringScreen.transform.GetChild(i).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().age + " Years Old";
+                        FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyNames[0];
+                        FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
+                        FiringScreen.transform.GetChild(i).GetComponent<Button>().interactable = true;
+                        FiringScreen.transform.GetChild(i).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Fire";
+                    }
+                }
+                else
+                {
+                    FiringScreen.transform.GetChild(1).gameObject.SetActive(true);
+                    FiringScreen.transform.GetChild(2).gameObject.SetActive(true);
+                    for (int i = 0; i < 3; i++)
+                    {
+                        FiringScreen.transform.GetChild(i).GetChild(1).GetComponent<Image>().sprite = Employees[i + (CurrentPage * 3)].GetComponent<SpriteRenderer>().sprite;
+                        FiringScreen.transform.GetChild(i).GetChild(2).GetComponent<TextMeshProUGUI>().text = Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().name;
+                        FiringScreen.transform.GetChild(i).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().age + " Years Old";
+                        FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyNames[0];
+                        FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
+                        FiringScreen.transform.GetChild(i).GetComponent<Button>().interactable = true;
+                        FiringScreen.transform.GetChild(i).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Fire";
+                    }
+                }
+            }
         }
         if (butt.CompareTag("Button3"))
         {
+            Employees.Remove(Employees[2 + (CurrentPage * 3)]);
             Destroy(CurrentEmployeePool.transform.GetChild(2 + (CurrentPage * 3)).gameObject);
+            numEmployees--;
+
+            if (numEmployees == 2)
+            {
+                FiringScreen.transform.GetChild(1).gameObject.SetActive(true);
+                FiringScreen.transform.GetChild(2).gameObject.SetActive(false);
+                for (int i = 0; i < 2; i++)
+                {
+                    FiringScreen.transform.GetChild(i).GetChild(1).GetComponent<Image>().sprite = Employees[i].GetComponent<SpriteRenderer>().sprite;
+                    FiringScreen.transform.GetChild(i).GetChild(2).GetComponent<TextMeshProUGUI>().text = Employees[i].GetComponent<EmployeeScript>().name;
+                    FiringScreen.transform.GetChild(i).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + Employees[i].GetComponent<EmployeeScript>().age + " Years Old";
+                    FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[i].GetComponent<EmployeeScript>().SpecialtyNames[0];
+                    FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[i].GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
+                    FiringScreen.transform.GetChild(i).GetComponent<Button>().interactable = true;
+                    FiringScreen.transform.GetChild(i).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Fire";
+                }
+            }
+            else if (numEmployees >= 3)
+            {
+                if (numEmployees % 3 == 0)
+                {
+                    FiringScreen.transform.GetChild(1).gameObject.SetActive(true);
+                    FiringScreen.transform.GetChild(2).gameObject.SetActive(true);
+                    for (int i = 0; i < 3; i++)
+                    {
+                        FiringScreen.transform.GetChild(i).GetChild(1).GetComponent<Image>().sprite = Employees[i + (CurrentPage * 3)].GetComponent<SpriteRenderer>().sprite;
+                        FiringScreen.transform.GetChild(i).GetChild(2).GetComponent<TextMeshProUGUI>().text = Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().name;
+                        FiringScreen.transform.GetChild(i).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().age + " Years Old";
+                        FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyNames[0];
+                        FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
+                        FiringScreen.transform.GetChild(i).GetComponent<Button>().interactable = true;
+                        FiringScreen.transform.GetChild(i).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Fire";
+                    }
+                }
+                else if (numEmployees % 3 == 1 && CurrentPage == (int)(numEmployees / 3))
+                {
+                    FiringScreen.transform.GetChild(1).gameObject.SetActive(false);
+                    FiringScreen.transform.GetChild(2).gameObject.SetActive(false);
+                    FiringScreen.transform.GetChild(0).GetChild(1).GetComponent<Image>().sprite = Employees[0 + (CurrentPage * 3)].GetComponent<SpriteRenderer>().sprite;
+                    FiringScreen.transform.GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>().text = Employees[0 + (CurrentPage * 3)].GetComponent<EmployeeScript>().name;
+                    FiringScreen.transform.GetChild(0).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + Employees[0 + (CurrentPage * 3)].GetComponent<EmployeeScript>().age + " Years Old";
+                    FiringScreen.transform.GetChild(0).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[0 + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyNames[0];
+                    FiringScreen.transform.GetChild(0).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[0 + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
+                    FiringScreen.transform.GetChild(0).GetComponent<Button>().interactable = true;
+                    FiringScreen.transform.GetChild(0).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Fire";
+                }
+                else if (numEmployees % 3 == 2 && CurrentPage == (int)(numEmployees / 3))
+                {
+                    FiringScreen.transform.GetChild(1).gameObject.SetActive(true);
+                    FiringScreen.transform.GetChild(2).gameObject.SetActive(false);
+                    for (int i = 0; i < 2; i++)
+                    {
+                        FiringScreen.transform.GetChild(i).GetChild(1).GetComponent<Image>().sprite = Employees[i + (CurrentPage * 3)].GetComponent<SpriteRenderer>().sprite;
+                        FiringScreen.transform.GetChild(i).GetChild(2).GetComponent<TextMeshProUGUI>().text = Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().name;
+                        FiringScreen.transform.GetChild(i).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().age + " Years Old";
+                        FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyNames[0];
+                        FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
+                        FiringScreen.transform.GetChild(i).GetComponent<Button>().interactable = true;
+                        FiringScreen.transform.GetChild(i).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Fire";
+                    }
+                }
+                else
+                {
+                    FiringScreen.transform.GetChild(1).gameObject.SetActive(true);
+                    FiringScreen.transform.GetChild(2).gameObject.SetActive(true);
+                    for (int i = 0; i < 3; i++)
+                    {
+                        FiringScreen.transform.GetChild(i).GetChild(1).GetComponent<Image>().sprite = Employees[i + (CurrentPage * 3)].GetComponent<SpriteRenderer>().sprite;
+                        FiringScreen.transform.GetChild(i).GetChild(2).GetComponent<TextMeshProUGUI>().text = Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().name;
+                        FiringScreen.transform.GetChild(i).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().age + " Years Old";
+                        FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyNames[0];
+                        FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
+                        FiringScreen.transform.GetChild(i).GetComponent<Button>().interactable = true;
+                        FiringScreen.transform.GetChild(i).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Fire";
+                    }
+                }
+            }
+        }
+    }
+
+    public void ScrollFireScreen(bool right)
+    {
+        if (right)
+        {
+            CurrentPage++;
+            FiringScreen.transform.GetChild(6).GetComponent<Button>().interactable = true;
+            if (CurrentPage == MaxPages || CurrentPage == MaxPages - 1 && numEmployees % 3 == 0)
+            {
+                FiringScreen.transform.GetChild(5).GetComponent<Button>().interactable = false;
+            }
+            if (numEmployees % 3 == 1 && CurrentPage == (int)(numEmployees / 3))
+            {
+                FiringScreen.transform.GetChild(1).gameObject.SetActive(false);
+                FiringScreen.transform.GetChild(2).gameObject.SetActive(false);
+                FiringScreen.transform.GetChild(0).GetChild(1).GetComponent<Image>().sprite = Employees[0 + (CurrentPage * 3)].GetComponent<SpriteRenderer>().sprite;
+                FiringScreen.transform.GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>().text = Employees[0 + (CurrentPage * 3)].GetComponent<EmployeeScript>().name;
+                FiringScreen.transform.GetChild(0).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + Employees[0 + (CurrentPage * 3)].GetComponent<EmployeeScript>().age + " Years Old";
+                FiringScreen.transform.GetChild(0).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[0 + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyNames[0];
+                FiringScreen.transform.GetChild(0).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[0 + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
+                FiringScreen.transform.GetChild(0).GetComponent<Button>().interactable = true;
+                FiringScreen.transform.GetChild(0).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Fire";
+            }
+            else if (numEmployees % 3 == 2 && CurrentPage == (int)(numEmployees / 3))
+            {
+                FiringScreen.transform.GetChild(1).gameObject.SetActive(true);
+                FiringScreen.transform.GetChild(2).gameObject.SetActive(false);
+                for (int i = 0; i < 2; i++)
+                {
+                    FiringScreen.transform.GetChild(i).GetChild(1).GetComponent<Image>().sprite = Employees[i + (CurrentPage * 3)].GetComponent<SpriteRenderer>().sprite;
+                    FiringScreen.transform.GetChild(i).GetChild(2).GetComponent<TextMeshProUGUI>().text = Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().name;
+                    FiringScreen.transform.GetChild(i).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().age + " Years Old";
+                    FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyNames[0];
+                    FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
+                    FiringScreen.transform.GetChild(i).GetComponent<Button>().interactable = true;
+                    FiringScreen.transform.GetChild(i).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Fire";
+                }
+            }
+            else
+            {
+                FiringScreen.transform.GetChild(1).gameObject.SetActive(true);
+                FiringScreen.transform.GetChild(2).gameObject.SetActive(true);
+                for (int i = 0; i < 3; i++)
+                {
+                    FiringScreen.transform.GetChild(i).GetChild(1).GetComponent<Image>().sprite = Employees[i + (CurrentPage * 3)].GetComponent<SpriteRenderer>().sprite;
+                    FiringScreen.transform.GetChild(i).GetChild(2).GetComponent<TextMeshProUGUI>().text = Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().name;
+                    FiringScreen.transform.GetChild(i).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().age + " Years Old";
+                    FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyNames[0];
+                    FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
+                    FiringScreen.transform.GetChild(i).GetComponent<Button>().interactable = true;
+                    FiringScreen.transform.GetChild(i).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Fire";
+                }
+            }
+        }
+        else
+        {
+            CurrentPage--;
+            FiringScreen.transform.GetChild(1).gameObject.SetActive(true);
+            FiringScreen.transform.GetChild(2).gameObject.SetActive(true);
+            FiringScreen.transform.GetChild(5).GetComponent<Button>().interactable = true;
+
+            if (CurrentPage == 0)
+            {
+                FiringScreen.transform.GetChild(6).GetComponent<Button>().interactable = false;
+            }
+
+            for (int i = 0; i < 3; i++)
+            {
+                FiringScreen.transform.GetChild(i).GetChild(1).GetComponent<Image>().sprite = Employees[i + (CurrentPage * 3)].GetComponent<SpriteRenderer>().sprite;
+                FiringScreen.transform.GetChild(i).GetChild(2).GetComponent<TextMeshProUGUI>().text = Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().name;
+                FiringScreen.transform.GetChild(i).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().age + " Years Old";
+                FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyNames[0];
+                FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
+                FiringScreen.transform.GetChild(i).GetComponent<Button>().interactable = true;
+                FiringScreen.transform.GetChild(i).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Fire";
+            }
         }
     }
 
