@@ -211,10 +211,7 @@ public class MiniGameController : MonoBehaviour
     {
         MiniGames[currentMiniGame].SetActive(false);
         TimerGameObject.SetActive(false);
+        winCounter.gameObject.SetActive(false);
         activated = false;
-        if (Cam.gameObject.GetComponent<ClickingEmployeeScript>().selectedEmployee != null)
-        {
-            Cam.gameObject.GetComponent<ClickingEmployeeScript>().selectedEmployee.GetComponent<EmployeeScript>().EndControl();
-        }
     }
 }

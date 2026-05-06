@@ -186,8 +186,7 @@ public class EmployeeScript : MonoBehaviour
                 {
                     workingControlled = true;
                     computerScreen.transform.GetChild(0).gameObject.SetActive(true);
-                    EmployeeInfo.SetActive(false);
-
+                    EmployeeInfo.transform.position = new Vector2(transform.position.x, -374.16f);
                 }
             }
 
@@ -544,10 +543,9 @@ public class EmployeeScript : MonoBehaviour
         controlled = false;
         decisionTime = 0.001f;
         redEyes.SetActive(false);
-        rb.bodyType = RigidbodyType2D.Kinematic;
-        computerScreen.transform.GetChild(0).gameObject.SetActive(false);
         chosen = false;
         isMoving = false;
+        workingControlled = false;
         StartCoroutine("Behaviors");
     }
 

@@ -14,6 +14,7 @@ public class ClickingEmployeeScript : MonoBehaviour
     public float speed;
     public GameObject EmployeeInfo;
     private DialogueScript Dialogue;
+    public MiniGameController MGC;
 
     private void Start()
     {
@@ -106,15 +107,6 @@ public class ClickingEmployeeScript : MonoBehaviour
         if (selectedEmployee != null)
         {
             rb.linearVelocity = new Vector2((selectedEmployee.transform.position.x - transform.position.x) * speed, (selectedEmployee.transform.position.y - transform.position.y) * speed);
-
-            if (Input.GetKey(KeyCode.Escape))
-            {
-                EmployeeInfo.SetActive(false);
-                selectedEmployee.GetComponent<EmployeeScript>().controlled = false;
-                EmployeeInfo.transform.GetChild(5).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Control";
-                EmployeeInfo.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialties: ";
-                selectedEmployee = null;
-            }
         }
         else
         {
@@ -148,13 +140,23 @@ public class ClickingEmployeeScript : MonoBehaviour
         }
     }
 
+    public void DeSelectEmployee()
+    {
+        EmployeeInfo.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialties: ";
+        EmployeeInfo.transform.GetChild(5).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Control";
+        EmployeeInfo.SetActive(false);
+        selectedEmployee.GetComponent<EmployeeScript>().EndControl();
+        selectedEmployee.GetComponent<EmployeeScript>().computerScreen.transform.GetChild(0).gameObject.SetActive(false);
+        selectedEmployee = null;
+        EmployeeInfo.transform.position = new Vector2(transform.position.x, 387.2f);
+        MGC.BootDown();
+    }
+
     public void ComputerPowerButton()
     {
-        if (selectedEmployee!= null)
-        {
-            selectedEmployee.GetComponent<EmployeeScript>().computerScreen.transform.GetChild(0).gameObject.SetActive(false);
-            selectedEmployee.GetComponent<EmployeeScript>().workingControlled = false;
-            EmployeeInfo.SetActive(true);
-        }
+        MGC.BootDown();
+        selectedEmployee.GetComponent<EmployeeScript>().computerScreen.transform.GetChild(0).gameObject.SetActive(false);
+        selectedEmployee.GetComponent<EmployeeScript>().workingControlled = false;
+        EmployeeInfo.transform.position = new Vector2(transform.position.x, 387.2f);
     }
 }
