@@ -148,8 +148,9 @@ public class ClickingEmployeeScript : MonoBehaviour
         selectedEmployee.GetComponent<EmployeeScript>().EndControl();
         selectedEmployee.GetComponent<EmployeeScript>().computerScreen.transform.GetChild(0).gameObject.SetActive(false);
         selectedEmployee = null;
-        EmployeeInfo.transform.position = new Vector2(transform.position.x, 387.2f);
+        EmployeeInfo.transform.localPosition = new Vector2(-704f, 387.2f);
         MGC.BootDown();
+        EmployeeInfo.transform.GetChild(5).GetComponent<Button>().interactable = true;
     }
 
     public void ComputerPowerButton()
@@ -157,6 +158,7 @@ public class ClickingEmployeeScript : MonoBehaviour
         MGC.BootDown();
         selectedEmployee.GetComponent<EmployeeScript>().computerScreen.transform.GetChild(0).gameObject.SetActive(false);
         selectedEmployee.GetComponent<EmployeeScript>().workingControlled = false;
-        EmployeeInfo.transform.position = new Vector2(transform.position.x, 387.2f);
+        EmployeeInfo.transform.localPosition = new Vector2(-704f, 387.2f);
+        EmployeeInfo.transform.GetChild(5).GetComponent<Button>().interactable = true;
     }
 }

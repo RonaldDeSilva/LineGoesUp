@@ -15,9 +15,12 @@ public class EmployeeMasterControl : MonoBehaviour
     // - Happiness (Only revealed after hiring)
 
     #endregion
-
+    //Employee stuff
     public GameObject EmployeeTemplate;
-    public Sprite[] EmployeeSprites;
+    public Sprite[] EmployeeSprites1;
+    public Sprite[] EmployeeSprites2;
+    public Sprite[] EmployeeSprites3;
+    public Sprite[][] EmployeeSprites;
     private string[] EmployeeFirstNames;
     private string[] EmployeeNickNames;
     private string[] EmployeeLastNames;
@@ -25,27 +28,27 @@ public class EmployeeMasterControl : MonoBehaviour
     public int[] EmployeeHappiness;
     public string[] EmployeeSpecialties;
     public float maxSpecialtyStartingLevel;
+    //Hiring
     public int HiringPool;
     public GameObject HireScreen;
     public GameObject CurrentEmployeePool;
+    public float HiringScreenAnimationSpeed;
     public List<GameObject> Employees = new List<GameObject>();
     public int numEmployees = 0;
     public int maxEmployees;
     private GameObject FiringScreen;
-
     private int moveTimer;
+
+    //Queue stuff
     public GameObject[] waterCoolerEmployeeSpots = new GameObject[5];
     public GameObject[] breakRoomEmployeeSpots = new GameObject[8];
     public GameObject[] stockRoomEmployeeSpots = new GameObject[4];
     public GameObject[] conferenceRoomEmployeeSpots = new GameObject[12];
     public GameObject[] restRoomEmployeeSpots = new GameObject[2];
+
     public bool bossOfficOccupied = false;
     public bool QueueQueryRunning = false;
     public bool QueueLeaveRunning = false;
-
-    private int fireableEmployee1;
-    private int fireableEmployee2;
-    private int fireableEmployee3;
     private int CurrentPage;
     public string buttonNum;
     public GameObject[] SeatingChart = new GameObject[16];
@@ -53,6 +56,7 @@ public class EmployeeMasterControl : MonoBehaviour
 
     void Start()
     {
+        EmployeeSprites = new Sprite[][] { EmployeeSprites1, EmployeeSprites2, EmployeeSprites3 };
         HireScreen = transform.GetChild(0).gameObject;
         FiringScreen = HireScreen.transform.GetChild(5).gameObject;
         EmployeeFirstNames = File.ReadAllLines("Assets\\EmployeeInfoDocs\\First Names.txt");
@@ -601,7 +605,7 @@ public class EmployeeMasterControl : MonoBehaviour
         var empList = new GameObject[3];
         for (int i = 0; i < 3; i++)
         {
-            var emp = PotentialHires(Random.Range(0, EmployeeSprites.Length), Random.Range(0, EmployeeFirstNames.Length),
+            var emp = PotentialHires(Random.Range(0, EmployeeSprites.Length), Random.Range(0, 3), Random.Range(0, EmployeeFirstNames.Length),
                 Random.Range(0, EmployeeNickNames.Length), Random.Range(0, EmployeeLastNames.Length), Random.Range(20, 121),
                 Random.Range(0, EmployeeHappiness.Length), Random.Range(0, EmployeeSpecialties.Length), Random.Range(0, maxSpecialtyStartingLevel));
             emp.transform.position = new Vector3(-500, -1000, emp.transform.position.z);
@@ -612,10 +616,9 @@ public class EmployeeMasterControl : MonoBehaviour
         return empList;
     }
 
-    public GameObject PotentialHires(int spriteNum, int firstNameNum, int nickNameNum, int lastNameNum, int ageNum, int happNum, int specNum, float lvlNum)
+    public GameObject PotentialHires(int spriteNum, int secSpriteNum, int firstNameNum, int nickNameNum, int lastNameNum, int ageNum, int happNum, int specNum, float lvlNum)
     {
         var Emp = Instantiate(EmployeeTemplate);
-        Emp.GetComponent<SpriteRenderer>().sprite = EmployeeSprites[spriteNum];
         Emp.GetComponent<EmployeeScript>().name = EmployeeFirstNames[firstNameNum] + " \"" + EmployeeNickNames[nickNameNum] + "\" " + EmployeeLastNames[lastNameNum];
         Emp.GetComponent<EmployeeScript>().age = ageNum;
         Emp.GetComponent<EmployeeScript>().happiness = EmployeeHappiness[happNum];
@@ -627,6 +630,13 @@ public class EmployeeMasterControl : MonoBehaviour
         Emp.GetComponent<EmployeeScript>().bossOffice = 18;
         Emp.GetComponent<EmployeeScript>().restRoom = 20;
         Emp.GetComponent<EmployeeScript>().stockRoom = 21;
+
+        Emp.GetComponent<SpriteRenderer>().sprite = EmployeeSprites[spriteNum][secSpriteNum * 10];
+
+        for (int i = secSpriteNum * 10; i < (secSpriteNum * 10) + 10; i++)
+        {
+            Emp.GetComponent<EmployeeScript>().sprites[i] = EmployeeSprites[spriteNum][(secSpriteNum * 10) + i];
+        }
 
         return Emp;
     }

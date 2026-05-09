@@ -2,6 +2,7 @@ using QPathFinder;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EmployeeScript : MonoBehaviour
 {
@@ -35,6 +36,7 @@ public class EmployeeScript : MonoBehaviour
     public bool workingControlled;
     public GameObject computerScreen;
     private GameObject EmployeeInfo;
+    public Sprite[] sprites = new Sprite[10];
 
     //Specialization stuff
 
@@ -185,8 +187,9 @@ public class EmployeeScript : MonoBehaviour
                 if (collision.gameObject.GetComponent<Node>().nodeNum == workStation)
                 {
                     workingControlled = true;
+                    EmployeeInfo.transform.GetChild(1).localPosition = new Vector2(-704f, -374.16f);
                     computerScreen.transform.GetChild(0).gameObject.SetActive(true);
-                    EmployeeInfo.transform.position = new Vector2(transform.position.x, -374.16f);
+                    EmployeeInfo.transform.GetChild(1).GetChild(5).GetComponent<Button>().interactable = false;
                 }
             }
 
