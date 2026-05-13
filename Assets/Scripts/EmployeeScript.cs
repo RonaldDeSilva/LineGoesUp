@@ -62,12 +62,14 @@ public class EmployeeScript : MonoBehaviour
         redEyes = transform.GetChild(2).gameObject;
         redEyes.SetActive(false);
         computerScreen = GameObject.FindGameObjectWithTag("Computer");
+        animTimer = 30;
         for (int i = 0; i < nodesPos.transform.childCount; i++)
         {
             Positions[i] = nodesPos.transform.GetChild(i);
         }
 
         var queuePos = GameObject.Find("QueuePositions");
+        QueuePositions = new Transform[queuePos.transform.childCount];
         for (int i = 0; i < queuePos.transform.childCount; i++)
         {
             QueuePositions[i] = queuePos.transform.GetChild(i);
@@ -114,6 +116,7 @@ public class EmployeeScript : MonoBehaviour
             rb.linearVelocity = Vector2.zero;
             StartCoroutine("Behaviors");
             movingToQueuePosition = false;
+            currentAnimation = "Sitting";
         }
 
         if (controlled && !workingControlled)
@@ -171,30 +174,42 @@ public class EmployeeScript : MonoBehaviour
                     {
                         if (curPos != prevPos)
                         {
+                            Debug.Log(Mathf.Abs(curPos.x - prevPos.x) + " " + Mathf.Abs(curPos.y - prevPos.y) + " " + (Mathf.Abs(curPos.x - prevPos.x) > Mathf.Abs(curPos.y - prevPos.y)).ToString());
                             if (Mathf.Abs(curPos.x - prevPos.x) > Mathf.Abs(curPos.y - prevPos.y))
                             {
                                 if (curPos.x > prevPos.x)
                                 {
-                                    transform.rotation = new Quaternion(0, 0, 90, 0);
+                                    transform.eulerAngles = new Vector3(0, 0, 90);
                                 }
                                 else
                                 {
-                                    transform.rotation = new Quaternion(0, 0, 270, 0);
+                                    transform.eulerAngles = new Vector3(0, 0, 270);
                                 }
                             }
                             else if (Mathf.Abs(curPos.x - prevPos.x) < Mathf.Abs(curPos.y - prevPos.y))
                             {
                                 if (curPos.y > prevPos.y)
                                 {
-                                    transform.rotation = new Quaternion(0, 0, 180, 0);
+                                    transform.eulerAngles = new Vector3(0, 0, 180);
                                 }
                                 else
                                 {
-                                    transform.rotation = new Quaternion(0, 0, 0, 0);
+                                    transform.eulerAngles = new Vector3(0, 0, 0);
+                                }
+                            }
+                            else
+                            {
+                                if (curPos.x > prevPos.x)
+                                {
+                                    transform.eulerAngles = new Vector3(0, 0, 90);
+                                }
+                                else
+                                {
+                                    transform.eulerAngles = new Vector3(0, 0, 270);
                                 }
                             }
 
-                            prevPos = curPos;
+                                prevPos = curPos;
                         }
                     }
                     animTimer = 0;
@@ -202,7 +217,121 @@ public class EmployeeScript : MonoBehaviour
 
                 
             }
-            animTimer += Time.deltaTime * speed * 10;
+            else if (currentAnimation == "Working")
+            {
+                if (animTimer >= 30)
+                {
+                    if (GetComponent<SpriteRenderer>().sprite == EmployeeSprites[6])
+                    {
+                        GetComponent<SpriteRenderer>().sprite = EmployeeSprites[7];
+                    }
+                    else
+                    {
+                        GetComponent<SpriteRenderer>().sprite = EmployeeSprites[6];
+                    }
+
+                    if (workStation < 6 || workStation > 11 && workStation < 14)
+                    {
+                        transform.eulerAngles = new Vector3(0, 0, 325);
+                    }
+                    else
+                    {
+                        transform.eulerAngles = new Vector3(0, 0, 140);
+                    }
+                    
+                    animTimer = 0;
+                }
+            }
+            else if (currentAnimation == "Sitting")
+            {
+                if (animTimer >= 30)
+                {
+                    if (GetComponent<SpriteRenderer>().sprite == EmployeeSprites[4])
+                    {
+                        GetComponent<SpriteRenderer>().sprite = EmployeeSprites[5];
+                    }
+                    else
+                    {
+                        GetComponent<SpriteRenderer>().sprite = EmployeeSprites[4];
+                    }
+
+                    if (prevNode == conferenceRoom)
+                    {
+                        if (workStation == 0 || workStation > 13)
+                        {
+                            transform.eulerAngles = new Vector3(0, 0, 90);
+                        }
+                        else if (workStation < 3)
+                        {
+                            transform.eulerAngles = new Vector3(0, 0, 180);
+                        }
+                        else if (workStation > 11 && workStation < 14)
+                        {
+                            transform.eulerAngles = new Vector3(0, 0, 0);
+                        }
+                        else
+                        {
+                            transform.eulerAngles = new Vector3(0, 0, 270);
+                        }
+                    }
+                    else if (prevNode == breakRoom)
+                    {
+                        if (targetPosition == 0 ||  targetPosition == 5)
+                        {
+                            transform.eulerAngles = new Vector3(0, 0, 0);
+                        }
+                        else if (targetPosition == 1 || targetPosition == 4)
+                        {
+                            transform.eulerAngles = new Vector3(0, 0, 90);
+                        }
+                        else if (targetPosition == 2 || targetPosition == 7)
+                        {
+                            transform.eulerAngles = new Vector3(0, 0, 180);
+                        }
+                        else if (targetPosition == 3 || targetPosition == 6)
+                        {
+                            transform.eulerAngles = new Vector3(0, 0, 270);
+                        }
+                    }
+                    else if (prevNode == restRoom)
+                    {
+                        
+                        transform.eulerAngles = new Vector3(0, 0, 270);
+
+                    }
+                    else if (prevNode == waterCooler)
+                    {
+
+                        transform.eulerAngles = new Vector3(0, 0, 90);
+
+                    }
+                    else if (prevNode == stockRoom)
+                    {
+
+                        transform.eulerAngles = new Vector3(0, 0, Random.Range(0, 359));
+
+                    }
+                    animTimer = 0;
+                }
+            }
+            else if (currentAnimation == "Idle")
+            {
+                if (animTimer >= 30)
+                {
+                    if (GetComponent<SpriteRenderer>().sprite == EmployeeSprites[2])
+                    {
+                        GetComponent<SpriteRenderer>().sprite = EmployeeSprites[3];
+                    }
+                    else
+                    {
+                        GetComponent<SpriteRenderer>().sprite = EmployeeSprites[2];
+                    }
+
+                    transform.eulerAngles = new Vector3(0, 0, 0);
+                    animTimer = 0;
+                }
+            }
+            animTimer += Time.deltaTime * speed * 50;
         }
     }
 
@@ -222,6 +351,7 @@ public class EmployeeScript : MonoBehaviour
                     QueryIcon.SetActive(true);
                     StartCoroutine("Behaviors");
                     StartCoroutine("WaitASec");
+                    currentAnimation = "Idle";
                     return;
                 }
 
@@ -231,6 +361,7 @@ public class EmployeeScript : MonoBehaviour
                     chosen = false;
                     isMoving = false;
                     StartCoroutine("Behaviors");
+                    currentAnimation = "Working";
                     return;
                 }
 
@@ -280,7 +411,7 @@ public class EmployeeScript : MonoBehaviour
             {
                 if (EMC.waterCoolerEmployeeSpots[i] == this.gameObject)
                 {
-                    targetPosition = i + 27;
+                    targetPosition = i + 31;
                     break;
                 }
             }
@@ -297,7 +428,7 @@ public class EmployeeScript : MonoBehaviour
             {
                 if (EMC.stockRoomEmployeeSpots[i] == this.gameObject)
                 {
-                    targetPosition = i + 23;
+                    targetPosition = i + 27;
                     break;
                 }
             }
@@ -309,7 +440,7 @@ public class EmployeeScript : MonoBehaviour
             {
                 if (EMC.restRoomEmployeeSpots[i] == this.gameObject)
                 {
-                    targetPosition = i + 21;
+                    targetPosition = i + 25;
                     break;
                 }
             }
@@ -322,7 +453,7 @@ public class EmployeeScript : MonoBehaviour
             {
                 if (EMC.conferenceRoomEmployeeSpots[i] == this.gameObject)
                 {
-                    targetPosition = i + 9;
+                    targetPosition = workStation + 9;
                     movingToQueuePosition = true;
                     break;
                 }
