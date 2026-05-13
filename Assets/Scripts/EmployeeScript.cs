@@ -36,7 +36,12 @@ public class EmployeeScript : MonoBehaviour
     public bool workingControlled;
     public GameObject computerScreen;
     private GameObject EmployeeInfo;
-    public Sprite[] sprites = new Sprite[10];
+    public Sprite[] EmployeeSprites;
+    private string currentAnimation = null;
+    public float animationSpeed;
+    private float animTimer;
+    private Vector2 curPos;
+    private Vector2 prevPos = Vector2.zero;
 
     //Specialization stuff
 
@@ -141,6 +146,63 @@ public class EmployeeScript : MonoBehaviour
                 rb.linearVelocityX -= rb.linearVelocityX / speed;
                 rb.linearVelocityY -= rb.linearVelocityY / speed;
             }
+        }
+
+        if (currentAnimation != null)
+        {
+            if (currentAnimation == "Walking")
+            {
+                if (animTimer >= 30)
+                {
+                    if (GetComponent<SpriteRenderer>().sprite == EmployeeSprites[8])
+                    {
+                        GetComponent<SpriteRenderer>().sprite = EmployeeSprites[9];
+                    }
+                    else
+                    {
+                        GetComponent<SpriteRenderer>().sprite = EmployeeSprites[8];
+                    }
+                    curPos = transform.position;
+                    if (prevPos == Vector2.zero)
+                    {
+                        prevPos = curPos;
+                    }
+                    else
+                    {
+                        if (curPos != prevPos)
+                        {
+                            if (Mathf.Abs(curPos.x - prevPos.x) > Mathf.Abs(curPos.y - prevPos.y))
+                            {
+                                if (curPos.x > prevPos.x)
+                                {
+                                    transform.rotation = new Quaternion(0, 0, 90, 0);
+                                }
+                                else
+                                {
+                                    transform.rotation = new Quaternion(0, 0, 270, 0);
+                                }
+                            }
+                            else if (Mathf.Abs(curPos.x - prevPos.x) < Mathf.Abs(curPos.y - prevPos.y))
+                            {
+                                if (curPos.y > prevPos.y)
+                                {
+                                    transform.rotation = new Quaternion(0, 0, 180, 0);
+                                }
+                                else
+                                {
+                                    transform.rotation = new Quaternion(0, 0, 0, 0);
+                                }
+                            }
+
+                            prevPos = curPos;
+                        }
+                    }
+                    animTimer = 0;
+                }
+
+                
+            }
+            animTimer += Time.deltaTime * speed * 10;
         }
     }
 
@@ -430,6 +492,7 @@ public class EmployeeScript : MonoBehaviour
                 }
             );
             StartCoroutine("LeavePrevQueue");
+            currentAnimation = "Walking";
 
             if (prevNode != workStation && targetPosition != workStation)
             {

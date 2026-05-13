@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 26a41647fcc68044f968dc8237d17ce1
+guid: efa54d9ca01db4e4b87eaeec182db3fc
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2378586306219985071
-    second: SMILE_BLUETIE_IDLE0002_0
+      213: -4949087860913500844
+    second: Triangle Outline_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SMILE_BLUETIE_IDLE0002_0
+      name: Triangle Outline_0
       rect:
         serializedVersion: 2
-        x: 873
-        y: 378
-        width: 281
-        height: 233
+        x: 871
+        y: 367
+        width: 291
+        height: 259
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fa8c9d9a4af620120800000000000000
-      internalID: 2378586306219985071
+      spriteID: 45d8d08dfce415bb0800000000000000
+      internalID: -4949087860913500844
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      SMILE_BLUETIE_IDLE0002_0: 2378586306219985071
+      Triangle Outline_0: -4949087860913500844
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

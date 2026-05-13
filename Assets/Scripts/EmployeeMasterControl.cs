@@ -20,7 +20,6 @@ public class EmployeeMasterControl : MonoBehaviour
     public Sprite[] EmployeeSprites1;
     public Sprite[] EmployeeSprites2;
     public Sprite[] EmployeeSprites3;
-    public Sprite[][] EmployeeSprites;
     private string[] EmployeeFirstNames;
     private string[] EmployeeNickNames;
     private string[] EmployeeLastNames;
@@ -38,6 +37,7 @@ public class EmployeeMasterControl : MonoBehaviour
     public int maxEmployees;
     private GameObject FiringScreen;
     private int moveTimer;
+    private float animTimer;
 
     //Queue stuff
     public GameObject[] waterCoolerEmployeeSpots = new GameObject[5];
@@ -56,7 +56,6 @@ public class EmployeeMasterControl : MonoBehaviour
 
     void Start()
     {
-        EmployeeSprites = new Sprite[][] { EmployeeSprites1, EmployeeSprites2, EmployeeSprites3 };
         HireScreen = transform.GetChild(0).gameObject;
         FiringScreen = HireScreen.transform.GetChild(5).gameObject;
         EmployeeFirstNames = File.ReadAllLines("Assets\\EmployeeInfoDocs\\First Names.txt");
@@ -66,6 +65,30 @@ public class EmployeeMasterControl : MonoBehaviour
 
     private void Update()
     {
+
+        if (HireScreen.activeSelf)
+        {
+            if (animTimer >= 30) 
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    try
+                    {
+                        if (HireScreen.transform.GetChild(i).GetChild(1).GetComponent<Image>().sprite == HireScreen.transform.GetChild(i).GetChild(6).GetComponent<EmployeeScript>().EmployeeSprites[0])
+                        {
+                            HireScreen.transform.GetChild(i).GetChild(1).GetComponent<Image>().sprite = HireScreen.transform.GetChild(i).GetChild(6).GetComponent<EmployeeScript>().EmployeeSprites[1];
+                        }
+                        else
+                        {
+                            HireScreen.transform.GetChild(i).GetChild(1).GetComponent<Image>().sprite = HireScreen.transform.GetChild(i).GetChild(6).GetComponent<EmployeeScript>().EmployeeSprites[0];
+                        }
+                    }
+                    catch { }
+                }
+                animTimer = 0;
+            }
+            animTimer += Time.deltaTime * Random.Range(1, 250);
+        }
 
         if (moveTimer % 15 == 0 && Employees.Count > 0)
         {
@@ -605,7 +628,7 @@ public class EmployeeMasterControl : MonoBehaviour
         var empList = new GameObject[3];
         for (int i = 0; i < 3; i++)
         {
-            var emp = PotentialHires(Random.Range(0, EmployeeSprites.Length), Random.Range(0, 3), Random.Range(0, EmployeeFirstNames.Length),
+            var emp = PotentialHires(Random.Range(0, 3), Random.Range(0, 3), Random.Range(0, EmployeeFirstNames.Length),
                 Random.Range(0, EmployeeNickNames.Length), Random.Range(0, EmployeeLastNames.Length), Random.Range(20, 121),
                 Random.Range(0, EmployeeHappiness.Length), Random.Range(0, EmployeeSpecialties.Length), Random.Range(0, maxSpecialtyStartingLevel));
             emp.transform.position = new Vector3(-500, -1000, emp.transform.position.z);
@@ -631,11 +654,35 @@ public class EmployeeMasterControl : MonoBehaviour
         Emp.GetComponent<EmployeeScript>().restRoom = 20;
         Emp.GetComponent<EmployeeScript>().stockRoom = 21;
 
-        Emp.GetComponent<SpriteRenderer>().sprite = EmployeeSprites[spriteNum][secSpriteNum * 10];
-
-        for (int i = secSpriteNum * 10; i < (secSpriteNum * 10) + 10; i++)
+        if (spriteNum == 0)
         {
-            Emp.GetComponent<EmployeeScript>().sprites[i] = EmployeeSprites[spriteNum][(secSpriteNum * 10) + i];
+            Emp.GetComponent<SpriteRenderer>().sprite = EmployeeSprites1[secSpriteNum * 10];
+        }
+        else if (spriteNum == 1)
+        {
+            Emp.GetComponent<SpriteRenderer>().sprite = EmployeeSprites2[secSpriteNum * 10];
+        }
+        else if (spriteNum == 2)
+        {
+            Emp.GetComponent<SpriteRenderer>().sprite = EmployeeSprites3[secSpriteNum * 10];
+        }
+
+
+        for (int i = 0; i < 10; i++)
+        {
+            var w = i + (secSpriteNum * 10);
+            if (spriteNum == 0)
+            {
+                Emp.GetComponent<EmployeeScript>().EmployeeSprites[i] = EmployeeSprites1[w];
+            }
+            else if (spriteNum == 1)
+            {
+                Emp.GetComponent<EmployeeScript>().EmployeeSprites[i] = EmployeeSprites2[w];
+            }
+            else if (spriteNum == 2)
+            {
+                Emp.GetComponent<EmployeeScript>().EmployeeSprites[i] = EmployeeSprites3[w];
+            }
         }
 
         return Emp;
