@@ -155,7 +155,7 @@ public class EmployeeScript : MonoBehaviour
         {
             if (currentAnimation == "Walking")
             {
-                if (animTimer >= 30)
+                if (animTimer >= 33)
                 {
                     if (GetComponent<SpriteRenderer>().sprite == EmployeeSprites[8])
                     {
@@ -219,7 +219,7 @@ public class EmployeeScript : MonoBehaviour
             }
             else if (currentAnimation == "Working")
             {
-                if (animTimer >= 30)
+                if (animTimer >= 35)
                 {
                     if (GetComponent<SpriteRenderer>().sprite == EmployeeSprites[6])
                     {
@@ -244,7 +244,7 @@ public class EmployeeScript : MonoBehaviour
             }
             else if (currentAnimation == "Sitting")
             {
-                if (animTimer >= 30)
+                if (animTimer >= 45)
                 {
                     if (GetComponent<SpriteRenderer>().sprite == EmployeeSprites[4])
                     {
@@ -316,7 +316,7 @@ public class EmployeeScript : MonoBehaviour
             }
             else if (currentAnimation == "Idle")
             {
-                if (animTimer >= 30)
+                if (animTimer >= 60)
                 {
                     if (GetComponent<SpriteRenderer>().sprite == EmployeeSprites[2])
                     {

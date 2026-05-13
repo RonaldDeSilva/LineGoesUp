@@ -145,12 +145,18 @@ public class ClickingEmployeeScript : MonoBehaviour
         EmployeeInfo.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialties: ";
         EmployeeInfo.transform.GetChild(5).GetChild(0).GetComponent<TextMeshProUGUI>().text = "Control";
         EmployeeInfo.SetActive(false);
-        selectedEmployee.GetComponent<EmployeeScript>().EndControl();
-        selectedEmployee.GetComponent<EmployeeScript>().computerScreen.transform.GetChild(0).gameObject.SetActive(false);
+        if (selectedEmployee.GetComponent<EmployeeScript>().controlled)
+        {
+            selectedEmployee.GetComponent<EmployeeScript>().EndControl();
+        }
+        if (selectedEmployee.GetComponent<EmployeeScript>().computerScreen.transform.GetChild(0).gameObject.activeSelf)
+        {
+            selectedEmployee.GetComponent<EmployeeScript>().computerScreen.transform.GetChild(0).gameObject.SetActive(false);
+            EmployeeInfo.transform.localPosition = new Vector2(-704f, 387.2f);
+            MGC.BootDown();
+            EmployeeInfo.transform.GetChild(5).GetComponent<Button>().interactable = true;
+        }
         selectedEmployee = null;
-        EmployeeInfo.transform.localPosition = new Vector2(-704f, 387.2f);
-        MGC.BootDown();
-        EmployeeInfo.transform.GetChild(5).GetComponent<Button>().interactable = true;
     }
 
     public void ComputerPowerButton()
