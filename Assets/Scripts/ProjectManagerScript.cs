@@ -10,6 +10,8 @@ public class ProjectManagerScript : MonoBehaviour
     public GameObject CurrentProject3;
     public GameObject NoProjectsText;
     public GameObject CurrentProjectPool;
+    public GameObject PotentialProjectPool;
+    public GameObject TimeClock;
 
     //Project Browser
     public GameObject PotentialProject1;
@@ -23,12 +25,6 @@ public class ProjectManagerScript : MonoBehaviour
     public float ProjectRewardsMin;
     public float ProjectRewardsMax;
     public int numActiveProjects;
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void StartUp()
     {
@@ -127,7 +123,7 @@ public class ProjectManagerScript : MonoBehaviour
 
             for (int i = 0; i < 3; i++)
             {
-                var proj = Instantiate(ProjectTemplate);
+                var proj = Instantiate(ProjectTemplate, PotentialProjectPool.transform);
                 proj.GetComponent<ProjectScript>().ProjectIcon = ProjectIcons[Random.Range(0, ProjectIcons.Length)];
                 proj.GetComponent<ProjectScript>().ProjectName = ProjectNames[Random.Range(0, ProjectIcons.Length)];
                 proj.GetComponent<ProjectScript>().ProjectDescription = ProjectDescriptions[Random.Range(0, ProjectIcons.Length)];
@@ -159,6 +155,13 @@ public class ProjectManagerScript : MonoBehaviour
         }
         else
         {
+            if (PotentialProjectPool.transform.childCount > 0)
+            {
+                for (int i = PotentialProjectPool.transform.childCount; i > -1; i--)
+                {
+                    Destroy(PotentialProjectPool.transform.GetChild(i));
+                }
+            }
             transform.GetChild(0).gameObject.SetActive(true);
             transform.GetChild(1).gameObject.SetActive(false);
         }
