@@ -60,11 +60,8 @@ public class ClickingEmployeeScript : MonoBehaviour
                                 EmployeeInfo.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = selectedEmployee.GetComponent<EmployeeScript>().name;
                                 EmployeeInfo.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = "Age: " + selectedEmployee.GetComponent<EmployeeScript>().age;
                                 EmployeeInfo.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = "Happiness: " + selectedEmployee.GetComponent<EmployeeScript>().happiness;
-                                for (int f = 0; f < selectedEmployee.GetComponent<EmployeeScript>().SpecialtyNames.Count; f++)
-                                {
-                                    EmployeeInfo.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = EmployeeInfo.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text +
-                                        selectedEmployee.GetComponent<EmployeeScript>().SpecialtyNames[f] + " LVL-" + selectedEmployee.GetComponent<EmployeeScript>().SpecialtyLevels[f].ToString("F2");
-                                }
+                                EmployeeInfo.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = selectedEmployee.GetComponent<EmployeeScript>().SpecialtyName + " LVL-" + selectedEmployee.GetComponent<EmployeeScript>().SpecialtyLevel.ToString("F2");
+                                
                                 Cam.orthographicSize = 2;
                                 EmployeeInfo.SetActive(true);
                                 coolDown = true;
@@ -79,18 +76,7 @@ public class ClickingEmployeeScript : MonoBehaviour
                                 EmployeeInfo.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = selectedEmployee.GetComponent<EmployeeScript>().name;
                                 EmployeeInfo.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = "Age: " + selectedEmployee.GetComponent<EmployeeScript>().age;
                                 EmployeeInfo.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = "Happiness: " + selectedEmployee.GetComponent<EmployeeScript>().happiness;
-                                if (selectedEmployee.GetComponent<EmployeeScript>().SpecialtyNames.Count == 1)
-                                {
-
-                                }
-                                else if (selectedEmployee.GetComponent<EmployeeScript>().SpecialtyNames.Count >= 2)
-                                {
-                                    for (int f = 0; f < selectedEmployee.GetComponent<EmployeeScript>().SpecialtyNames.Count; f++)
-                                    {
-                                        EmployeeInfo.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = EmployeeInfo.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text +
-                                            selectedEmployee.GetComponent<EmployeeScript>().SpecialtyNames[f] + " LVL: " + selectedEmployee.GetComponent<EmployeeScript>().SpecialtyLevels[f].ToString("F2") + ", ";
-                                    }
-                                }
+                                EmployeeInfo.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = selectedEmployee.GetComponent<EmployeeScript>().SpecialtyName + " LVL: " + selectedEmployee.GetComponent<EmployeeScript>().SpecialtyLevel.ToString("F2") + ", "; 
                                 Cam.orthographicSize = 2;
                                 EmployeeInfo.SetActive(true);
                                 coolDown = true;

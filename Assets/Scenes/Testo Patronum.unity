@@ -19440,6 +19440,8 @@ MonoBehaviour:
   CurrentProjectPool: {fileID: 1640501858}
   PotentialProjectPool: {fileID: 1274629870}
   TimeClock: {fileID: 2080814404}
+  ProjectScreen: {fileID: 859995636}
+  CurrentEmployeePool: {fileID: 2099863108}
   PotentialProject1: {fileID: 1314315350}
   PotentialProject2: {fileID: 1220655154}
   PotentialProject3: {fileID: 1249159592}
@@ -19480,6 +19482,10 @@ MonoBehaviour:
   ProjectRewardsMin: 5
   ProjectRewardsMax: 100
   numActiveProjects: 0
+  Employees: []
+  Employee1: {fileID: 551533698}
+  Employee2: {fileID: 1205631867}
+  Employee3: {fileID: 503898590}
 --- !u!1 &1063518531
 GameObject:
   m_ObjectHideFlags: 0

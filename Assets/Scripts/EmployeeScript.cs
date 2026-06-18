@@ -45,8 +45,10 @@ public class EmployeeScript : MonoBehaviour
 
     //Specialization stuff
 
-    public List<string> SpecialtyNames = new List<string>();
-    public List<float> SpecialtyLevels = new List<float>();
+    public string SpecialtyName;
+    public float SpecialtyLevel;
+
+    public string projectAssignment = "";
 
     #region Awaken
 

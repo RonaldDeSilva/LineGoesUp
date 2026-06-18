@@ -184,8 +184,8 @@ public class EmployeeMasterControl : MonoBehaviour
                 FiringScreen.transform.GetChild(0).GetChild(1).GetComponent<Image>().sprite = Employees[0].GetComponent<SpriteRenderer>().sprite;
                 FiringScreen.transform.GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>().text = Employees[0].GetComponent<EmployeeScript>().name;
                 FiringScreen.transform.GetChild(0).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + Employees[0].GetComponent<EmployeeScript>().age + " Years Old";
-                FiringScreen.transform.GetChild(0).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[0].GetComponent<EmployeeScript>().SpecialtyNames[0];
-                FiringScreen.transform.GetChild(0).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[0].GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
+                FiringScreen.transform.GetChild(0).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[0].GetComponent<EmployeeScript>().SpecialtyName;
+                FiringScreen.transform.GetChild(0).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[0].GetComponent<EmployeeScript>().SpecialtyLevel.ToString("F2");
                 FiringScreen.transform.GetChild(0).GetComponent<Button>().interactable = true;
                 FiringScreen.transform.GetChild(0).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Fire";
             }
@@ -198,8 +198,8 @@ public class EmployeeMasterControl : MonoBehaviour
                     FiringScreen.transform.GetChild(i).GetChild(1).GetComponent<Image>().sprite = Employees[i].GetComponent<SpriteRenderer>().sprite;
                     FiringScreen.transform.GetChild(i).GetChild(2).GetComponent<TextMeshProUGUI>().text = Employees[i].GetComponent<EmployeeScript>().name;
                     FiringScreen.transform.GetChild(i).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + Employees[i].GetComponent<EmployeeScript>().age + " Years Old";
-                    FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[i].GetComponent<EmployeeScript>().SpecialtyNames[0];
-                    FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[i].GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
+                    FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[i].GetComponent<EmployeeScript>().SpecialtyName;
+                    FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[i].GetComponent<EmployeeScript>().SpecialtyLevel.ToString("F2");
                     FiringScreen.transform.GetChild(i).GetComponent<Button>().interactable = true;
                     FiringScreen.transform.GetChild(i).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Fire";
                 }
@@ -219,8 +219,8 @@ public class EmployeeMasterControl : MonoBehaviour
                     FiringScreen.transform.GetChild(i).GetChild(1).GetComponent<Image>().sprite = Employees[i].GetComponent<SpriteRenderer>().sprite;
                     FiringScreen.transform.GetChild(i).GetChild(2).GetComponent<TextMeshProUGUI>().text = Employees[i].GetComponent<EmployeeScript>().name;
                     FiringScreen.transform.GetChild(i).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + Employees[i].GetComponent<EmployeeScript>().age + " Years Old";
-                    FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[i].GetComponent<EmployeeScript>().SpecialtyNames[0];
-                    FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[i].GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
+                    FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[i].GetComponent<EmployeeScript>().SpecialtyName;
+                    FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[i].GetComponent<EmployeeScript>().SpecialtyLevel.ToString("F2");
                     FiringScreen.transform.GetChild(i).GetComponent<Button>().interactable = true;
                     FiringScreen.transform.GetChild(i).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Fire";
                 }
@@ -262,8 +262,8 @@ public class EmployeeMasterControl : MonoBehaviour
                 FiringScreen.transform.GetChild(0).GetChild(1).GetComponent<Image>().sprite = Employees[0].GetComponent<SpriteRenderer>().sprite;
                 FiringScreen.transform.GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>().text = Employees[0].GetComponent<EmployeeScript>().name;
                 FiringScreen.transform.GetChild(0).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + Employees[0].GetComponent<EmployeeScript>().age + " Years Old";
-                FiringScreen.transform.GetChild(0).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[0].GetComponent<EmployeeScript>().SpecialtyNames[0];
-                FiringScreen.transform.GetChild(0).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[0].GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
+                FiringScreen.transform.GetChild(0).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[0].GetComponent<EmployeeScript>().SpecialtyName;
+                FiringScreen.transform.GetChild(0).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[0].GetComponent<EmployeeScript>().SpecialtyLevel.ToString("F2");
                 FiringScreen.transform.GetChild(0).GetComponent<Button>().interactable = true;
                 FiringScreen.transform.GetChild(0).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Fire";
             }
@@ -276,8 +276,8 @@ public class EmployeeMasterControl : MonoBehaviour
                     FiringScreen.transform.GetChild(i).GetChild(1).GetComponent<Image>().sprite = Employees[i].GetComponent<SpriteRenderer>().sprite;
                     FiringScreen.transform.GetChild(i).GetChild(2).GetComponent<TextMeshProUGUI>().text = Employees[i].GetComponent<EmployeeScript>().name;
                     FiringScreen.transform.GetChild(i).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + Employees[i].GetComponent<EmployeeScript>().age + " Years Old";
-                    FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[i].GetComponent<EmployeeScript>().SpecialtyNames[0];
-                    FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[i].GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
+                    FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[i].GetComponent<EmployeeScript>().SpecialtyName;
+                    FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[i].GetComponent<EmployeeScript>().SpecialtyLevel.ToString("F2");
                     FiringScreen.transform.GetChild(i).GetComponent<Button>().interactable = true;
                     FiringScreen.transform.GetChild(i).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Fire";
                 }
@@ -298,8 +298,8 @@ public class EmployeeMasterControl : MonoBehaviour
                         FiringScreen.transform.GetChild(i).GetChild(1).GetComponent<Image>().sprite = Employees[i + (CurrentPage * 3)].GetComponent<SpriteRenderer>().sprite;
                         FiringScreen.transform.GetChild(i).GetChild(2).GetComponent<TextMeshProUGUI>().text = Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().name;
                         FiringScreen.transform.GetChild(i).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().age + " Years Old";
-                        FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyNames[0];
-                        FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
+                        FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyName;
+                        FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyLevel.ToString("F2");
                         FiringScreen.transform.GetChild(i).GetComponent<Button>().interactable = true;
                         FiringScreen.transform.GetChild(i).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Fire";
                     }
@@ -311,8 +311,8 @@ public class EmployeeMasterControl : MonoBehaviour
                     FiringScreen.transform.GetChild(0).GetChild(1).GetComponent<Image>().sprite = Employees[0 + (CurrentPage * 3)].GetComponent<SpriteRenderer>().sprite;
                     FiringScreen.transform.GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>().text = Employees[0 + (CurrentPage * 3)].GetComponent<EmployeeScript>().name;
                     FiringScreen.transform.GetChild(0).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + Employees[0 + (CurrentPage * 3)].GetComponent<EmployeeScript>().age + " Years Old";
-                    FiringScreen.transform.GetChild(0).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[0 + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyNames[0];
-                    FiringScreen.transform.GetChild(0).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[0 + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
+                    FiringScreen.transform.GetChild(0).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[0 + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyName;
+                    FiringScreen.transform.GetChild(0).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[0 + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyLevel.ToString("F2");
                     FiringScreen.transform.GetChild(0).GetComponent<Button>().interactable = true;
                     FiringScreen.transform.GetChild(0).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Fire";
                 }
@@ -325,8 +325,8 @@ public class EmployeeMasterControl : MonoBehaviour
                         FiringScreen.transform.GetChild(i).GetChild(1).GetComponent<Image>().sprite = Employees[i + (CurrentPage * 3)].GetComponent<SpriteRenderer>().sprite;
                         FiringScreen.transform.GetChild(i).GetChild(2).GetComponent<TextMeshProUGUI>().text = Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().name;
                         FiringScreen.transform.GetChild(i).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().age + " Years Old";
-                        FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyNames[0];
-                        FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
+                        FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyName;
+                        FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyLevel.ToString("F2");
                         FiringScreen.transform.GetChild(i).GetComponent<Button>().interactable = true;
                         FiringScreen.transform.GetChild(i).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Fire";
                     }
@@ -340,8 +340,8 @@ public class EmployeeMasterControl : MonoBehaviour
                         FiringScreen.transform.GetChild(i).GetChild(1).GetComponent<Image>().sprite = Employees[i + (CurrentPage * 3)].GetComponent<SpriteRenderer>().sprite;
                         FiringScreen.transform.GetChild(i).GetChild(2).GetComponent<TextMeshProUGUI>().text = Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().name;
                         FiringScreen.transform.GetChild(i).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().age + " Years Old";
-                        FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyNames[0];
-                        FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
+                        FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyName;
+                        FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyLevel.ToString("F2");
                         FiringScreen.transform.GetChild(i).GetComponent<Button>().interactable = true;
                         FiringScreen.transform.GetChild(i).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Fire";
                     }
@@ -361,8 +361,8 @@ public class EmployeeMasterControl : MonoBehaviour
                 FiringScreen.transform.GetChild(0).GetChild(1).GetComponent<Image>().sprite = Employees[0].GetComponent<SpriteRenderer>().sprite;
                 FiringScreen.transform.GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>().text = Employees[0].GetComponent<EmployeeScript>().name;
                 FiringScreen.transform.GetChild(0).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + Employees[0].GetComponent<EmployeeScript>().age + " Years Old";
-                FiringScreen.transform.GetChild(0).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[0].GetComponent<EmployeeScript>().SpecialtyNames[0];
-                FiringScreen.transform.GetChild(0).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[0].GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
+                FiringScreen.transform.GetChild(0).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[0].GetComponent<EmployeeScript>().SpecialtyName;
+                FiringScreen.transform.GetChild(0).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[0].GetComponent<EmployeeScript>().SpecialtyLevel.ToString("F2");
                 FiringScreen.transform.GetChild(0).GetComponent<Button>().interactable = true;
                 FiringScreen.transform.GetChild(0).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Fire";
             }
@@ -375,8 +375,8 @@ public class EmployeeMasterControl : MonoBehaviour
                     FiringScreen.transform.GetChild(i).GetChild(1).GetComponent<Image>().sprite = Employees[i].GetComponent<SpriteRenderer>().sprite;
                     FiringScreen.transform.GetChild(i).GetChild(2).GetComponent<TextMeshProUGUI>().text = Employees[i].GetComponent<EmployeeScript>().name;
                     FiringScreen.transform.GetChild(i).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + Employees[i].GetComponent<EmployeeScript>().age + " Years Old";
-                    FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[i].GetComponent<EmployeeScript>().SpecialtyNames[0];
-                    FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[i].GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
+                    FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[i].GetComponent<EmployeeScript>().SpecialtyName;
+                    FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[i].GetComponent<EmployeeScript>().SpecialtyLevel.ToString("F2");
                     FiringScreen.transform.GetChild(i).GetComponent<Button>().interactable = true;
                     FiringScreen.transform.GetChild(i).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Fire";
                 }
@@ -392,8 +392,8 @@ public class EmployeeMasterControl : MonoBehaviour
                         FiringScreen.transform.GetChild(i).GetChild(1).GetComponent<Image>().sprite = Employees[i + (CurrentPage * 3)].GetComponent<SpriteRenderer>().sprite;
                         FiringScreen.transform.GetChild(i).GetChild(2).GetComponent<TextMeshProUGUI>().text = Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().name;
                         FiringScreen.transform.GetChild(i).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().age + " Years Old";
-                        FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyNames[0];
-                        FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
+                        FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyName;
+                        FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyLevel.ToString("F2");
                         FiringScreen.transform.GetChild(i).GetComponent<Button>().interactable = true;
                         FiringScreen.transform.GetChild(i).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Fire";
                     }
@@ -405,8 +405,8 @@ public class EmployeeMasterControl : MonoBehaviour
                     FiringScreen.transform.GetChild(0).GetChild(1).GetComponent<Image>().sprite = Employees[0 + (CurrentPage * 3)].GetComponent<SpriteRenderer>().sprite;
                     FiringScreen.transform.GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>().text = Employees[0 + (CurrentPage * 3)].GetComponent<EmployeeScript>().name;
                     FiringScreen.transform.GetChild(0).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + Employees[0 + (CurrentPage * 3)].GetComponent<EmployeeScript>().age + " Years Old";
-                    FiringScreen.transform.GetChild(0).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[0 + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyNames[0];
-                    FiringScreen.transform.GetChild(0).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[0 + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
+                    FiringScreen.transform.GetChild(0).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[0 + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyName;
+                    FiringScreen.transform.GetChild(0).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[0 + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyLevel.ToString("F2");
                     FiringScreen.transform.GetChild(0).GetComponent<Button>().interactable = true;
                     FiringScreen.transform.GetChild(0).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Fire";
                 }
@@ -419,8 +419,8 @@ public class EmployeeMasterControl : MonoBehaviour
                         FiringScreen.transform.GetChild(i).GetChild(1).GetComponent<Image>().sprite = Employees[i + (CurrentPage * 3)].GetComponent<SpriteRenderer>().sprite;
                         FiringScreen.transform.GetChild(i).GetChild(2).GetComponent<TextMeshProUGUI>().text = Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().name;
                         FiringScreen.transform.GetChild(i).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().age + " Years Old";
-                        FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyNames[0];
-                        FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
+                        FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyName;
+                        FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyLevel.ToString("F2");
                         FiringScreen.transform.GetChild(i).GetComponent<Button>().interactable = true;
                         FiringScreen.transform.GetChild(i).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Fire";
                     }
@@ -434,8 +434,8 @@ public class EmployeeMasterControl : MonoBehaviour
                         FiringScreen.transform.GetChild(i).GetChild(1).GetComponent<Image>().sprite = Employees[i + (CurrentPage * 3)].GetComponent<SpriteRenderer>().sprite;
                         FiringScreen.transform.GetChild(i).GetChild(2).GetComponent<TextMeshProUGUI>().text = Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().name;
                         FiringScreen.transform.GetChild(i).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().age + " Years Old";
-                        FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyNames[0];
-                        FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
+                        FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyName;
+                        FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyLevel.ToString("F2");
                         FiringScreen.transform.GetChild(i).GetComponent<Button>().interactable = true;
                         FiringScreen.transform.GetChild(i).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Fire";
                     }
@@ -457,8 +457,8 @@ public class EmployeeMasterControl : MonoBehaviour
                     FiringScreen.transform.GetChild(i).GetChild(1).GetComponent<Image>().sprite = Employees[i].GetComponent<SpriteRenderer>().sprite;
                     FiringScreen.transform.GetChild(i).GetChild(2).GetComponent<TextMeshProUGUI>().text = Employees[i].GetComponent<EmployeeScript>().name;
                     FiringScreen.transform.GetChild(i).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + Employees[i].GetComponent<EmployeeScript>().age + " Years Old";
-                    FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[i].GetComponent<EmployeeScript>().SpecialtyNames[0];
-                    FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[i].GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
+                    FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[i].GetComponent<EmployeeScript>().SpecialtyName;
+                    FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[i].GetComponent<EmployeeScript>().SpecialtyLevel.ToString("F2");
                     FiringScreen.transform.GetChild(i).GetComponent<Button>().interactable = true;
                     FiringScreen.transform.GetChild(i).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Fire";
                 }
@@ -474,8 +474,8 @@ public class EmployeeMasterControl : MonoBehaviour
                         FiringScreen.transform.GetChild(i).GetChild(1).GetComponent<Image>().sprite = Employees[i + (CurrentPage * 3)].GetComponent<SpriteRenderer>().sprite;
                         FiringScreen.transform.GetChild(i).GetChild(2).GetComponent<TextMeshProUGUI>().text = Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().name;
                         FiringScreen.transform.GetChild(i).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().age + " Years Old";
-                        FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyNames[0];
-                        FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
+                        FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyName;
+                        FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyLevel.ToString("F2");
                         FiringScreen.transform.GetChild(i).GetComponent<Button>().interactable = true;
                         FiringScreen.transform.GetChild(i).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Fire";
                     }
@@ -487,8 +487,8 @@ public class EmployeeMasterControl : MonoBehaviour
                     FiringScreen.transform.GetChild(0).GetChild(1).GetComponent<Image>().sprite = Employees[0 + (CurrentPage * 3)].GetComponent<SpriteRenderer>().sprite;
                     FiringScreen.transform.GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>().text = Employees[0 + (CurrentPage * 3)].GetComponent<EmployeeScript>().name;
                     FiringScreen.transform.GetChild(0).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + Employees[0 + (CurrentPage * 3)].GetComponent<EmployeeScript>().age + " Years Old";
-                    FiringScreen.transform.GetChild(0).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[0 + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyNames[0];
-                    FiringScreen.transform.GetChild(0).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[0 + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
+                    FiringScreen.transform.GetChild(0).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[0 + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyName;
+                    FiringScreen.transform.GetChild(0).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[0 + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyLevel.ToString("F2");
                     FiringScreen.transform.GetChild(0).GetComponent<Button>().interactable = true;
                     FiringScreen.transform.GetChild(0).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Fire";
                 }
@@ -501,8 +501,8 @@ public class EmployeeMasterControl : MonoBehaviour
                         FiringScreen.transform.GetChild(i).GetChild(1).GetComponent<Image>().sprite = Employees[i + (CurrentPage * 3)].GetComponent<SpriteRenderer>().sprite;
                         FiringScreen.transform.GetChild(i).GetChild(2).GetComponent<TextMeshProUGUI>().text = Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().name;
                         FiringScreen.transform.GetChild(i).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().age + " Years Old";
-                        FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyNames[0];
-                        FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
+                        FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyName;
+                        FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyLevel.ToString("F2");
                         FiringScreen.transform.GetChild(i).GetComponent<Button>().interactable = true;
                         FiringScreen.transform.GetChild(i).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Fire";
                     }
@@ -516,8 +516,8 @@ public class EmployeeMasterControl : MonoBehaviour
                         FiringScreen.transform.GetChild(i).GetChild(1).GetComponent<Image>().sprite = Employees[i + (CurrentPage * 3)].GetComponent<SpriteRenderer>().sprite;
                         FiringScreen.transform.GetChild(i).GetChild(2).GetComponent<TextMeshProUGUI>().text = Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().name;
                         FiringScreen.transform.GetChild(i).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().age + " Years Old";
-                        FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyNames[0];
-                        FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
+                        FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyName;
+                        FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyLevel.ToString("F2");
                         FiringScreen.transform.GetChild(i).GetComponent<Button>().interactable = true;
                         FiringScreen.transform.GetChild(i).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Fire";
                     }
@@ -543,8 +543,8 @@ public class EmployeeMasterControl : MonoBehaviour
                 FiringScreen.transform.GetChild(0).GetChild(1).GetComponent<Image>().sprite = Employees[0 + (CurrentPage * 3)].GetComponent<SpriteRenderer>().sprite;
                 FiringScreen.transform.GetChild(0).GetChild(2).GetComponent<TextMeshProUGUI>().text = Employees[0 + (CurrentPage * 3)].GetComponent<EmployeeScript>().name;
                 FiringScreen.transform.GetChild(0).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + Employees[0 + (CurrentPage * 3)].GetComponent<EmployeeScript>().age + " Years Old";
-                FiringScreen.transform.GetChild(0).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[0 + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyNames[0];
-                FiringScreen.transform.GetChild(0).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[0 + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
+                FiringScreen.transform.GetChild(0).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[0 + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyName;
+                FiringScreen.transform.GetChild(0).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[0 + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyLevel.ToString("F2");
                 FiringScreen.transform.GetChild(0).GetComponent<Button>().interactable = true;
                 FiringScreen.transform.GetChild(0).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Fire";
             }
@@ -557,8 +557,8 @@ public class EmployeeMasterControl : MonoBehaviour
                     FiringScreen.transform.GetChild(i).GetChild(1).GetComponent<Image>().sprite = Employees[i + (CurrentPage * 3)].GetComponent<SpriteRenderer>().sprite;
                     FiringScreen.transform.GetChild(i).GetChild(2).GetComponent<TextMeshProUGUI>().text = Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().name;
                     FiringScreen.transform.GetChild(i).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().age + " Years Old";
-                    FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyNames[0];
-                    FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
+                    FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyName;
+                    FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyLevel.ToString("F2");
                     FiringScreen.transform.GetChild(i).GetComponent<Button>().interactable = true;
                     FiringScreen.transform.GetChild(i).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Fire";
                 }
@@ -572,8 +572,8 @@ public class EmployeeMasterControl : MonoBehaviour
                     FiringScreen.transform.GetChild(i).GetChild(1).GetComponent<Image>().sprite = Employees[i + (CurrentPage * 3)].GetComponent<SpriteRenderer>().sprite;
                     FiringScreen.transform.GetChild(i).GetChild(2).GetComponent<TextMeshProUGUI>().text = Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().name;
                     FiringScreen.transform.GetChild(i).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().age + " Years Old";
-                    FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyNames[0];
-                    FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
+                    FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyName;
+                    FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyLevel.ToString("F2");
                     FiringScreen.transform.GetChild(i).GetComponent<Button>().interactable = true;
                     FiringScreen.transform.GetChild(i).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Fire";
                 }
@@ -596,8 +596,8 @@ public class EmployeeMasterControl : MonoBehaviour
                 FiringScreen.transform.GetChild(i).GetChild(1).GetComponent<Image>().sprite = Employees[i + (CurrentPage * 3)].GetComponent<SpriteRenderer>().sprite;
                 FiringScreen.transform.GetChild(i).GetChild(2).GetComponent<TextMeshProUGUI>().text = Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().name;
                 FiringScreen.transform.GetChild(i).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().age + " Years Old";
-                FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyNames[0];
-                FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
+                FiringScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyName;
+                FiringScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + Employees[i + (CurrentPage * 3)].GetComponent<EmployeeScript>().SpecialtyLevel.ToString("F2");
                 FiringScreen.transform.GetChild(i).GetComponent<Button>().interactable = true;
                 FiringScreen.transform.GetChild(i).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Fire";
             }
@@ -616,8 +616,8 @@ public class EmployeeMasterControl : MonoBehaviour
             HireScreen.transform.GetChild(i).GetChild(1).GetComponent<Image>().sprite = list[i].GetComponent<SpriteRenderer>().sprite;
             HireScreen.transform.GetChild(i).GetChild(2).GetComponent<TextMeshProUGUI>().text = list[i].GetComponent<EmployeeScript>().name;
             HireScreen.transform.GetChild(i).GetChild(3).GetComponent<TextMeshProUGUI>().text = "Age: " + list[i].GetComponent<EmployeeScript>().age + " Years Old";
-            HireScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + list[i].GetComponent<EmployeeScript>().SpecialtyNames[0];
-            HireScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + list[i].GetComponent<EmployeeScript>().SpecialtyLevels[0].ToString("F2");
+            HireScreen.transform.GetChild(i).GetChild(4).GetComponent<TextMeshProUGUI>().text = "Specialty: " + list[i].GetComponent<EmployeeScript>().SpecialtyName;
+            HireScreen.transform.GetChild(i).GetChild(5).GetComponent<TextMeshProUGUI>().text = "Level in Specialty: " + list[i].GetComponent<EmployeeScript>().SpecialtyLevel.ToString("F2");
             HireScreen.transform.GetChild(i).GetComponent<Button>().interactable = true;
             HireScreen.transform.GetChild(i).GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = "Hire";
         }
@@ -645,8 +645,8 @@ public class EmployeeMasterControl : MonoBehaviour
         Emp.GetComponent<EmployeeScript>().name = EmployeeFirstNames[firstNameNum] + " \"" + EmployeeNickNames[nickNameNum] + "\" " + EmployeeLastNames[lastNameNum];
         Emp.GetComponent<EmployeeScript>().age = ageNum;
         Emp.GetComponent<EmployeeScript>().happiness = EmployeeHappiness[happNum];
-        Emp.GetComponent<EmployeeScript>().SpecialtyNames.Add(EmployeeSpecialties[specNum]);
-        Emp.GetComponent<EmployeeScript>().SpecialtyLevels.Add(lvlNum);
+        Emp.GetComponent<EmployeeScript>().SpecialtyName = EmployeeSpecialties[specNum];
+        Emp.GetComponent<EmployeeScript>().SpecialtyLevel = lvlNum;
         Emp.GetComponent<EmployeeScript>().conferenceRoom = 16;
         Emp.GetComponent<EmployeeScript>().breakRoom = 17;
         Emp.GetComponent<EmployeeScript>().waterCooler = 19;
