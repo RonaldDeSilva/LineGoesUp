@@ -162,10 +162,99 @@ public class ProjectManagerScript : MonoBehaviour
                     Destroy(PotentialProjectPool.transform.GetChild(i));
                 }
             }
+
+            if (CurrentProjectPool.transform.childCount > 0)
+            {
+                for (int i = 0; i < CurrentProjectPool.transform.childCount; i++)
+                {
+                    if (i == 0)
+                    {
+                        CurrentProject1.transform.GetChild(1).GetComponent<Image>().sprite = CurrentProjectPool.transform.GetChild(0).GetComponent<ProjectScript>().ProjectIcon;
+                        CurrentProject1.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = CurrentProjectPool.transform.GetChild(0).GetComponent<ProjectScript>().ProjectName;
+                        CurrentProject1.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = CurrentProjectPool.transform.GetChild(0).GetComponent<ProjectScript>().ProjectDescription;
+                        CurrentProject1.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = CurrentProjectPool.transform.GetChild(0).GetComponent<ProjectScript>().ProjectReward.ToString();
+                    }
+                    else if (i == 1)
+                    {
+                        CurrentProject2.transform.GetChild(1).GetComponent<Image>().sprite = CurrentProjectPool.transform.GetChild(1).GetComponent<ProjectScript>().ProjectIcon;
+                        CurrentProject2.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = CurrentProjectPool.transform.GetChild(1).GetComponent<ProjectScript>().ProjectName;
+                        CurrentProject2.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = CurrentProjectPool.transform.GetChild(1).GetComponent<ProjectScript>().ProjectDescription;
+                        CurrentProject2.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = CurrentProjectPool.transform.GetChild(1).GetComponent<ProjectScript>().ProjectReward.ToString();
+                    }
+                    else if (i == 2)
+                    {
+                        CurrentProject3.transform.GetChild(1).GetComponent<Image>().sprite = CurrentProjectPool.transform.GetChild(2).GetComponent<ProjectScript>().ProjectIcon;
+                        CurrentProject3.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = CurrentProjectPool.transform.GetChild(2).GetComponent<ProjectScript>().ProjectName;
+                        CurrentProject3.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = CurrentProjectPool.transform.GetChild(2).GetComponent<ProjectScript>().ProjectDescription;
+                        CurrentProject3.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = CurrentProjectPool.transform.GetChild(2).GetComponent<ProjectScript>().ProjectReward.ToString();
+                    }
+                }
+            }
+
             transform.GetChild(0).gameObject.SetActive(true);
             transform.GetChild(1).gameObject.SetActive(false);
         }
     }
 
+    public void AcceptProjectButton(Button butt)
+    {
+        if (PotentialProjectPool.transform.childCount == 3)
+        {
+            if (butt.gameObject.CompareTag("Button1"))
+            {
+                var proj = PotentialProjectPool.transform.GetChild(0).gameObject;
+                proj.transform.parent = CurrentProjectPool.transform;
+                butt.interactable = false;
+            }
+            else if (butt.gameObject.CompareTag("Button2"))
+            {
+                var proj = PotentialProjectPool.transform.GetChild(1).gameObject;
+                proj.transform.parent = CurrentProjectPool.transform;
+                butt.interactable = false;
+            }
+            else if (butt.gameObject.CompareTag("Button3"))
+            {
+                var proj = PotentialProjectPool.transform.GetChild(2).gameObject;
+                proj.transform.parent = CurrentProjectPool.transform;
+                butt.interactable = false;
+            }
+        }
+        else if (PotentialProjectPool.transform.childCount == 2)
+        {
+            if (butt.gameObject.CompareTag("Button1"))
+            {
+                var proj = PotentialProjectPool.transform.GetChild(0).gameObject;
+                proj.transform.parent = CurrentProjectPool.transform;
+                butt.interactable = false;
+            }
+            else if (butt.gameObject.CompareTag("Button2"))
+            {
+                if (butt.transform.parent.GetChild(2).GetComponent<Button>().interactable)
+                {
+                    var proj = PotentialProjectPool.transform.GetChild(1).gameObject;
+                    proj.transform.parent = CurrentProjectPool.transform;
+                    butt.interactable = false;
+                }
+                else
+                {
+                    var proj = PotentialProjectPool.transform.GetChild(0).gameObject;
+                    proj.transform.parent = CurrentProjectPool.transform;
+                    butt.interactable = false;
+                }
+            }
+            else if (butt.gameObject.CompareTag("Button3"))
+            {
+                var proj = PotentialProjectPool.transform.GetChild(1).gameObject;
+                proj.transform.parent = CurrentProjectPool.transform;
+                butt.interactable = false;
+            }
+        }
+        else if (PotentialProjectPool.transform.childCount == 1)
+        {
+            var proj = PotentialProjectPool.transform.GetChild(0).gameObject;
+            proj.transform.parent = CurrentProjectPool.transform;
+            butt.interactable = false;
+        }
+    }
 
 }
