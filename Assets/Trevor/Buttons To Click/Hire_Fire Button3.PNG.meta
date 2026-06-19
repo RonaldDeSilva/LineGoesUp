@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 25f9f1f64b745bf4c80fdd883d85ef8e
+guid: 193163cd42c928747a2dff8d60fcd801
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7407071669825903605
-    second: Project Managment Button1_0
+      213: -5170837029442175237
+    second: Hire_Fire Button3_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Project Managment Button1_0
+      name: Hire_Fire Button3_0
       rect:
         serializedVersion: 2
         x: 0
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b04ea268f8bc43990800000000000000
-      internalID: -7407071669825903605
+      spriteID: bfeb9a43e1f7d38b0800000000000000
+      internalID: -5170837029442175237
       vertices: []
       indices: 
       edges: []

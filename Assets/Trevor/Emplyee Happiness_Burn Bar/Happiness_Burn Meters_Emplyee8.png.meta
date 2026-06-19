@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 25f9f1f64b745bf4c80fdd883d85ef8e
+guid: 789c9bdd301aae8418094af50acd4dd8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7407071669825903605
-    second: Project Managment Button1_0
+      213: -7448712637706025010
+    second: Happiness_Burn Meters_Emplyee8_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Project Managment Button1_0
+      name: Happiness_Burn Meters_Emplyee8_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 169
-        height: 69
+        width: 317
+        height: 1027
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b04ea268f8bc43990800000000000000
-      internalID: -7407071669825903605
+      spriteID: ec7c19b225bd0a890800000000000000
+      internalID: -7448712637706025010
       vertices: []
       indices: 
       edges: []

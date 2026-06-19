@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 99e9aa72538305b48b4cbfe79f2be6a2
+guid: 05422f618beb7a648b4d9dde7ce1b37a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8414092756889265168
-    second: Project Managment Button3_0
+      213: 2042977347622493368
+    second: Project Managment Button1 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,30 +96,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WindowsStoreApps
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Project Managment Button3_0
+      name: Project Managment Button1 1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 254
-        height: 45
+        width: 169
+        height: 69
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 014629958ccd4c470800000000000000
-      internalID: 8414092756889265168
+      spriteID: 8bc5531d21d1a5c10800000000000000
+      internalID: 2042977347622493368
       vertices: []
       indices: 
       edges: []
@@ -147,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Project Managment Button3_0: 8414092756889265168
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

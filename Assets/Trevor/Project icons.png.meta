@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 25f9f1f64b745bf4c80fdd883d85ef8e
+guid: 4fe00a77d4b35e344ac1932af6b3323a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7407071669825903605
-    second: Project Managment Button1_0
+      213: -8566830957204849965
+    second: Project icons_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Project Managment Button1_0
+      name: Project icons_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 169
-        height: 69
+        width: 192
+        height: 160
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b04ea268f8bc43990800000000000000
-      internalID: -7407071669825903605
+      spriteID: 3da3cf822a08c1980800000000000000
+      internalID: -8566830957204849965
       vertices: []
       indices: 
       edges: []
